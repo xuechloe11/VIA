@@ -1,0 +1,34 @@
+{
+ "Via (agency rider apps)": {
+  "n_apps": 280,
+  "star_ratings": 52809,
+  "headline_avg": 4.713778315249291,
+  "written_n": 1872,
+  "written_avg": 2.8974358974358974,
+  "written_low": 0.5
+ },
+ "Spare": {
+  "n_apps": 158,
+  "star_ratings": 5595,
+  "headline_avg": 4.575514673815907,
+  "written_n": 312,
+  "written_avg": 2.9198717948717947,
+  "written_low": 0.47435897435897434
+ },
+ "RideCo": {
+  "n_apps": 66,
+  "star_ratings": 1328,
+  "headline_avg": 3.919427439759036,
+  "written_n": 391,
+  "written_avg": 3.1739130434782608,
+  "written_low": 0.4424552429667519
+ },
+ "Uber/Lyft": {
+  "n_apps": 2,
+  "star_ratings": 34611418,
+  "headline_avg": 4.906566182746399,
+  "written_n": 50,
+  "written_avg": 3.76,
+  "written_low": 0.3
+ }
+}

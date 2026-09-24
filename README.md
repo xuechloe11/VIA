@@ -32,3 +32,6 @@ DCF results (WACC 11.4%, g 3%, price $28.37):
 | Short (FY27 rev −4.4% vs cons; LT adj. EBITDA ~10%) | $4.94 | $11.02 |
 | Bull (matches consensus FY26–27; LT adj. EBITDA ~22%) | $20.60 | $28.58 |
 Takeaway: today's price ≈ the bull/consensus trajectory with stock comp treated as free.
+
+## Customer reviews (research/reviews)
+`research/reviews/REVIEWS_FINDINGS.md`: 6,938 written app-store reviews across Via's ~280 white-label rider apps, benchmarked against Spare, RideCo and Uber/Lyft, plus agency-level evidence. Written reviews average 2.9★ vs. a 4.7★ headline, but Spare scores the same, so reviews support the capacity/contractor angle, not a "Via is uniquely bad" claim.
