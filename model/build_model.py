@@ -572,6 +572,257 @@ for n in [
 ]:
     c = put(cb, f"B{r}", n); cb.merge_cells(f"B{r}:J{r}"); c.alignment = WRAP; cb.row_dimensions[r].height = 30; r += 1
 
+# ================= Revenue_Build =================
+rb = wb.create_sheet("Revenue_Build")
+rb.column_dimensions["A"].width = 3; rb.column_dimensions["B"].width = 52
+for i in range(3, 14): rb.column_dimensions[L(i)].width = 10
+rb.column_dimensions["N"].width = 60
+put(rb, "B1", "Revenue build and operating model by revenue stream", T)
+put(rb, "B2", "Four streams with different economics: software, microtransit/paratransit services (hours × $/hr), network deals (contract value launched), one-time. FY25 actual; FY26 matched to consensus; FY27–30 driven by inputs; FY31–35 growth fades linearly to terminal growth.", Font(name=F, italic=True, size=9))
+rb.merge_cells("B2:N2"); rb["B2"].alignment = WRAP; rb.row_dimensions[2].height = 30
+put(rb, "B4", "SCENARIO: 1 = Short case, 2 = Bull (matches consensus FY26–27)", B); put(rb, "D4", 1, BLUE, '0', YEL)
+YRS = ["FY25A","FY26E","FY27E","FY28E","FY29E","FY30E","FY31E","FY32E","FY33E","FY34E","FY35E"]
+COLS = [L(3+i) for i in range(11)]  # C..M
+hdr(rb, 6, ["", "($mm)"] + YRS + ["Notes"], 1)
+put(rb, "B7", "Consensus revenue (BBG)"); put(rb, "C7", 434.337, BLUE, USD); put(rb, "D7", 551.697, BLUE, USD); put(rb, "E7", 674.778, BLUE, USD)
+put(rb, "B8", "Consensus adj. EBITDA (BBG)"); put(rb, "C8", -32.4, BLUE, USD); put(rb, "D8", -7.435, BLUE, USD); put(rb, "E8", 29.443, BLUE, USD)
+put(rb, "N8", "FY25A from company (adj. EBITDA ≈ −$32M); FY26–27 Bloomberg consensus.", Font(name=F, size=9))
+
+put(rb, "B10", "DRIVERS (Short / Bull input rows; 'Live' row feeds the model)", H)
+DRV = [
+ ("Software revenue growth", [0.18,0.12,0.11,0.10,0.09], [0.18,0.16,0.15,0.14,0.13], PCT, "FY26 incl. Downtowner. Software ≈ customers × revenue per customer; organic customer growth ~9%."),
+ ("Hours: expansion at existing customers", [None,0.12,0.11,0.10,0.10], [None,0.13,0.13,0.12,0.12], PCT, "10-K: expansion with existing customers drives most growth."),
+ ("Hours: new customers", [None,0.04,0.04,0.04,0.04], [None,0.04,0.04,0.04,0.04], PCT, "Organic logo growth ~9% but new logos start small."),
+ ("Hours: downsell / budget cuts / churn", [None,-0.08,-0.07,-0.06,-0.06], [None,-0.03,-0.03,-0.03,-0.03], PCT, "Short: funding tightens 2027 (stopgap, ARPA end). Jersey City −50%, Arlington −31%."),
+ ("Price escalator ($/hr)", [None,0.03,0.03,0.03,0.03], [None,0.03,0.03,0.03,0.03], PCT, "3% annual escalator in Via's Q4'25 example contract."),
+ ("Network: contract value launched ($mm)", [35,30,30,30,30], [35,40,45,50,55], USD, "2026 wins >$40M + Rochester $14.6M, mostly launching H2'26–27. ~$10–15M per deal."),
+ ("Network: rebid loss (% of opening run-rate)", [0,0,0,0.05,0.05], [0,0,0,0,0], PCT, "5-yr terms: first rebids ~2029 (Sioux Falls through 2028)."),
+ ("One-time revenue (% of total)", [0.03]*5, [0.03]*5, PCT, "3% in FY24 and FY25 (10-K)."),
+ ("Software gross margin", [0.75]*5, [0.75]*5, PCT, "Bleecker assumption; reported cost split implies ~73%."),
+ ("Microtransit/paratransit gross margin", [0.293]*5, [0.293,0.303,0.313,0.323,0.333], PCT, "Bleecker_Replication updated TaaS GM. Bull: +1pt/yr from AI/routing."),
+ ("Network gross margin", [0.20]*5, [0.25,0.26,0.27,0.28,0.29], PCT, "ASSUMPTION (undisclosed). Short: bus-operator economics. CFO: 'some accretive, some less.'"),
+ ("One-time gross margin", [0.75]*5, [0.75]*5, PCT, "High-margin implementation/consulting."),
+ ("Hour-driven opex (% of services revenue)", [0.065]*5, [0.065,0.065,0.06,0.055,0.05], PCT, "Insurance (~3.5%, Bleecker) + customer support (~3%, Bleecker unit economics), both in G&A (10-K). Bull: AI cuts support."),
+ ("Fixed opex growth (R&D, S&M, corporate)", [None,0.04,0.04,0.04,0.04], [None,0.03,0.03,0.03,0.03], PCT, "Consensus total opex +3.9% FY27."),
+]
+live = {}
+r = 11
+for name, s, bvals, fmt, note in DRV:
+    put(rb, f"B{r}", name, B)
+    put(rb, f"B{r+1}", "   Short"); put(rb, f"B{r+2}", "   Bull"); put(rb, f"B{r+3}", "   Live")
+    for j in range(5):
+        c = COLS[1+j]
+        if s[j] is not None: put(rb, f"{c}{r+1}", s[j], BLUE, fmt)
+        if bvals[j] is not None: put(rb, f"{c}{r+2}", bvals[j], BLUE, fmt)
+        if s[j] is not None or bvals[j] is not None:
+            put(rb, f"{c}{r+3}", f"=IF($D$4=1,{c}{r+1},{c}{r+2})", BLK, fmt)
+    for c in COLS[6:]:  # FY31-35 hold FY30 value
+        put(rb, f"{c}{r+3}", f"=$H{r+3}", BLK, fmt)
+    cc_ = put(rb, f"N{r}", note, Font(name=F, size=9)); cc_.alignment = WRAP
+    live[name] = r + 3
+    r += 4
+LV = lambda n: live[n]
+g_sw, h_exp, h_new, h_dn, h_px = LV("Software revenue growth"), LV("Hours: expansion at existing customers"), LV("Hours: new customers"), LV("Hours: downsell / budget cuts / churn"), LV("Price escalator ($/hr)")
+n_acv, n_loss, ot_pct = LV("Network: contract value launched ($mm)"), LV("Network: rebid loss (% of opening run-rate)"), LV("One-time revenue (% of total)")
+gm_sw, gm_mp, gm_nw, gm_ot = LV("Software gross margin"), LV("Microtransit/paratransit gross margin"), LV("Network gross margin"), LV("One-time gross margin")
+vo_pct, fx_g = LV("Hour-driven opex (% of services revenue)"), LV("Fixed opex growth (R&D, S&M, corporate)")
+
+r += 1
+put(rb, f"B{r}", "Terminal growth (from DCF tab)"); put(rb, f"D{r}", "='DCF'!C9", GRN, PCT); TG = f"$D${r}"; r += 1
+put(rb, f"B{r}", "Network opening run-rate FY26 ($mm)"); put(rb, f"D{r}", 25, BLUE, USD, YEL)
+put(rb, f"N{r}", "Estimate: Mobile $12.1M + Sioux Falls + Twin Cities (MI). Sioux Falls value/structure unverified.", Font(name=F, size=9)); NOPEN = f"$D${r}"; r += 1
+put(rb, f"B{r}", "Blended $/vehicle-hour FY25 (for implied hours)"); put(rb, f"D{r}", 60, BLUE, USD)
+put(rb, f"N{r}", "Illustrative: 2026 rates $64.5–70 micro, $67.75 para; legacy lower ($42–50).", Font(name=F, size=9)); PX0 = f"$D${r}"; r += 2
+
+put(rb, f"B{r}", "REVENUE", H); r += 1
+R_SW = r; put(rb, f"B{r}", "Software"); put(rb, f"C{r}", 101.1, BLUE, USD)
+put(rb, f"N{r}", "FY25 est: 24% of recurring revenue (services ~76%).", Font(name=F, size=9)); r += 1
+R_MP = r; put(rb, f"B{r}", "Microtransit / paratransit services (hours × $/hr)"); r += 1
+R_NW = r; put(rb, f"B{r}", "Network deals"); put(rb, f"C{r}", 13.0, BLUE, USD)
+put(rb, f"N{r}", "FY25 est: Sioux Falls + Mobile Q4.", Font(name=F, size=9)); r += 1
+R_REC = r; put(rb, f"B{r}", "Recurring subtotal", B); r += 1
+R_OT = r; put(rb, f"B{r}", "One-time (implementation, consulting)"); r += 1
+R_TOT = r; put(rb, f"B{r}", "TOTAL REVENUE", B); r += 1
+R_GR = r; put(rb, f"B{r}", "   growth"); r += 1
+R_VC = r; put(rb, f"B{r}", "   vs consensus"); r += 1
+R_SS = r; put(rb, f"B{r}", "   Services share (micro/para + network)"); r += 1
+R_PX = r; put(rb, f"B{r}", "   Blended $/vehicle-hour"); r += 1
+R_HR = r; put(rb, f"B{r}", "   Implied micro/para vehicle-hours (mm)"); r += 1
+r += 1
+put(rb, f"B{r}", "Network detail", B); r += 1
+R_NO = r; put(rb, f"B{r}", "   Opening run-rate"); r += 1
+R_NN = r; put(rb, f"B{r}", "   Opening after escalator and rebid losses"); r += 1
+R_NL = r; put(rb, f"B{r}", "   Launched in year (links driver)"); r += 1
+R_NC = r; put(rb, f"B{r}", "   Closing run-rate"); r += 1
+r += 1
+put(rb, f"B{r}", "GROSS PROFIT", H); r += 1
+R_GSW, R_GMP, R_GNW, R_GOT = r, r+1, r+2, r+3
+for k, lab in enumerate(["Software", "Microtransit / paratransit", "Network", "One-time"]): put(rb, f"B{r+k}", lab)
+r += 4
+R_GP = r; put(rb, f"B{r}", "TOTAL GROSS PROFIT", B); r += 1
+R_GM = r; put(rb, f"B{r}", "   Gross margin"); r += 1
+R_GMC = r; put(rb, f"B{r}", "   Consensus gross margin"); put(rb, f"D{r}", 0.40, BLUE, PCT); put(rb, f"E{r}", 0.408, BLUE, PCT); r += 2
+put(rb, f"B{r}", "OPERATING COSTS (adjusted: ex-SBC, ex-D&A)", H); r += 1
+R_VO = r; put(rb, f"B{r}", "Hour-driven (insurance, support): % × services revenue"); r += 1
+R_FO = r; put(rb, f"B{r}", "Fixed (R&D, S&M, corporate); FY26 matched to consensus EBITDA"); r += 1
+R_OX = r; put(rb, f"B{r}", "Total adjusted opex", B); r += 1
+R_OXP = r; put(rb, f"B{r}", "   % of revenue"); r += 1
+R_EB = r; put(rb, f"B{r}", "ADJUSTED EBITDA", B); r += 1
+R_EBM = r; put(rb, f"B{r}", "   margin"); r += 1
+R_EBC = r; put(rb, f"B{r}", "   vs consensus ($mm)"); r += 1
+
+for i, c in enumerate(COLS):
+    p = COLS[i-1] if i > 0 else None
+    k = i - 5  # fade step for FY31+ (i=6 -> 1)
+    # software
+    if i == 0: pass
+    elif i <= 5: put(rb, f"{c}{R_SW}", f"={p}{R_SW}*(1+{c}{g_sw})", BLK, USD)
+    else: put(rb, f"{c}{R_SW}", f"={p}{R_SW}*(1+$H${g_sw}+({TG}-$H${g_sw})*{k}/5)", BLK, USD)
+    # network detail + revenue
+    if i == 1:
+        put(rb, f"{c}{R_NO}", f"={NOPEN}", GRN, USD); put(rb, f"{c}{R_NN}", f"={c}{R_NO}", BLK, USD)
+    elif 2 <= i <= 5:
+        put(rb, f"{c}{R_NO}", f"={p}{R_NC}", BLK, USD)
+        put(rb, f"{c}{R_NN}", f"={c}{R_NO}*(1+{c}{h_px})*(1-{c}{n_loss})", BLK, USD)
+    if 1 <= i <= 5:
+        put(rb, f"{c}{R_NL}", f"={c}{n_acv}", BLK, USD)
+        put(rb, f"{c}{R_NC}", f"={c}{R_NN}+{c}{R_NL}", BLK, USD)
+        put(rb, f"{c}{R_NW}", f"={c}{R_NN}+0.5*{c}{R_NL}", BLK, USD)
+    elif i >= 6:
+        put(rb, f"{c}{R_NW}", f"={p}{R_NW}*(1+($H${R_NW}/$G${R_NW}-1)+({TG}-($H${R_NW}/$G${R_NW}-1))*{k}/5)", BLK, USD)
+    # micro/para
+    if i == 0:
+        put(rb, f"{c}{R_MP}", f"={c}7*(1-0.03)-{c}{R_SW}-{c}{R_NW}", BLK, USD)
+    elif i == 1:
+        put(rb, f"{c}{R_MP}", f"={c}7*(1-{c}{ot_pct})-{c}{R_SW}-{c}{R_NW}", BLK, USD)
+    elif i <= 5:
+        put(rb, f"{c}{R_MP}", f"={p}{R_MP}*(1+{c}{h_exp}+{c}{h_new}+{c}{h_dn})*(1+{c}{h_px})", BLK, USD)
+    else:
+        put(rb, f"{c}{R_MP}", f"={p}{R_MP}*(1+($H${R_MP}/$G${R_MP}-1)+({TG}-($H${R_MP}/$G${R_MP}-1))*{k}/5)", BLK, USD)
+    put(rb, f"{c}{R_REC}", f"={c}{R_SW}+{c}{R_MP}+{c}{R_NW}", BLK, USD)
+    if i == 0:
+        put(rb, f"{c}{R_OT}", f"={c}7*0.03", BLK, USD); put(rb, f"{c}{R_TOT}", f"={c}7", GRN, USD)
+    elif i == 1:
+        put(rb, f"{c}{R_OT}", f"={c}7*{c}{ot_pct}", BLK, USD); put(rb, f"{c}{R_TOT}", f"={c}7", GRN, USD)
+    else:
+        put(rb, f"{c}{R_OT}", f"={c}{R_REC}*{c}{ot_pct}/(1-{c}{ot_pct})", BLK, USD)
+        put(rb, f"{c}{R_TOT}", f"={c}{R_REC}+{c}{R_OT}", BLK, USD)
+    if i >= 1: put(rb, f"{c}{R_GR}", f"={c}{R_TOT}/{p}{R_TOT}-1", BLK, PCT)
+    if i in (1, 2): put(rb, f"{c}{R_VC}", f"={c}{R_TOT}/{c}7-1", BLK, '+0.0%;-0.0%;0.0%')
+    put(rb, f"{c}{R_SS}", f"=({c}{R_MP}+{c}{R_NW})/{c}{R_TOT}", BLK, PCT)
+    if i == 0: put(rb, f"{c}{R_PX}", f"={PX0}", GRN, USD)
+    elif i <= 5: put(rb, f"{c}{R_PX}", f"={p}{R_PX}*(1+IF({c}{h_px}=\"\",0.03,{c}{h_px}))", BLK, USD)
+    else: put(rb, f"{c}{R_PX}", f"={p}{R_PX}*1.03", BLK, USD)
+    put(rb, f"{c}{R_HR}", f"={c}{R_MP}/{c}{R_PX}", BLK, '0.00')
+    if i >= 1:
+        put(rb, f"{c}{R_GSW}", f"={c}{R_SW}*{c}{gm_sw}", BLK, USD)
+        put(rb, f"{c}{R_GMP}", f"={c}{R_MP}*{c}{gm_mp}", BLK, USD)
+        put(rb, f"{c}{R_GNW}", f"={c}{R_NW}*{c}{gm_nw}", BLK, USD)
+        put(rb, f"{c}{R_GOT}", f"={c}{R_OT}*{c}{gm_ot}", BLK, USD)
+        put(rb, f"{c}{R_GP}", f"=SUM({c}{R_GSW}:{c}{R_GOT})", BLK, USD)
+        put(rb, f"{c}{R_GM}", f"={c}{R_GP}/{c}{R_TOT}", BLK, PCT)
+        put(rb, f"{c}{R_VO}", f"={c}{vo_pct}*({c}{R_MP}+{c}{R_NW})", BLK, USD)
+        if i == 1: put(rb, f"{c}{R_FO}", f"=({c}{R_GP}-{c}8)-{c}{R_VO}", BLK, USD)
+        else: put(rb, f"{c}{R_FO}", f"={p}{R_FO}*(1+{c}{fx_g})", BLK, USD)
+        put(rb, f"{c}{R_OX}", f"={c}{R_VO}+{c}{R_FO}", BLK, USD)
+        put(rb, f"{c}{R_OXP}", f"={c}{R_OX}/{c}{R_TOT}", BLK, PCT)
+        put(rb, f"{c}{R_EB}", f"={c}{R_GP}-{c}{R_OX}", BLK, USD)
+        put(rb, f"{c}{R_EBM}", f"={c}{R_EB}/{c}{R_TOT}", BLK, PCT)
+    if i in (1, 2): put(rb, f"{c}{R_EBC}", f"={c}{R_EB}-{c}8", BLK, USD)
+for rr, n in [(R_MP, "FY25–26: residual so total = actual/consensus. FY27+: hours growth (expansion + new − cuts) × price escalator."),
+              (R_NW, "Revenue = opening run-rate (escalated, net of rebid losses) + half of the year's launches."),
+              (R_FO, "FY26 backed out so adj. EBITDA = consensus (−$7.4M)."),
+              (R_EB, "Adjusted = before stock comp. DCF tab deducts stock comp.")]:
+    cc_ = put(rb, f"N{rr}", n, Font(name=F, size=9)); cc_.alignment = WRAP
+rb.freeze_panes = "C7"
+RB = dict(TOT=R_TOT, EB=R_EB, GP=R_GP)
+
+# ================= DCF =================
+dc = wb.create_sheet("DCF")
+dc.column_dimensions["A"].width = 3; dc.column_dimensions["B"].width = 46
+for i in range(3, 14): dc.column_dimensions[L(i)].width = 10
+dc.column_dimensions["N"].width = 50
+put(dc, "B1", "DCF (unlevered free cash flow, valuation at end-FY26, mid-year convention)", T)
+put(dc, "B2", "Scenario is set on Revenue_Build!D4. Stock comp is deducted as a real cost (toggle below).", Font(name=F, italic=True, size=9))
+inp = [
+ (4, "Risk-free rate", 0.0425, PCT, "10-yr UST (update)."),
+ (5, "Equity beta", 1.30, '0.00', "Small-cap, high-growth; check Bloomberg BETA."),
+ (6, "Equity risk premium", 0.055, PCT, ""),
+ (7, "Cost of equity = WACC (no debt)", "=C4+C5*C6", PCT, "Via has no debt (10-Q)."),
+ (8, "WACC used", "=C7", PCT, "Override here to test."),
+ (9, "Terminal growth", 0.03, PCT, ""),
+ (10, "Cash tax rate (after NOLs)", 0.25, PCT, ""),
+ (11, "First year of cash taxes", 2030, '0', "NOL shield assumption. Check 10-K tax note."),
+ (12, "D&A % of revenue", 0.017, PCT, "Consensus D&A ≈ $9–10M on ~$550M."),
+ (13, "Capex + capitalized software % of revenue", 0.015, PCT, "FY25 capitalized software $4.3M + capex."),
+ (14, "Net working capital % of revenue", 0.08, PCT, "Q2'26: AR+prepaids ≈ $122M less payables/accruals/deferred ≈ $81M → ~$41M on $543M run-rate."),
+ (15, "Deduct stock comp? (1 = yes)", 1, '0', "SBC is ~11% of revenue in FY26."),
+ (16, "Cash (Q2'26, no debt)", 336.0, USD, ""),
+ (17, "Diluted shares (mm)", 84.2, '0.0', "Consensus Q4'26E diluted."),
+ (18, "Current share price", "='Consensus_Check'!C29", '$#,##0.00', ""),
+ (19, "Exit EV/EBITDA multiple (cross-check)", 15.0, '0.0x', "Applied to FY35 adj. EBITDA."),
+]
+for rr, lab, v, fmt, note in inp:
+    put(dc, f"B{rr}", lab)
+    isf = isinstance(v, str)
+    put(dc, f"C{rr}", v, (GRN if isf and "!" in v else BLK) if isf else BLUE, fmt, YEL if rr in (8, 9, 15, 19) else None)
+    put(dc, f"D{rr}", note, Font(name=F, size=9))
+hdr(dc, 21, ["", "($mm)"] + YRS[1:] + ["Notes"], 1)  # D..M = FY26..FY35 -> use columns C..L? keep aligned: FY26 in C
+DC = [L(3+i) for i in range(10)]   # C..L = FY26..FY35
+RBC = COLS[1:]                      # D..M in Revenue_Build
+put(dc, "B22", "Revenue"); put(dc, "B23", "Adjusted EBITDA"); put(dc, "B24", "Stock comp % of revenue"); put(dc, "B25", "Stock comp")
+put(dc, "B26", "EBITDA after stock comp"); put(dc, "B27", "D&A"); put(dc, "B28", "EBIT"); put(dc, "B29", "Cash taxes")
+put(dc, "B30", "Capex + capitalized software"); put(dc, "B31", "Increase in net working capital"); put(dc, "B32", "UNLEVERED FREE CASH FLOW", B)
+put(dc, "B33", "Discount period (years from end-FY26)"); put(dc, "B34", "PV of FCF")
+sbc = [0.115, 0.096, 0.08, 0.065, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]
+for i, c in enumerate(DC):
+    rc = RBC[i]; yr = 2026 + i
+    put(dc, f"{c}22", f"='Revenue_Build'!{rc}{RB['TOT']}", GRN, USD)
+    put(dc, f"{c}23", f"='Revenue_Build'!{rc}{RB['EB']}", GRN, USD)
+    put(dc, f"{c}24", sbc[i], BLUE, PCT)
+    put(dc, f"{c}25", f"={c}22*{c}24", BLK, USD)
+    put(dc, f"{c}26", f"={c}23-$C$15*{c}25", BLK, USD)
+    put(dc, f"{c}27", f"={c}22*$C$12", BLK, USD)
+    put(dc, f"{c}28", f"={c}26-{c}27", BLK, USD)
+    put(dc, f"{c}29", f"=IF({yr}>=$C$11,MAX(0,{c}28)*$C$10,0)", BLK, USD)
+    put(dc, f"{c}30", f"={c}22*$C$13", BLK, USD)
+    if i == 0: put(dc, f"{c}31", 0, BLUE, USD)
+    else: put(dc, f"{c}31", f"=({c}22-{DC[i-1]}22)*$C$14", BLK, USD)
+    put(dc, f"{c}32", f"={c}26-{c}29-{c}30-{c}31", BLK, USD)
+    if i >= 1:
+        put(dc, f"{c}33", i - 0.5, BLK, '0.0')
+        put(dc, f"{c}34", f"={c}32/(1+$C$8)^{c}33", BLK, USD)
+put(dc, "M24", "FY26–27 = consensus SBC; fades to 5%.", Font(name=F, size=9))
+put(dc, "M31", "FY26 excluded (valuation at end-FY26).", Font(name=F, size=9))
+put(dc, "B36", "VALUATION", H)
+rows = [
+ (37, "Sum of PV of FCF (FY27–35)", "=SUM(D34:L34)", USD),
+ (38, "Terminal value (perpetuity growth) at end-FY35", "=L32*(1+C9)/(C8-C9)", USD),
+ (39, "PV of terminal value", "=C38/(1+C8)^9", USD),
+ (40, "Enterprise value", "=C37+C39", USD),
+ (41, "+ Cash", "=C16", USD),
+ (42, "Equity value", "=C40+C41", USD),
+ (43, "VALUE PER SHARE (perpetuity growth)", "=C42/C17", '$#,##0.00'),
+ (44, "Upside / (downside) vs current price", "=C43/C18-1", '+0.0%;-0.0%'),
+ (45, "Terminal value as % of EV", "=C39/C40", PCT),
+ (47, "Cross-check: exit multiple on FY35 adj. EBITDA", "=L23*C19", USD),
+ (48, "   Value per share (exit multiple)", "=(C37+C47/(1+C8)^9+C16)/C17", '$#,##0.00'),
+ (49, "   Implied perpetuity growth in exit multiple", "=(C47*C8-L32)/(C47+L32)", PCT),
+]
+for rr, lab, f, fmt in rows:
+    put(dc, f"B{rr}", lab, B if rr in (40, 43) else BLK); put(dc, f"C{rr}", f, BLK, fmt)
+dc["C43"].fill = PatternFill("solid", fgColor="E2EFDA")
+put(dc, "B51", "Sensitivity: value per share (perpetuity), WACC (rows) × terminal growth (cols)", H)
+put(dc, "B52", "WACC \\ g", B)
+gs = [0.02, 0.025, 0.03, 0.035, 0.04]; ws_ = [0.09, 0.10, 0.11, 0.12, 0.13]
+for j, g in enumerate(gs): put(dc, f"{L(3+j)}52", g, BLUE, PCT)
+for i, w in enumerate(ws_):
+    rr = 53 + i; put(dc, f"B{rr}", w, BLUE, PCT)
+    for j in range(5):
+        c = L(3+j)
+        put(dc, f"{c}{rr}", f"=(SUMPRODUCT($D$32:$L$32/((1+$B{rr})^$D$33:$L$33))+$L$32*(1+{c}$52)/($B{rr}-{c}$52)/(1+$B{rr})^9+$C$16)/$C$17", BLK, '$#,##0.00')
+put(dc, "B59", "Scenario results (switch Revenue_Build!D4 to 1 or 2 and re-read C43). Our run is recorded in the README.", Font(name=F, size=9))
+
 # ================= Sheet 7: Sources =================
 so = wb.create_sheet("Sources")
 so.column_dimensions["A"].width = 6; so.column_dimensions["B"].width = 80; so.column_dimensions["C"].width = 100

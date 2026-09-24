@@ -12,6 +12,8 @@
 | Contracts | Tracker incl. hourly rates (micro/para) from pre- and post-Dec-2025 contracts |
 | Consensus_Check | Bloomberg consensus (Q3'25A–Q4'27E): margins, opex leverage, insurance-in-G&A test, valuation multiples, illustrative SOTP |
 | Comps_BBG | Bloomberg RV 'BICS Best Fit' comps (VIA classified 100% Application Software) and VIA's premium |
+| Revenue_Build | 4-stream revenue build (software, micro/para hours × $/hr, network contract value, one-time), GP by stream, hour-driven vs fixed opex; scenario switch D4 (1 short, 2 bull = consensus FY26–27) |
+| DCF | Unlevered FCF FY27–35, stock comp deducted (toggle), perpetuity + exit-multiple, WACC × g sensitivity |
 | ACV_CrossCheck | Alternative: Bleecker 72% baseline + incremental contract ACV |
 | Sources | URLs for every hardcoded number |
 
@@ -23,3 +25,10 @@ Key results:
 - Via's FY25 10-K confirms insurance and customer support costs sit in G&A, not cost of revenue.
 
 Consensus (BBG): GM stays ~40–41% through FY27 (no 50% path assumed); FY27 revenue +22% with opex +3.9% and G&A +1.8%, taking adj. EBITDA margin from −1.3% (FY26E) to +4.4% (FY27E). At $28.37 (BBG): EV ~$1.98B = 7.2x FY27E GP, 67x FY27E adj. EBITDA (BBG shows 69.6x FY2 vs 7.5x comp median).
+
+DCF results (WACC 11.4%, g 3%, price $28.37):
+| Scenario | SBC deducted | SBC ignored |
+|---|---|---|
+| Short (FY27 rev −4.4% vs cons; LT adj. EBITDA ~10%) | $4.94 | $11.02 |
+| Bull (matches consensus FY26–27; LT adj. EBITDA ~22%) | $20.60 | $28.58 |
+Takeaway: today's price ≈ the bull/consensus trajectory with stock comp treated as free.
