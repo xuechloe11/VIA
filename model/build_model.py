@@ -63,6 +63,8 @@ SRC = {
  "S31": ("Search extract citing Douglas County: Link On Demand costs ~$70/hr to operate", "https://www.castlerocknewspress.net/news/article_00161854-4419-43e6-a43d-43dd24d19169.html"),
  "S32": ("Bleecker exhibits 'Illustrative TaaS Unit Economics' and 'TaaS vs SaaS Mix Analysis' (images in report)", "https://www.bleeckerstreetresearch.com/research/via"),
  "S33": ("Colorado Politics: DougCo Feb 2026 $4.4M contract to continue/expand Link On Demand (Lone Tree, Highlands Ranch, Parker)", "https://www.coloradopolitics.com/2026/07/14/dougco-approves-2m-rideshare-expansion-to-castle-rock/"),
+ "S34": ("Bloomberg BST consensus projections (user-provided file, model/Consensus_Projections_BBG.xlsx)", ""),
+ "S35": ("stockanalysis.com VIA statistics: mkt cap $2.41B, EV $2.09B, 81.51M shares, short interest 9.87% of float, 7.98 days to cover", "https://stockanalysis.com/stocks/via/statistics/"),
  "S26": ("User research notes (VIA_1.pdf): Arlington, DCTA, King County, Mobile, New Braunfels, Miami-Dade, Gastonia, Passaic, Q4'25 Texas example", ""),
 }
 
@@ -442,6 +444,88 @@ put(um, "B56", "Share of customers buying services (mgmt: ~20%)"); put(um, "C56"
 put(um, "B57", "Avg services ACV per turnkey customer ($mm)"); put(um, "C57", "=C37*D44/(C55*C56)", BLK, '$#,##0.00')
 put(um, "B58", "Avg software ACV per customer, all customers ($mm)"); put(um, "C58", "=C37*(1-D44)/C55", BLK, '$#,##0.00')
 put(um, "B59", "Sanity check vs benchmarks: TfL Dial-a-Ride software ~$0.59M/yr; LA Metro's Spare software $0.45M; Arlington software ~4% of $10.4M ≈ $0.4M.", Font(name=F, size=9))
+
+# ================= Consensus_Check =================
+cc = wb.create_sheet("Consensus_Check")
+cc.column_dimensions["A"].width = 3; cc.column_dimensions["B"].width = 50
+for i in range(3, 16): cc.column_dimensions[L(i)].width = 10
+put(cc, "B1", "What consensus already assumes (Bloomberg BST, user-provided file)", T)
+put(cc, "B2", "Source: model/Consensus_Projections_BBG.xlsx (Bloomberg, as provided). $mm. Q3'25–Q2'26 actual, Q3'26–Q4'27 consensus.", Font(name=F, italic=True, size=9))
+qs = ["Q3'25A","Q4'25A","Q1'26A","Q2'26A","Q3'26E","Q4'26E","Q1'27E","Q2'27E","Q3'27E","Q4'27E"]
+hdr(cc, 4, [""] + ["Line"] + qs + ["", "FY26E", "FY27E"], 1)
+data = {
+ "Revenue": [109.653,118.909,127.434,135.707,138,150.5556,156.6667,167.4444,169.1111,181.5556],
+ "Gross profit": [43.086,46.953,50.055,55.606,54.7256,60.2660,63.1311,68.0971,69.1450,75.0060],
+ "Total opex (GAAP, incl. SBC)": [61.977,71.344,73.639,77.36,75.8772,76.1139,76.7026,78.2679,78.3161,81.6391],
+ "  of which G&A": [21.189,27.615,28.621,30.11,29.1743,29.3484,29.3128,29.7220,29.7493,30.5597],
+ "Stock-based compensation": [6.592,14.396,15.564,16.01,15.5808,16.1594,15.9350,16.1104,16.2258,16.5433],
+ "Adjusted EBITDA": [-8.692,-7.384,-5.809,-0.003441,-4.0322,2.4098,3.4154,6.9811,7.79,11.2567],
+ "Insurance payables (BS)": [15.751,15.144,14.882,15.329,14.9242,18.1774,18.3044,20.1841,20.0667,22.0113],
+ "Acquisitions, net of cash (CF)": [0,-39.892,0,0.279,-7.515,-14.157,-15,-15,-7.505,-16.3677],
+}
+r = 5
+rowmap = {}
+for lab, vals in data.items():
+    put(cc, f"B{r}", lab, B if lab in ("Revenue", "Adjusted EBITDA") else BLK)
+    for j, v in enumerate(vals): put(cc, f"{L(3+j)}{r}", v, BLUE, USD)
+    if lab != "Insurance payables (BS)":
+        put(cc, f"N{r}", f"=SUM(E{r}:H{r})", BLK, USD); put(cc, f"O{r}", f"=SUM(I{r}:L{r})", BLK, USD)
+    rowmap[lab] = r; r += 1
+R, GP, OX, GA, SBC, EB = (rowmap[k] for k in ["Revenue","Gross profit","Total opex (GAAP, incl. SBC)","  of which G&A","Stock-based compensation","Adjusted EBITDA"])
+cc["M4"].value = None
+put(cc, "N4", "FY26E", B); put(cc, "O4", "FY27E", B)
+r += 1
+put(cc, f"B{r}", "Derived", H); r += 1
+der = [
+ ("Revenue growth YoY", lambda c, i: f"=IF({i}<4,0,{c}{R}/{L(3+i-4)}{R}-1)" if False else None),
+]
+# explicit derived rows
+put(cc, f"B{r}", "Gross margin"); 
+for j in range(10): c = L(3+j); put(cc, f"{c}{r}", f"={c}{GP}/{c}{R}", BLK, PCT)
+put(cc, f"N{r}", f"=N{GP}/N{R}", BLK, PCT); put(cc, f"O{r}", f"=O{GP}/O{R}", BLK, PCT); GMr = r; r += 1
+put(cc, f"B{r}", "Opex / revenue")
+for j in range(10): c = L(3+j); put(cc, f"{c}{r}", f"={c}{OX}/{c}{R}", BLK, PCT)
+put(cc, f"N{r}", f"=N{OX}/N{R}", BLK, PCT); put(cc, f"O{r}", f"=O{OX}/O{R}", BLK, PCT); r += 1
+put(cc, f"B{r}", "Adj. EBITDA margin")
+for j in range(10): c = L(3+j); put(cc, f"{c}{r}", f"={c}{EB}/{c}{R}", BLK, PCT)
+put(cc, f"N{r}", f"=N{EB}/N{R}", BLK, PCT); put(cc, f"O{r}", f"=O{EB}/O{R}", BLK, PCT); r += 1
+put(cc, f"B{r}", "Revenue QoQ growth")
+for j in range(1, 10): c = L(3+j); p = L(2+j); put(cc, f"{c}{r}", f"={c}{R}/{p}{R}-1", BLK, PCT)
+r += 1
+put(cc, f"B{r}", "FY27E vs FY26E growth: revenue / opex / G&A", B)
+put(cc, f"C{r}", f"=O{R}/N{R}-1", BLK, PCT); put(cc, f"D{r}", f"=O{OX}/N{OX}-1", BLK, PCT); put(cc, f"E{r}", f"=O{GA}/N{GA}-1", BLK, PCT); GRr = r; r += 2
+
+put(cc, f"B{r}", "Test: can G&A stay flat if insurance sits in G&A?", H); r += 1
+put(cc, f"B{r}", "Insurance expense as % of revenue (Bleecker est. 3–4pts of GM)"); put(cc, f"C{r}", 0.035, BLUE, PCT, YEL); ins = r; r += 1
+put(cc, f"B{r}", "Incremental insurance FY27E vs FY26E ($mm)"); put(cc, f"C{r}", f"=C{ins}*(O{R}-N{R})", BLK, USD); insd = r; r += 1
+put(cc, f"B{r}", "Consensus total G&A increase FY27E vs FY26E ($mm)"); put(cc, f"C{r}", f"=O{GA}-N{GA}", BLK, USD); gad = r; r += 1
+put(cc, f"B{r}", "Insurance growth as % of consensus G&A growth", B); put(cc, f"C{r}", f"=IF(C{gad}=0,0,C{insd}/C{gad})", BLK, PCT); r += 1
+put(cc, f"B{r}", "Customer support costs also sit in G&A (10-K) and scale with rides/hours; not quantified here.", Font(name=F, size=9)); r += 2
+
+put(cc, f"B{r}", "Valuation at current price", H); r += 1
+put(cc, f"B{r}", "Share price ($)"); put(cc, f"C{r}", 29.57, BLUE, '$#,##0.00', YEL); px = r
+put(cc, f"D{r}", "stockanalysis.com, ~Sep 2026: mkt cap $2.41B / 81.51M shares. Update to the live price.", Font(name=F, size=9)); r += 1
+put(cc, f"B{r}", "Diluted shares (mm, consensus Q4'26E)"); put(cc, f"C{r}", 84.2146, BLUE, '#,##0.0'); sh = r; r += 1
+put(cc, f"B{r}", "Cash, Q2'26 ($mm; no debt)"); put(cc, f"C{r}", 336.0, BLUE, USD); cash = r; r += 1
+put(cc, f"B{r}", "Enterprise value ($mm)", B); put(cc, f"C{r}", f"=C{px}*C{sh}-C{cash}", BLK, USD); ev = r; r += 1
+put(cc, f"B{r}", "EV / revenue FY26E | FY27E"); put(cc, f"C{r}", f"=C{ev}/N{R}", BLK, '0.0x'); put(cc, f"D{r}", f"=C{ev}/O{R}", BLK, '0.0x'); r += 1
+put(cc, f"B{r}", "EV / gross profit FY26E | FY27E"); put(cc, f"C{r}", f"=C{ev}/N{GP}", BLK, '0.0x'); put(cc, f"D{r}", f"=C{ev}/O{GP}", BLK, '0.0x'); r += 1
+put(cc, f"B{r}", "EV / adj. EBITDA FY27E"); put(cc, f"C{r}", f"=C{ev}/O{EB}", BLK, '0.0x'); r += 2
+
+put(cc, f"B{r}", "Illustrative sum-of-the-parts on FY27E gross profit (multiples are placeholders: source comps)", H); r += 1
+put(cc, f"B{r}", "Services share of revenue (Bleecker_Replication updated)"); put(cc, f"C{r}", "='Bleecker_Replication'!E22", GRN, PCT); ss = r; r += 1
+put(cc, f"B{r}", "Services GM | software GM"); put(cc, f"C{r}", "='Bleecker_Replication'!E19", GRN, PCT); put(cc, f"D{r}", "='Bleecker_Replication'!E20", GRN, PCT); gms_ = r; r += 1
+put(cc, f"B{r}", "FY27E services GP | software GP ($mm)")
+put(cc, f"C{r}", f"=O{R}*C{ss}*C{gms_}/(C{ss}*C{gms_}+(1-C{ss})*D{gms_})*O{GMr}/O{GMr}*O{GP}/O{R}/(C{ss}*C{gms_}+(1-C{ss})*D{gms_})*(C{ss}*C{gms_}+(1-C{ss})*D{gms_})", BLK, USD)
+cc[f"C{r}"].value = f"=O{GP}*(C{ss}*C{gms_})/(C{ss}*C{gms_}+(1-C{ss})*D{gms_})"
+put(cc, f"D{r}", f"=O{GP}-C{r}", BLK, USD); gp2 = r; r += 1
+put(cc, f"B{r}", "EV / GP multiple: services | software"); put(cc, f"C{r}", 3.0, BLUE, '0.0x', YEL); put(cc, f"D{r}", 10.0, BLUE, '0.0x', YEL); mult = r
+put(cc, f"E{r}", "Placeholders. Justify with comps (outsourced transport operators vs vertical SaaS).", Font(name=F, size=9)); r += 1
+put(cc, f"B{r}", "Implied EV ($mm)"); put(cc, f"C{r}", f"=C{gp2}*C{mult}+D{gp2}*D{mult}", BLK, USD); iev = r; r += 1
+put(cc, f"B{r}", "Implied price per share ($)", B); put(cc, f"C{r}", f"=(C{iev}+C{cash})/C{sh}", BLK, '$#,##0.00'); ip = r; r += 1
+put(cc, f"B{r}", "Upside / (downside) vs current", B); put(cc, f"C{r}", f"=C{ip}/C{px}-1", BLK, '+0.0%;-0.0%'); r += 1
+put(cc, f"B{r}", "Blended EV/GP multiple the market pays today (FY27E)"); put(cc, f"C{r}", f"=C{ev}/O{GP}", BLK, '0.0x'); r += 1
+put(cc, f"B{r}", "Software multiple needed to justify today's price, at services multiple above"); put(cc, f"C{r}", f"=(C{ev}-C{gp2}*C{mult})/D{gp2}", BLK, '0.0x')
 
 # ================= Sheet 7: Sources =================
 so = wb.create_sheet("Sources")
