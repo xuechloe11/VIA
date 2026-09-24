@@ -114,24 +114,26 @@ put_row("cons", 11, "Consensus (BBG; FY28 CapIQ)");                style(11, "co
 put_row("cg", 12, "   % growth");                        style(12, "consgr", PCT, italic=True)
 put_row("vs", 13, "   Model vs consensus");              style(13, "consgr", PCT, italic=True)
 put_row("ss", 14, "Services % of revenue");              style(14, "ital", PCT, italic=True)
+put_row("nws", 15, "Network deals % of revenue");        style(15, "ital", PCT, italic=True)
+put_row("nwg", 16, "Network deals share of revenue growth"); style(16, "ital", PCT, italic=True)
 
 # ---------------------------------------------------------------- drivers (one per stream)
-put_row("dh", 16, "DRIVERS");                            style(16, "band", cols=ALL)
-for c in ALL: rb[f"{c}16"].value = None
-put_row("sw_g", 17, "Software revenue % growth");        style(17, "drvgr", PCT)
-put_row("mp_g", 18, "Microtransit & paratransit % growth (net of downsell)"); style(18, "drvgr", PCT)
-put_row("new", 19, "Network: new contract value launched ($mm)"); style(19, "drvgr", USD1)
-put_row("rr", 20, "Network: contract run-rate, year-end ($mm)"); style(20, "drv", USD1)
-put_row("otp", 21, "One-time revenue % of total");       style(21, "drvgr", PCT)
+put_row("dh", 18, "DRIVERS");                            style(18, "band", cols=ALL)
+for c in ALL: rb[f"{c}18"].value = None
+put_row("sw_g", 19, "Software revenue % growth");        style(19, "drvgr", PCT)
+put_row("mp_g", 20, "Microtransit & paratransit % growth (net of downsell)"); style(20, "drvgr", PCT)
+put_row("new", 21, "Network: new contract value launched ($mm)"); style(21, "drvgr", USD1)
+put_row("rr", 22, "Network: contract run-rate, year-end ($mm)"); style(22, "drv", USD1)
+put_row("otp", 23, "One-time revenue % of total");       style(23, "drvgr", PCT)
 
-put_row("h_gp", 23, "GROSS MARGIN BY STREAM");           style(23, "subhdr")
-put_row("gm_sw", 24, "Software");                        style(24, "drvgr", PCT)
-put_row("gm_mp", 25, "Microtransit & paratransit");      style(25, "drvgr", PCT)
-put_row("gm_nw", 26, "Network deals");                   style(26, "drvgr", PCT)
-put_row("gm_ot", 27, "One-time");                        style(27, "drvgr", PCT)
-put_row("gp", 28, "Gross profit ($mm)");                 style(28, "tot", USD)
-put_row("gm", 29, "   Gross margin");                    style(29, "gr", PCT, italic=True)
-put_row("gmc", 30, "   Consensus gross margin (BBG; FY28 CapIQ)"); style(30, "consgr", PCT, italic=True)
+put_row("h_gp", 25, "GROSS MARGIN BY STREAM");           style(25, "subhdr")
+put_row("gm_sw", 26, "Software");                        style(26, "drvgr", PCT)
+put_row("gm_mp", 27, "Microtransit & paratransit");      style(27, "drvgr", PCT)
+put_row("gm_nw", 28, "Network deals");                   style(28, "drvgr", PCT)
+put_row("gm_ot", 29, "One-time");                        style(29, "drvgr", PCT)
+put_row("gp", 30, "Gross profit ($mm)");                 style(30, "tot", USD)
+put_row("gm", 31, "   Gross margin");                    style(31, "gr", PCT, italic=True)
+put_row("gmc", 32, "   Consensus gross margin (BBG; FY28 CapIQ)"); style(32, "consgr", PCT, italic=True)
 
 # historical cells in input rows are black formulas (or blue hardcodes set below)
 for key in ["sw_g", "mp_g", "new", "otp", "gm_sw", "gm_mp", "gm_nw", "gm_ot"]:
@@ -158,8 +160,8 @@ note(rb[f"E{r['otp']}"], "10-K: one-time revenue 3% of total in FY24 and FY25 (9
 # ---- forecast inputs (blue) ----
 FIN = {
     "sw_g":  ([0.03, 0.11, 0.10, 0.09, 0.08], "Organic customer growth ~9% ex-Downtowner (thesis 3), ~+2%/yr price. FY26 +3%: 94 small Downtowner customers add little. Software fees face near-zero bids (Spare bid $0.01 at LA Metro)."),
-    "mp_g":  ([0.28, 0.14, 0.13, 0.12, 0.11], "Expansion at existing customers less budget-driven downsell (~4%/yr: Jersey City cut ~half, federal stopgap / ARPA cliff), with price +2%/yr as rebids reset rates. FY26 +28% ties to 1H26 actuals ($263M revenue) plus the H2 ramp."),
-    "new":   ([20.0, 30.0, 20.0, 20.0, 20.0], "FY26: Twin Cities MI (Apr), Rochester $14.6M (Sep) and part of the 2026 wins; FY27: rest of the signed ~$70M book. Then ~2 mid-sized cities a year (thesis 1.1). Earned at half rate in the launch year."),
+    "mp_g":  ([0.28, 0.10, 0.08, 0.07, 0.06], "Pilots are budget-bound (thesis 3): expansion at existing customers less downsell (Jersey City cut ~half; federal stopgap / ARPA cliff), price +2%/yr as rebids reset rates. Growth shifts to network deals. FY26 +28% ties to 1H26 actuals ($263M revenue) plus the H2 ramp."),
+    "new":   ([20.0, 40.0, 60.0, 70.0, 80.0], "The growth engine (thesis 1). FY26: Twin Cities MI (Apr), Rochester $14.6M (Sep), part of the 2026 wins. FY27: rest of the signed ~$70M book (~$27M) plus new wins. FY28+: the >$700M pipeline (doubled YoY) converting at ~8-11% a year, ~5-7 mid-sized cities at $10-15M each. Earned at half rate in the launch year."),
     "otp":   ([0.03] * 5, "3% (10-K FY24-25; 1H26 also 3%)."),
     "gm_sw": ([0.75] * 5, "Bleecker assumption; reported cost split implies ~73%."),
     "gm_mp": ([0.293] * 5, "Bleecker TaaS gross margin, arithmetic corrected and updated to 2026 contract pricing."),
@@ -208,6 +210,8 @@ for i, c in enumerate(ALL):
     rb[f"{c}{r['svc']}"] = f"={c}{r['mp']}+{c}{r['nw']}"
     if p: rb[f"{c}{r['tg']}"] = f"={c}{r['tot']}/{p}{r['tot']}-1"
     rb[f"{c}{r['ss']}"] = f"={c}{r['svc']}/{c}{r['tot']}"
+    rb[f"{c}{r['nws']}"] = f"={c}{r['nw']}/{c}{r['tot']}"
+    if p: rb[f"{c}{r['nwg']}"] = f"=({c}{r['nw']}-{p}{r['nw']})/({c}{r['tot']}-{p}{r['tot']})"
     rb[f"{c}{r['gm']}"] = f"={c}{r['gp']}/{c}{r['tot']}"
 
 note(rb[f"C{r['tot']}"], "Historical total revenue links to Annual IS (CapIQ).")
@@ -217,11 +221,11 @@ note(rb[f"F{r['nw']}"], "Opening run-rate + half of the contract value launched 
 notes = [
     "Colour key: blue = hardcoded input, black = formula, green = link to another tab. Hover over cells with a red corner for sources.",
     "Thesis 1: network deals are bus-operator contracts priced at ~95-107% of the city's transit budget, so they carry a 25% gross margin vs ~29% on microtransit and 75% on software.",
-    "Thesis 3: microtransit/paratransit growth is net of budget-driven downsell and rebid price resets.",
+    "Thesis 1: network deals become the growth engine (~a third of FY27 growth, ~25% of revenue by FY30), dragging gross margin toward operator levels. Thesis 3: microtransit/paratransit growth is net of budget-driven downsell and rebid price resets.",
     "Consensus: Bloomberg FY26-27E (Consensus (BBG) tab, sum of quarters); FY28E from CapIQ (Key Stats tab) because Bloomberg stops at Q4 2027. FY29-30 have no consensus.",
 ]
 for k, t in enumerate(notes):
-    rr = 32 + k
+    rr = 34 + k
     rb.merge_cells(f"B{rr}:J{rr}")
     rb[f"B{rr}"] = t
     rb[f"B{rr}"].font = Font(name="Arial", size=9, italic=True)
