@@ -10,7 +10,38 @@ from openpyxl.comments import Comment
 from openpyxl.styles import Font
 
 SRC, OUT = sys.argv[1], sys.argv[2]
+BBG = sys.argv[3] if len(sys.argv) > 3 else "model/Consensus_Projections_BBG_quarterly.xlsx"
 wb = openpyxl.load_workbook(SRC)
+
+# ---------------------------------------------------------------- Bloomberg consensus tab
+# Quarterly Bloomberg consensus (Q3'25A-Q4'27E) copied in as values, plus FY26E/FY27E totals.
+src = openpyxl.load_workbook(BBG, data_only=True).worksheets[0]
+if "Consensus (BBG)" in wb.sheetnames:
+    del wb["Consensus (BBG)"]
+cb = wb.create_sheet("Consensus (BBG)", index=wb.sheetnames.index("Supporting Tabs >>>") + 1)
+for row in src.iter_rows():
+    for cell in row:
+        if cell.value is not None:
+            n = cb.cell(row=cell.row, column=cell.column, value=cell.value)
+            n.font = Font(name="Arial", size=9, bold=cell.font.b)
+            if isinstance(cell.value, (int, float)):
+                n.number_format = "#,##0.00"
+cb.column_dimensions["A"].width = 34
+cb["P3"], cb["Q3"] = "FY2026E", "FY2027E"
+cb["P4"], cb["Q4"] = "Sum of Q1-Q4", "Sum of Q1-Q4"
+for rr in (7, 10, 22):                       # revenue, adj. EBITDA, gross profit
+    cb[f"P{rr}"] = f"=SUM(G{rr}:J{rr})"
+    cb[f"Q{rr}"] = f"=SUM(K{rr}:N{rr})"
+cb["P23"], cb["Q23"] = "=P22/P7", "=Q22/Q7"   # gross margin
+for ref in ["P3", "Q3", "P4", "Q4"]:
+    cb[ref].font = Font(name="Arial", size=9, bold=True)
+for rr in (7, 10, 22, 23):
+    for c in "PQ":
+        cb[f"{c}{rr}"].font = Font(name="Arial", size=9, bold=True)
+        cb[f"{c}{rr}"].number_format = "0.0%" if rr == 23 else "#,##0.0"
+cb["P1"] = "Source: Bloomberg consensus (VIA US Equity), quarterly. FY columns sum the four quarters (FY26 includes Q1-Q2 2026 actuals)."
+cb["P1"].font = Font(name="Arial", size=9, italic=True)
+BBG_COL = {"F": "P", "G": "Q"}               # FY26E, FY27E; FY28E falls back to CapIQ
 rb, dc, wacc = wb["Revenue Build"], wb["DCF"], wb["WACC Calculations"]
 
 HIST, FCST = ["C", "D", "E"], ["F", "G", "H", "I", "J"]
@@ -79,7 +110,7 @@ put_row("nw", 7, "  Network deals");                     style(7, "line", USD)
 put_row("ot", 8, "One-time (implementation, consulting)"); style(8, "ital", USD)
 put_row("tot", 9, "Total net revenue");                  style(9, "tot", USD)
 put_row("tg", 10, "   % growth");                        style(10, "gr", PCT, italic=True)
-put_row("cons", 11, "Consensus (CapIQ)");                style(11, "cons", USD)
+put_row("cons", 11, "Consensus (BBG; FY28 CapIQ)");                style(11, "cons", USD)
 put_row("cg", 12, "   % growth");                        style(12, "consgr", PCT, italic=True)
 put_row("vs", 13, "   Model vs consensus");              style(13, "consgr", PCT, italic=True)
 put_row("ss", 14, "Services % of revenue");              style(14, "ital", PCT, italic=True)
@@ -100,7 +131,7 @@ put_row("gm_nw", 26, "Network deals");                   style(26, "drvgr", PCT)
 put_row("gm_ot", 27, "One-time");                        style(27, "drvgr", PCT)
 put_row("gp", 28, "Gross profit ($mm)");                 style(28, "tot", USD)
 put_row("gm", 29, "   Gross margin");                    style(29, "gr", PCT, italic=True)
-put_row("gmc", 30, "   Consensus gross margin (CapIQ)"); style(30, "consgr", PCT, italic=True)
+put_row("gmc", 30, "   Consensus gross margin (BBG; FY28 CapIQ)"); style(30, "consgr", PCT, italic=True)
 
 # historical cells in input rows are black formulas (or blue hardcodes set below)
 for key in ["sw_g", "mp_g", "new", "otp", "gm_sw", "gm_mp", "gm_nw", "gm_ot"]:
@@ -165,8 +196,13 @@ for i, c in enumerate(ALL):
         rb[f"{c}{r['gp']}"] = (f"={c}{r['sw']}*{c}{r['gm_sw']}+{c}{r['mp']}*{c}{r['gm_mp']}"
                                f"+{c}{r['nw']}*{c}{r['gm_nw']}+{c}{r['ot']}*{c}{r['gm_ot']}")
         if c in KS_COL:
-            rb[f"{c}{r['cons']}"] = f"='Key Stats'!{KS_COL[c]}16"; setfont(rb, f"{c}{r['cons']}", GREEN)
-            rb[f"{c}{r['gmc']}"] = f"='Key Stats'!{KS_COL[c]}20"; setfont(rb, f"{c}{r['gmc']}", GREEN)
+            if c in BBG_COL:
+                rb[f"{c}{r['cons']}"] = f"='Consensus (BBG)'!{BBG_COL[c]}7"
+                rb[f"{c}{r['gmc']}"] = f"='Consensus (BBG)'!{BBG_COL[c]}23"
+            else:
+                rb[f"{c}{r['cons']}"] = f"='Key Stats'!{KS_COL[c]}16"
+                rb[f"{c}{r['gmc']}"] = f"='Key Stats'!{KS_COL[c]}20"
+            setfont(rb, f"{c}{r['cons']}", GREEN); setfont(rb, f"{c}{r['gmc']}", GREEN)
             rb[f"{c}{r['vs']}"] = f"={c}{r['tot']}/{c}{r['cons']}-1"
             rb[f"{c}{r['cg']}"] = f"={c}{r['cons']}/{p}{r['cons']}-1"
     rb[f"{c}{r['svc']}"] = f"={c}{r['mp']}+{c}{r['nw']}"
@@ -182,7 +218,7 @@ notes = [
     "Colour key: blue = hardcoded input, black = formula, green = link to another tab. Hover over cells with a red corner for sources.",
     "Thesis 1: network deals are bus-operator contracts priced at ~95-107% of the city's transit budget, so they carry a 25% gross margin vs ~29% on microtransit and 75% on software.",
     "Thesis 3: microtransit/paratransit growth is net of budget-driven downsell and rebid price resets.",
-    "Consensus: CapIQ (Key Stats tab) FY26-28E. FY29-30 have no consensus.",
+    "Consensus: Bloomberg FY26-27E (Consensus (BBG) tab, sum of quarters); FY28E from CapIQ (Key Stats tab) because Bloomberg stops at Q4 2027. FY29-30 have no consensus.",
 ]
 for k, t in enumerate(notes):
     rr = 32 + k
@@ -261,7 +297,7 @@ note(dc["F40"], "FY23-25 capex 1.4-1.9% of revenue (10-K).")
 note(dc["F41"], "SBC dilution (~$60M/yr SBC on a ~$2.3B market cap).")
 
 # memo: adj. EBITDA vs consensus
-memo = {43: "Memo: Adj. EBITDA (EBIT + D&A + SBC)", 44: "   Consensus EBITDA (CapIQ)", 45: "   Model vs consensus ($mm)"}
+memo = {43: "Memo: Adj. EBITDA (EBIT + D&A + SBC)", 44: "   Consensus EBITDA (BBG; FY28 CapIQ)", 45: "   Model vs consensus ($mm)"}
 for rr, t in memo.items():
     dc[f"B{rr}"] = t
     dc[f"B{rr}"]._style = copy(dc["B33"]._style)
@@ -269,7 +305,7 @@ for c in ALL:
     dc[f"{c}43"] = f"={c}13+{c}17+{c}11"
     dc[f"{c}43"]._style = copy(dc["C13"]._style); dc[f"{c}43"].number_format = "#,##0_);(#,##0)"
     if c in KS_COL:
-        dc[f"{c}44"] = f"='Key Stats'!{KS_COL[c]}22"
+        dc[f"{c}44"] = f"='Consensus (BBG)'!{BBG_COL[c]}10" if c in BBG_COL else f"='Key Stats'!{KS_COL[c]}22"
         dc[f"{c}45"] = f"={c}43-{c}44"
         for rr in (44, 45):
             dc[f"{c}{rr}"]._style = copy(dc["C12"]._style); dc[f"{c}{rr}"].number_format = "#,##0_);(#,##0)"
