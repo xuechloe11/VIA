@@ -1,0 +1,27 @@
+2. Consensus models Via as services at the gross margin line, but as software below it
+
+The Street has accepted services economics at the gross margin
+
+Management still targets a 50% long-term gross margin, but consensus does not model a path to it. Street estimates hold gross margin at roughly 40–41% for the next six quarters: 40.0% in FY26 and 40.8% in FY27. That is consistent with the Street having absorbed, since Bleecker's report in December 2025, that Via is not a pure software business. The math supports that caution. At 80% software and 25% services gross margins, a 50% blended margin requires either services to fall from ~75% of revenue to ~55%, or services margins to rise to ~40% at today's mix. Nothing in Via's contracts points to either, absent autonomous vehicles at scale. Thesis 1 argues the mix is moving the other way.
+
+Below gross profit, the Street still models software
+
+The inconsistency is in operating costs. Consensus has revenue growing 22% in FY27 while total operating costs grow 3.9%, and G&A excluding stock comp actually falls, from $83.8M to $83.3M. That is how a software company scales, where each additional customer costs almost nothing to serve. It reflects the history analysts are extrapolating: from 2023 to 2025, growth came mostly from microtransit layered on a fixed R&D and sales base, and adjusted operating costs rose only ~$10M while quarterly revenue rose ~$74M (management, Q1'26). That leverage was real, but it came from fixed costs. The next leg of growth is bus operations, where the costs below gross profit grow with every vehicle-hour.
+
+The result is a cost structure that does not fit the margin target. Via carries a software company's operating costs (R&D alone is ~19% of revenue) on a services gross margin. With gross margin near 40%, reaching management's 20% long-term EBITDA target requires adjusted operating costs to fall from ~44% of revenue today, and ~37% in FY27 consensus, to ~20%. Via can get there only by cutting the R&D that underpins its software positioning, or by roughly tripling revenue on a nearly flat cost base. The first undermines the multiple; the second requires the costs of delivering service hours to stop growing.
+
+Hour-driven costs sit below gross profit
+
+Those costs do not stop growing, because Via books them in G&A. The 10-K states that G&A "includes customer support costs … and insurance expenses," so neither appears in reported gross margin. Both scale with service hours: every added vehicle needs auto-liability cover, and every added rider generates support calls. Insurance expense alone rose $6.8M in 2025, driven by auto liability and D&O policies, and Bleecker estimates insurance at 3–4 points of gross margin. Assuming insurance at ~3.5% and customer support at ~3% of services revenue, the ~$94M of services revenue consensus adds in FY27 implies roughly $6M of additional G&A. Consensus has G&A excluding stock comp falling by $0.5M instead. (D&O cover does not scale with hours, so our estimate applies these rates to services revenue only.)
+
+A small cost miss is a large earnings miss
+
+Because consensus EBITDA is so thin, modest cost misses change the profit story. FY27 consensus adjusted EBITDA is $29.4M, a 4.4% margin. If hour-driven costs grow with services revenue, roughly $6M of that disappears, about a fifth of FY27 EBITDA. More broadly, every one-point miss on FY27 operating costs as a share of revenue is ~$6.7M, about 23% of consensus EBITDA. In our short case, which lets hour-driven costs scale and holds network margins at operator levels, FY27 adjusted EBITDA is $11.6M, about 60% below consensus.
+
+Growth costs money up front, and "profitability" excludes stock comp
+
+Every new contract adds costs before revenue arrives. Management guided Q3'26 adjusted EBITDA to −$4.5M to −$3.5M, below Q2's −$3.4M, citing "deliberate investment in launching new network and school transportation customers." Launch staff are expensed as incurred, so a pipeline weighted toward large network launches front-loads costs each time Via wins. The profitability milestone also depends on definition. Adjusted EBITDA excludes stock comp of ~$16M a quarter, about 11–12% of revenue. On consensus numbers, FY27 adjusted EBITDA of $29.4M becomes roughly −$35M after stock comp, and GAAP operating income is still −$7.3M in Q4'27.
+
+Implication
+
+The share price already assumes the software case below gross profit. In our DCF, the consensus trajectory with management's margin target is worth ~$28.60 per share if stock comp is treated as free, roughly today's price, and ~$20.60 once stock comp is counted as a cost. The short does not require revenue to disappoint. It requires only that Via's costs behave like those of the business it is becoming.
