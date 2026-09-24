@@ -3,15 +3,19 @@
 Tags: **[F]** filing / company call · **[C]** Bloomberg consensus · **[P]** public records / press · **[B]** Bleecker · **[M]** our model/estimate · **[V]** verify before using
 
 ## Core pitch (variant view)
-The market has accepted that Via is a tech-enabled *services* company. It has not accepted the consequences:
-- **Growth:** consensus treats network deals as proof of a scalable platform.
-- **Profits:** consensus models a software-like profit path.
+**Consensus accepts services at the gross-margin line but models software below it.**
+- **Gross margin:** consensus holds it at ~40–41% through FY27, a services number, so the label is accepted **[C]**
+- **Opex:** consensus has it +3.9% on +22% revenue, and G&A ex-SBC *falling*. That is software scaling (the next customer costs ~nothing to serve), not contractor scaling (insurance, support and launch staff grow with every hour) **[C]**
 
-In reality:
-- The growth engine is turning Via into a municipal bus contractor.
-- The costs of delivering hours sit below gross profit, where consensus has them flat.
+**Why the gap persists:** models extrapolate 2023–25, when growth was microtransit on a fixed R&D/S&M base (adj. opex +$10M vs quarterly revenue +$74M since Q1'23) **[F]**. The mix is changing *now*: network deals (bus operations) went from one contract (2024) to ~$70M of run-rate signed in 2025–26, launching H2'26–27. That shift isn't in any reported quarter yet, so it isn't in models built from them. It lands inside the consensus forecast window. **This is the "why now."**
 
-Short at ~7x FY27 gross profit / ~67x FY27 adj. EBITDA.
+**Precision:** "the market" ≠ consensus. The stock is −41% YoY, so the multiple has partly adjusted. The claim is that *consensus estimates* still carry software-like cost leverage.
+
+**The two theses:**
+- **Growth:** the engine (network deals) turns Via into a municipal bus contractor.
+- **Profits:** the costs of delivering hours sit below gross profit, where consensus has them flat.
+
+**Valuation:** today's price ≈ consensus trajectory + mgmt's 20–25% margin target + stock comp treated as free (DCF below). Short at ~7x FY27 gross profit / ~67x FY27 adj. EBITDA.
 
 ---
 
@@ -137,10 +141,22 @@ Use inside the theses, risks and Q&A.
 - **Services is ~76% of revenue** **[M]**
   - Bleecker's own inputs imply 76%, not 72%: their 26.2% TaaS GM should be 29.2% **[B][M]**
   - FY27 gross profit ≈ **$152M services / $123M software** **[M]**
-- **Sum-of-parts:** services GP × operator multiple + software GP × SaaS multiple + $336M cash **[M]**
+- **Sum-of-parts (cross-check):** services GP × operator multiple + software GP × SaaS multiple + $336M cash **[M]**
   - At placeholder 3x / 10x → ~$24.80 (−12%)
   - Today's price implies ~12x software GP if services get 3x
   - **Replace placeholders with comps:** Tyler / Constellation vs listed transit operators (Mobico, FirstGroup, ComfortDelGro)
+- **DCF** (Revenue_Build + DCF tabs; WACC 11.4%, g 3%) **[M]**
+  - Revenue built in four streams: software, micro/para (hours × $/hr), network (contract value launched), one-time
+  - Opex split into hour-driven (6.5% of services revenue) vs fixed
+
+  | Case | FY27 rev vs cons. | LT adj. EBITDA margin | SBC deducted | SBC ignored |
+  |---|---|---|---|---|
+  | Bull (= consensus FY26–27) | +0.6% | ~22% | **$20.60 (−27%)** | **$28.58 (≈ price)** |
+  | Short | −4.4% | ~10% | $4.94 (−83%) | $11.02 (−61%) |
+
+  - **Read:** the price = consensus path + mgmt's margin target + stock comp (~11% of FY26 revenue) as free. Treating SBC as a real cost takes ~27% off even the bull case.
+  - **Do not use the short case as PT** (it compounds every bear input). Build a base case or probability-weight the scenarios.
+  - Weakest inputs: network GM (undisclosed), FY25 stream split (estimated), NOL timing, terminal value = 68% of bull EV
 - **Market still prices Via as software:**
   - BBG classifies VIA as 100% "Application Software"
   - EV/EBITDA FY2 **69.6x** vs peer median 7.5x
@@ -166,3 +182,5 @@ Use inside the theses, risks and Q&A.
 - Live share price
 - Comps for sum-of-parts multiples
 - Consensus acquisition line (inconsistent with CF totals: do not cite)
+- Base-case scenario for the price target (between Short and Bull)
+- Equity beta (1.30 placeholder) from Bloomberg
