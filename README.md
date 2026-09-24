@@ -11,6 +11,7 @@
 | Blended_Formula | (gS − g)/(gS − gV) on reported blended GM |
 | Contracts | Tracker incl. hourly rates (micro/para) from pre- and post-Dec-2025 contracts |
 | Consensus_Check | Bloomberg consensus (Q3'25A–Q4'27E): margins, opex leverage, insurance-in-G&A test, valuation multiples, illustrative SOTP |
+| Comps_BBG | Bloomberg RV 'BICS Best Fit' comps (VIA classified 100% Application Software) and VIA's premium |
 | ACV_CrossCheck | Alternative: Bleecker 72% baseline + incremental contract ACV |
 | Sources | URLs for every hardcoded number |
 
@@ -21,4 +22,4 @@ Key results:
 - Cross-check: that mix implies services cost of 53.8% of revenue (reported: 51.9% tech-enabled, 57.5% incl. launch & support) and software GM of 73%.
 - Via's FY25 10-K confirms insurance and customer support costs sit in G&A, not cost of revenue.
 
-Consensus (BBG): GM stays ~40–41% through FY27 (no 50% path assumed); FY27 revenue +22% with opex +3.9% and G&A +1.8%, taking adj. EBITDA margin from −1.3% (FY26E) to +4.4% (FY27E). At ~$29.57: EV ~$2.15B = 7.8x FY27E GP, 73x FY27E adj. EBITDA.
+Consensus (BBG): GM stays ~40–41% through FY27 (no 50% path assumed); FY27 revenue +22% with opex +3.9% and G&A +1.8%, taking adj. EBITDA margin from −1.3% (FY26E) to +4.4% (FY27E). At $28.37 (BBG): EV ~$1.98B = 7.2x FY27E GP, 67x FY27E adj. EBITDA (BBG shows 69.6x FY2 vs 7.5x comp median).

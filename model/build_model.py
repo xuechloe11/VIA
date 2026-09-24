@@ -65,6 +65,7 @@ SRC = {
  "S33": ("Colorado Politics: DougCo Feb 2026 $4.4M contract to continue/expand Link On Demand (Lone Tree, Highlands Ranch, Parker)", "https://www.coloradopolitics.com/2026/07/14/dougco-approves-2m-rideshare-expansion-to-castle-rock/"),
  "S34": ("Bloomberg BST consensus projections (user-provided file, model/Consensus_Projections_BBG.xlsx)", ""),
  "S35": ("stockanalysis.com VIA statistics: mkt cap $2.41B, EV $2.09B, 81.51M shares, short interest 9.87% of float, 7.98 days to cover", "https://stockanalysis.com/stocks/via/statistics/"),
+ "S36": ("Bloomberg RV screen (BICS Best Fit comps), user screenshot, Sep 2026", ""),
  "S26": ("User research notes (VIA_1.pdf): Arlington, DCTA, King County, Mobile, New Braunfels, Miami-Dade, Gastonia, Passaic, Q4'25 Texas example", ""),
 }
 
@@ -503,9 +504,9 @@ put(cc, f"B{r}", "Insurance growth as % of consensus G&A growth", B); put(cc, f"
 put(cc, f"B{r}", "Customer support costs also sit in G&A (10-K) and scale with rides/hours; not quantified here.", Font(name=F, size=9)); r += 2
 
 put(cc, f"B{r}", "Valuation at current price", H); r += 1
-put(cc, f"B{r}", "Share price ($)"); put(cc, f"C{r}", 29.57, BLUE, '$#,##0.00', YEL); px = r
-put(cc, f"D{r}", "stockanalysis.com, ~Sep 2026: mkt cap $2.41B / 81.51M shares. Update to the live price.", Font(name=F, size=9)); r += 1
-put(cc, f"B{r}", "Diluted shares (mm, consensus Q4'26E)"); put(cc, f"C{r}", 84.2146, BLUE, '#,##0.0'); sh = r; r += 1
+put(cc, f"B{r}", "Share price ($)"); put(cc, f"C{r}", 28.37, BLUE, '$#,##0.00', YEL); px = r
+put(cc, f"D{r}", "Bloomberg, Sep 2026 close (user screenshot). BBG: mkt cap $2.31B, EV $1.99B.", Font(name=F, size=9)); r += 1
+put(cc, f"B{r}", "Shares outstanding (mm, basic; ties to BBG mkt cap)"); put(cc, f"C{r}", 81.51, BLUE, '#,##0.0'); sh = r; r += 1
 put(cc, f"B{r}", "Cash, Q2'26 ($mm; no debt)"); put(cc, f"C{r}", 336.0, BLUE, USD); cash = r; r += 1
 put(cc, f"B{r}", "Enterprise value ($mm)", B); put(cc, f"C{r}", f"=C{px}*C{sh}-C{cash}", BLK, USD); ev = r; r += 1
 put(cc, f"B{r}", "EV / revenue FY26E | FY27E"); put(cc, f"C{r}", f"=C{ev}/N{R}", BLK, '0.0x'); put(cc, f"D{r}", f"=C{ev}/O{R}", BLK, '0.0x'); r += 1
@@ -526,6 +527,50 @@ put(cc, f"B{r}", "Implied price per share ($)", B); put(cc, f"C{r}", f"=(C{iev}+
 put(cc, f"B{r}", "Upside / (downside) vs current", B); put(cc, f"C{r}", f"=C{ip}/C{px}-1", BLK, '+0.0%;-0.0%'); r += 1
 put(cc, f"B{r}", "Blended EV/GP multiple the market pays today (FY27E)"); put(cc, f"C{r}", f"=C{ev}/O{GP}", BLK, '0.0x'); r += 1
 put(cc, f"B{r}", "Software multiple needed to justify today's price, at services multiple above"); put(cc, f"C{r}", f"=(C{ev}-C{gp2}*C{mult})/D{gp2}", BLK, '0.0x')
+
+# ================= Comps_BBG =================
+cb = wb.create_sheet("Comps_BBG")
+cb.column_dimensions["A"].width = 3; cb.column_dimensions["B"].width = 34
+for col in "CDEFGHIJ": cb.column_dimensions[col].width = 12
+put(cb, "B1", "Bloomberg RV: 'BICS Best Fit' comps (VIA classified 100% Application Software)", T)
+put(cb, "B2", "Source: Bloomberg RV screen, user screenshot, price $28.37 (Sep 2026). '--' = not meaningful (negative). FY1 = 2026, FY2 = 2027.", Font(name=F, italic=True, size=9))
+hdr(cb, 4, ["", "Name", "Mkt cap ($B)", "EV ($B)", "EV/EBITDA LTM", "EV/EBITDA FY1", "EV/EBITDA FY2", "P/E FY1", "P/E FY2", "P/FCF"], 1)
+rows = [
+ ("LiveRamp", 2.28, 1.94, 15.17, 8.48, 7.16, 13.06, 10.88, 11.96),
+ ("Ethos Technologies", 2.31, 2.14, None, 17.58, 12.50, None, 22.86, None),
+ ("DoubleVerify", 2.08, 1.98, 10.79, 7.16, 6.66, 27.18, 21.14, 13.22),
+ ("Privia Health", 2.49, 2.14, 37.55, 14.03, 12.29, 27.56, 21.87, 18.21),
+ ("Neutron Holdings", 1.84, 1.98, None, 7.18, 5.93, 6.79, 21.39, None),
+ ("Vertex Inc", 1.91, 2.03, 17.67, 9.75, 7.91, 14.38, 11.60, 26.35),
+ ("ACV Auctions", 1.77, 1.74, 123.93, 23.14, 17.23, 68.30, 57.42, None),
+ ("Pagaya Technologies", 1.73, 2.31, 5.06, 4.90, 4.13, 6.62, 5.71, 5.49),
+ ("SoundHound AI", 2.75, 2.56, None, None, None, None, None, None),
+ ("Progress Software", 1.67, 2.89, 8.76, 7.15, 7.15, 6.60, 6.45, 5.64),
+]
+for i, rw in enumerate(rows):
+    r = 5 + i; put(cb, f"B{r}", rw[0])
+    for j, v in enumerate(rw[1:]):
+        if v is not None: put(cb, f"{'CDEFGHIJ'[j]}{r}", v, BLUE, '0.00' if j > 1 else '0.00')
+last = 4 + len(rows)
+mr = last + 1
+put(cb, f"B{mr}", "Comp median", B)
+for col in "CDEFGHIJ": put(cb, f"{col}{mr}", f"=MEDIAN({col}5:{col}{last})", BLK, '0.00')
+vr = mr + 1
+put(cb, f"B{vr}", "VIA (Bloomberg)", B)
+for col, v in zip("CDEFGHIJ", [2.31, 1.99, None, None, 69.64, None, 67.87, None]):
+    if v is not None: put(cb, f"{col}{vr}", v, BLUE, '0.00')
+put(cb, f"B{vr+1}", "VIA premium to median (x)", B)
+put(cb, f"G{vr+1}", f"=G{vr}/G{mr}", BLK, '0.0x'); put(cb, f"I{vr+1}", f"=I{vr}/I{mr}", BLK, '0.0x')
+put(cb, f"B{vr+2}", "Blended forward P/E (chart): VIA 96.6x vs comps avg 30.6x", Font(name=F, size=9))
+r = vr + 4
+put(cb, f"B{r}", "Read-across", H); r += 1
+for n in [
+ "• Bloomberg's own classification puts VIA 100% in Application Software. Screens and quant peer sets benchmark it against software, even though ~75% of revenue is services.",
+ "• These 'peers' are a grab-bag (ad-tech, health services, auctions, fintech). Use this to show how the market labels VIA, not as the valuation comp set.",
+ "• EV/EBITDA on near-breakeven EBITDA exaggerates the premium. Anchor valuation on EV/GP and EV/Sales (Consensus_Check) with separate software and services comp sets.",
+ "• The chart shows VIA's forward P/E expanding from ~50x to ~97x from late July into September, around the Q2 print (Aug 6), while comps held ~30x. Mgmt says the Q2 margin beat came from one-time revenue that will revert.",
+]:
+    c = put(cb, f"B{r}", n); cb.merge_cells(f"B{r}:J{r}"); c.alignment = WRAP; cb.row_dimensions[r].height = 30; r += 1
 
 # ================= Sheet 7: Sources =================
 so = wb.create_sheet("Sources")
