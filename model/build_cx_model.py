@@ -284,7 +284,7 @@ note(dc["C19"], "FY25 10-K: sum of changes in operating assets & liabilities, ex
 note(dc["C20"], "FY25 10-K: purchases of PP&E + capitalized internal-use software.")
 note(dc["E29"], "FY23-25 weighted diluted shares are pre-IPO (IPO Sep 2025); forecasts grow from current shares outstanding (Key Stats).")
 
-dc["F29"] = "='Key Stats'!B51*(1+F41)"; setfont(dc, "F29", GREEN)
+dc["F29"] = "='WACC Calculations'!C27*(1+F41)"; setfont(dc, "F29", GREEN)
 
 fc_in = {33: [0.065] * 5, 34: [0.08, 0.04, 0.04, 0.04, 0.04], 35: [0.12, 0.10, 0.08, 0.07, 0.06],
          36: [0.21] * 5, 37: [0.018] * 5, 38: [0] * 5, 39: [-0.02] * 5, 40: [0.014] * 5, 41: [0.025] * 5}
@@ -317,8 +317,9 @@ for c in ALL:
 
 # valuation panel: Via balance sheet and share count
 dc["M14"] = "='Key Stats'!B63"; setfont(dc, "M14", GREEN)
-dc["M15"] = "='Key Stats'!B64"; setfont(dc, "M15", GREEN)
-dc["M18"] = "='Key Stats'!B51"; setfont(dc, "M18", GREEN)
+dc["M15"] = 0; setfont(dc, "M15", BLUE)
+note(dc["M15"], "No borrowings (10-Q Q2'26: $100M revolver undrawn apart from $28M letters of credit). CapIQ 'Total Debt' of $18.0M is operating lease liabilities ($9.8M current + $8.2M noncurrent); rent is already in opex, so it is not deducted again.")
+dc["M18"] = "='WACC Calculations'!C27"; setfont(dc, "M18", GREEN)
 dc["M31"] = "=SUM(F28:J28)"   # was SUM(F27:J27): undiscounted cash flows
 
 # terminal value: normalized UFCF margin (Gordon) and EV/Revenue exit multiple, because
@@ -340,6 +341,30 @@ note(dc["M27"], "De-rating from 2.9x FY27E EV/revenue today (Key Stats) toward a
 # WACC tab: Via price and shares
 wacc["C15"] = "='Key Stats'!B50"; setfont(wacc, "C15", GREEN)
 wacc["C16"] = "='Key Stats'!B51"; setfont(wacc, "C16", GREEN)
+# diluted shares (treasury stock method), Q2'26 10-Q
+for rr, lab in [(20, "Diluted Shares (treasury stock method)"), (21, "Basic shares outstanding (mm)"),
+                (22, "Options outstanding (mm)"), (23, "Weighted-avg. exercise price ($)"),
+                (24, "Net shares from options (mm)"), (25, "Unvested RSUs (mm)"),
+                (26, "PSUs (excluded: vest at targets vs $46 IPO price)"), (27, "Diluted Shares Outstanding (mm)")]:
+    wacc[f"B{rr}"] = lab
+    wacc[f"B{rr}"]._style = copy(wacc[f"B{16 if rr not in (20, 27) else 13}"]._style)
+    wacc[f"C{rr}"]._style = copy(wacc["C16"]._style)
+wacc["B20"]._style = copy(wacc["B2"]._style)
+wacc["C20"]._style = copy(wacc["C2"]._style)
+wacc["C21"] = "=C16"
+wacc["C22"] = 8.901695; setfont(wacc, "C22", BLUE)
+wacc["C23"] = 13.94; setfont(wacc, "C23", BLUE); wacc["C23"].number_format = "$#,##0.00"
+wacc["C24"] = "=C22*MAX(0,1-C23/C15)"
+wacc["C25"] = 3.750862; setfont(wacc, "C25", BLUE)
+wacc["C26"] = 0; setfont(wacc, "C26", BLUE)
+wacc["C27"] = "=C21+C24+C25+C26"
+wacc["C27"]._style = copy(wacc["C13"]._style); wacc["C27"].number_format = "#,##0.0"
+for rr in (21, 22, 24, 25, 26):
+    wacc[f"C{rr}"].number_format = "#,##0.00"
+note(wacc["C16"], "10-Q Q2'26 cover: 77,659,430 Class A + 3,846,183 Class B shares outstanding as of Jul 31, 2026 = 81.51M (via Key Stats).")
+note(wacc["C22"], "10-Q Q2'26, stock option activity: 8,901,695 options outstanding at Jun 30, 2026, weighted-avg. exercise price $13.94.")
+note(wacc["C25"], "10-Q Q2'26, RSU activity: 3,750,862 unvested RSUs at Jun 30, 2026.")
+note(wacc["C26"], "2,486,727 PSUs (CEO 2,051,945 + CFO 434,782) vest only at stock-price targets relative to the $46 IPO price; excluded while the stock is well below.")
 note(wacc["C11"], "Check: pull VIA's beta from Bloomberg (IPO Sep 2025, so history is short).")
 
 from openpyxl.workbook.properties import CalcProperties
