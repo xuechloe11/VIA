@@ -56,46 +56,128 @@ SRC = {
  "S23": ("Chronicle-Telegram: Lorain County ViaLC extension ($2.2M, through Jul 2026)", "https://chroniclet.com/news/435879/lorain-county-to-continue-vialc-microtransit-program-in-lorain-elyria-into-2026/"),
  "S24": ("LA Metro board report 2024-0989 (Nomad Transit IDIQ)", "https://datamade-metro-pdf-merger.s3.amazonaws.com/2024-0989.pdf"),
  "S25": ("UK Contracts Finder: TfL Dial-a-Ride software, £2,307,950, Dec 2022–Dec 2027", "https://www.contractsfinder.service.gov.uk/Notice/eba395d5-84f0-449e-8e22-be61afd32fe4"),
+ "S27": ("People Newspapers: University Park approves Via agreement: paratransit $67.75/veh-hr, microtransit $64.52/veh-hr (Apr 21, 2026)", "https://www.peoplenewspapers.com/news/2026/04/up-city-council-approves-paratransit-contract/"),
+ "S28": ("Plano agenda memo: purchased via 791 Cooperative Contract No. 791202505008", "https://plano.novusagenda.com/agendapublic/CoverSheet.aspx?ItemID=10595&MeetingID=3668"),
+ "S29": ("Via 10-K FY2025, G&A definition: includes insurance expenses and customer support costs", "https://www.sec.gov/Archives/edgar/data/1603015/000160301526000008/via-20251231.htm"),
+ "S30": ("Via Q2'26 press release: adjusted gross profit reconciliation", "https://www.sec.gov/Archives/edgar/data/1603015/000160301526000027/viaq226pressrelease.htm"),
+ "S31": ("Search extract citing Douglas County: Link On Demand costs ~$70/hr to operate", "https://www.castlerocknewspress.net/news/article_00161854-4419-43e6-a43d-43dd24d19169.html"),
+ "S32": ("Bleecker exhibits 'Illustrative TaaS Unit Economics' and 'TaaS vs SaaS Mix Analysis' (images in report)", "https://www.bleeckerstreetresearch.com/research/via"),
+ "S33": ("Colorado Politics: DougCo Feb 2026 $4.4M contract to continue/expand Link On Demand (Lone Tree, Highlands Ranch, Parker)", "https://www.coloradopolitics.com/2026/07/14/dougco-approves-2m-rideshare-expansion-to-castle-rock/"),
  "S26": ("User research notes (VIA_1.pdf): Arlington, DCTA, King County, Mobile, New Braunfels, Miami-Dade, Gastonia, Passaic, Q4'25 Texas example", ""),
 }
 
 # ================= Sheet 1: Summary =================
 ws = wb.active; ws.title = "Summary"
-ws.column_dimensions["A"].width = 58; ws.column_dimensions["B"].width = 16; ws.column_dimensions["C"].width = 70
+ws.column_dimensions["A"].width = 62; ws.column_dimensions["B"].width = 14; ws.column_dimensions["C"].width = 74
 put(ws, "A1", "VIA: software vs. services revenue mix", T)
 put(ws, "A2", "All $ in millions. Blue = hardcoded input; black = formula; green = link to another sheet. Yellow = key assumption to flex.", Font(name=F, italic=True, size=9))
-put(ws, "A4", "1) Mix implied by the financials (Q2 2026)", H)
-rows = [
- ("Services cost intensity (tech-enabled services cost / revenue)", "='Margin_Decomp'!I22", PCT, "Hard floor on services share if services earn a 0% gross margin."),
- ("Services share at base-case services GM", "='Margin_Decomp'!I16", PCT, "Base services GM set on Margin_Decomp!C5."),
- ("Implied software GM at base case", "='Margin_Decomp'!I19", PCT, "Check that it's plausible (typically 70–85% for vertical SaaS)."),
- ("Services GM needed to reproduce Bleecker's 72%", "='Margin_Decomp'!I25", PCT, "Compare with contract operators (Transdev, MV), which run low-teens gross margins."),
- ("Your formula: (gS − g)/(gS − gV) at 80% / 25%", "='Blended_Formula'!C8", PCT, "Uses Q2'26 reported GM."),
-]
-r = 5
-for lab, f, fmt, note in rows:
-    put(ws, f"A{r}", lab); put(ws, f"B{r}", f, GRN, fmt); put(ws, f"C{r}", note, Font(name=F, size=9)); r += 1
-put(ws, "A11", "2) Contract-based mix (Bleecker method + contracts since Dec 16, 2025)", H)
-rows = [
- ("Bleecker baseline services share (Dec 2025)", "='Updated_Mix'!C6", PCT, "Bleecker's headline estimate. Their contract table couldn't be accessed from here."),
- ("Scenario A: + identified public contracts", "='Updated_Mix'!D24", PCT, "Only contracts with a public $ value and a clear scope."),
- ("Scenario B: A + mgmt's '4 network deals, >$40M ACV'", "='Updated_Mix'!D33", PCT, "Swaps possible-network deals (Plano, TCATA) for mgmt's $40M total."),
- ("Scenario C: rolled forward to Q2'26 ARR", "='Updated_Mix'!D44", PCT, "Leftover growth taken at the input share on Updated_Mix!C40."),
-]
-r = 12
-for lab, f, fmt, note in rows:
-    put(ws, f"A{r}", lab); put(ws, f"B{r}", f, GRN, fmt); put(ws, f"C{r}", note, Font(name=F, size=9)); r += 1
-put(ws, "A17", "Read-across", H)
+def block(r0, title, rows):
+    put(ws, f"A{r0}", title, H); r = r0 + 1
+    for lab, f, fmt, note in rows:
+        put(ws, f"A{r}", lab); put(ws, f"B{r}", f, GRN, fmt); c = put(ws, f"C{r}", note, Font(name=F, size=9)); c.alignment = WRAP; r += 1
+    return r + 1
+r = block(4, "1) Bleecker's method, replicated and updated (task 2)", [
+ ("Bleecker as published (Q3'25 adj GM 40%, TaaS GM 26.2%, SaaS 75%)", "='Bleecker_Replication'!C22", PCT, "(75 − 40)/(75 − 26.2) = 71.7%, which they round to 72%. Their 72% is a margin back-out, not a sum of contract dollars."),
+ ("Bleecker's own inputs, arithmetic corrected", "='Bleecker_Replication'!D22", PCT, "Their 80/20 weighting of 27.1% (micro) and 37.5% (para) gives 29.2%, not 26.2%. 26.2% = 80%×27.1% + 20%×22.9%, which looks like a cell-reference slip."),
+ ("UPDATED: 2026 contract pricing, TTM adj GM (base case)", "='Bleecker_Replication'!E22", PCT, "Micro $/hr = avg of 2026 rates (Douglas Co. $70, University Park $64.52); para $67.75 (University Park); costs +3% since Dec-25."),
+ ("Updated, at Q2'26 adj GM instead of TTM", "='Bleecker_Replication'!E25", PCT, "Mgmt says Q2'26 GM was boosted by one-time revenue and will revert."),
+ ("Updated, paratransit at 30% of hours (2026 wins bundle ADA paratransit)", "='Bleecker_Replication'!E26", PCT, "Plano, Addison, Highland Park and University Park all include paratransit."),
+ ("Check: software GM implied by the reported cost split at the updated mix", "='Bleecker_Replication'!E32", PCT, "Should land near the 75% assumption. It does, so the updated mix is internally consistent."),
+])
+r = block(r, "2) Mix implied by the reported cost split (task 1, Q2'26)", [
+ ("Tech-enabled services cost / revenue", "='Margin_Decomp'!I22", PCT, "Floor on the services share if services earn a 0% gross margin."),
+ ("Services share at base-case services GM (Margin_Decomp!C5)", "='Margin_Decomp'!I16", PCT, "Base 22% services GM, half of launch & support staff counted as services."),
+ ("Implied software GM at base case", "='Margin_Decomp'!I19", PCT, "Plausibility check (vertical SaaS typically 70–85%)."),
+ ("Services GM needed to reproduce 72%", "='Margin_Decomp'!I25", PCT, "~25%. Bleecker's own estimate is 26.2%."),
+ ("Your formula (gS − g)/(gS − gV) at 80% / 25%", "='Blended_Formula'!C8", PCT, "Q2'26 reported GAAP GM."),
+])
+r = block(r, "3) Cross-check: Bleecker 72% + incremental contract ACV (not their method)", [
+ ("Scenario A: + identified public contracts", "='ACV_CrossCheck'!D24", PCT, "All priced new wins are turnkey (~96% services)."),
+ ("Scenario B: A + mgmt's 4 network deals (>$40M ACV)", "='ACV_CrossCheck'!D33", PCT, ""),
+])
+put(ws, f"A{r}", "Read-across", H); r += 1
 notes = [
- "• The financials support Bleecker's 72% only if Via earns ~25% gross margin on services (implied software GM ~82%). At 20% services GM the Q2'26 mix is ~67.5% services; at 15%, ~63.5%. If insurance is outside COGS as Bleecker says (Margin_Decomp!C7), the services share goes up.",
- "• Tech-enabled services cost rose from 49.7% of revenue (FY2024) to 51–52% (FY2025–Q2'26). The financials show no shift toward software yet. The Q2'26 GM step-up came from one-time revenue, which mgmt says will revert.",
- "• Every new contract found with a public $ value since Dec 2025 is turnkey (~96% services by line item). The only software-only deal found is NJ TRANSIT Monmouth, value undisclosed. The contract-based mix drifts up to ~72.7% (A) and ~74% (B/C).",
- "• Caveat: public records over-sample large turnkey deals, because small software-only renewals often fall below council approval thresholds or run through co-op contracts (OMNIA). That biases the contract method toward services.",
+ "• Bleecker's 72% is a gross-margin back-out: services share = (SaaS GM − blended GM)/(SaaS GM − TaaS GM). The contracts feed the TaaS unit economics ($/hr prices, cost/hr); they aren't summed.",
+ "• Their published TaaS GM (26.2%) doesn't match their own inputs (29.2%). Corrected, their method gives ~76% services, more services-heavy than they reported.",
+ "• 2026 contract pricing: microtransit ~$64.50–70/hr (above Bleecker's $60); paratransit $67.75/hr (well below their $90). Net, the updated mix is ~73–76% services. It moves most with the blended GM (TTM vs Q2'26) and the paratransit share of hours.",
+ "• Via's FY2025 10-K confirms Bleecker's accounting point: G&A 'includes customer support costs as well as ... insurance expenses', so reported gross margin excludes both.",
+ "• Services cost has risen from 49.7% of revenue (FY24) to ~51–52% (FY25–Q2'26). The financials show no shift toward software yet.",
 ]
-r = 18
 for n in notes:
-    c = put(ws, f"A{r}", n); ws.merge_cells(f"A{r}:C{r}"); c.alignment = WRAP; ws.row_dimensions[r].height = 42; r += 1
+    c = put(ws, f"A{r}", n); ws.merge_cells(f"A{r}:C{r}"); c.alignment = WRAP; ws.row_dimensions[r].height = 40; r += 1
+# ================= Sheet 2: Bleecker_Replication =================
+br = wb.create_sheet("Bleecker_Replication")
+br.column_dimensions["A"].width = 3; br.column_dimensions["B"].width = 52
+for col in "CDE": br.column_dimensions[col].width = 16
+br.column_dimensions["F"].width = 70
+put(br, "B1", "Bleecker's TaaS-vs-SaaS mix method, replicated and updated", T)
+put(br, "B2", "Services (TaaS) share = (SaaS GM − blended adj. GM) / (SaaS GM − TaaS GM). TaaS GM comes from hourly unit economics: contract $/hr price minus driver, vehicle, ops-support and field-manager cost per hour, weighted across microtransit and paratransit hours.", Font(name=F, italic=True, size=9))
+br.merge_cells("B2:F2"); br["B2"].alignment = WRAP; br.row_dimensions[2].height = 30
+hdr(br, 4, ["", "Input / output", "Bleecker as published (Dec-25)", "Bleecker inputs, arithmetic corrected", "UPDATED: 2026 contracts", "Note / source"], 1)
+MR = f"'Contracts'!$I$5:$I$60"; MT = f"'Contracts'!$J$5:$J$60"; MW = f"'Contracts'!$E$5:$E$60"
+rows = [
+ (5, "Microtransit price ($/veh-hr)", 60.0, "=C5", f'=AVERAGEIFS({MR},{MT},"Micro",{MW},"Post")', USD, "Bleecker: $60 illustrative (OMNIA catalog midpoint $66.95). Updated = avg of 2026 rates in Contracts (Douglas Co. $70; University Park $64.52)."),
+ (6, "Paratransit price ($/veh-hr)", 90.0, "=C6", f'=AVERAGEIFS({MR},{MT},"Para",{MW},"Post")', USD, "Bleecker: $90 illustrative (OMNIA midpoint $82.40). Updated = University Park 2026: $67.75."),
+ (7, "Cost/hr inflation since Dec-25", 0.0, 0.0, 0.03, PCT, "3% matches the annual escalator in Via's own contract example (Q4'25 call). Covers driver wage pressure."),
+ (8, "Micro: driver labor $/hr", 20.50, "=C8", "=C8*(1+$E$7)", USD, "Bleecker exhibit ('livable wage' contract clauses)."),
+ (9, "Micro: vehicle lease/maint $/hr", 10.75, "=C9", "=C9*(1+$E$7)", USD, ""),
+ (10, "Micro: project ops support $/hr", 8.00, "=C10", "=C10*(1+$E$7)", USD, "Monitoring, project mgmt, IT hosting, dispatch."),
+ (11, "Micro: field manager $/hr", 4.50, "=C11", "=C11*(1+$E$7)", USD, ""),
+ (12, "Para: driver labor $/hr", 26.50, "=C12", "=C12*(1+$E$7)", USD, ""),
+ (13, "Para: vehicle lease/maint $/hr", 13.50, "=C13", "=C13*(1+$E$7)", USD, ""),
+ (14, "Para: project ops support $/hr", 11.75, "=C14", "=C14*(1+$E$7)", USD, ""),
+ (15, "Para: field manager $/hr", 4.50, "=C15", "=C15*(1+$E$7)", USD, ""),
+ (16, "Microtransit GM (GAAP basis, pre-insurance)", "=(C5-SUM(C8:C11))/C5", "=(D5-SUM(D8:D11))/D5", "=(E5-SUM(E8:E11))/E5", PCT, "Bleecker: 27.1%."),
+ (17, "Paratransit GM", "=(C6-SUM(C12:C15))/C6", "=(D6-SUM(D12:D15))/D6", "=(E6-SUM(E12:E15))/E6", PCT, "Bleecker: 37.5%. At 2026 pricing, paratransit is Via's thinnest-margin service."),
+ (18, "Microtransit share of hours", 0.80, "=C18", 0.80, PCT, "Bleecker: 80/20 per experts. Flex in row 26: 2026 wins bundle ADA paratransit."),
+ (19, "TaaS GM (hours-weighted)", 0.262, "=D18*D16+(1-D18)*D17", "=E18*E16+(1-E18)*E17", PCT, "C19 = Bleecker's published 26.2%. Their inputs give 29.2%; 26.2% = 80%×27.1% + 20%×22.9% (micro after insurance), an apparent slip."),
+ (20, "SaaS GM (assumption)", 0.75, "=C20", 0.75, PCT, "Bleecker assumption. Checked against the reported cost split in row 32."),
+ (21, "Blended adjusted GM", 0.40, "=C21", "='Margin_Inputs'!D25", PCT, "Bleecker: Q3'25 adj GM rounded to 40.0% (actual 39.6%). Updated: TTM to Q2'26 adj GM."),
+ (22, "SERVICES (TaaS) SHARE OF REVENUE", "=(C20-C21)/(C20-C19)", "=(D20-D21)/(D20-D19)", "=(E20-E21)/(E20-E19)", PCT, "Bleecker published: 72%."),
+ (23, "Software (SaaS) share", "=1-C22", "=1-D22", "=1-E22", PCT, ""),
+]
+for rr, lab, c, d, e, fmt, note in rows:
+    put(br, f"B{rr}", lab, B if rr in (19, 22) else BLK)
+    for col, v in (("C", c), ("D", d), ("E", e)):
+        isf = isinstance(v, str) and v.startswith("=")
+        fnt = (GRN if "!" in v else BLK) if isf else BLUE
+        fill = YEL if (col == "E" and rr in (7, 18, 20)) else None
+        put(br, f"{col}{rr}", v, fnt, fmt, fill)
+    c_ = put(br, f"F{rr}", note, Font(name=F, size=9)); c_.alignment = WRAP
+for col in "CDE": br[f"{col}22"].fill = PatternFill("solid", fgColor="E2EFDA")
+put(br, "B25", "Updated, at Q2'26 adj GM (instead of TTM)")
+put(br, "D25", "='Margin_Inputs'!D24", GRN, PCT); put(br, "E25", "=(E20-D25)/(E20-E19)", BLK, PCT)
+put(br, "B26", "Updated, paratransit = 30% of hours")
+put(br, "D26", "=0.7*E16+0.3*E17", BLK, PCT); put(br, "E26", "=(E20-E21)/(E20-D26)", BLK, PCT)
+put(br, "F25", "D = blended GM used; E = services share.", Font(name=F, size=9)); put(br, "F26", "D = TaaS GM at 70/30; E = services share.", Font(name=F, size=9))
 
+put(br, "B28", "Cross-check vs reported cost split (TTM to Q2'26, GAAP)", H)
+REV = "SUM('Margin_Inputs'!B7:B8,'Margin_Inputs'!B10:B11)"
+put(br, "B29", "Implied services cost, % of revenue (E22 × (1 − E19))"); put(br, "E29", "=E22*(1-E19)", BLK, PCT)
+put(br, "B30", "Reported tech-enabled services cost, % of revenue"); put(br, "E30", f"=SUM('Margin_Inputs'!C7:C8,'Margin_Inputs'!C10:C11)/{REV}", GRN, PCT)
+put(br, "B31", "Reported tech-enabled + launch & support, % of revenue"); put(br, "E31", f"=(SUM('Margin_Inputs'!C7:C8,'Margin_Inputs'!C10:C11)+SUM('Margin_Inputs'!D7:D8,'Margin_Inputs'!D10:D11))/{REV}", GRN, PCT)
+put(br, "B32", "Implied software GM = 1 − (total COGS% − E29)/(1 − E22)"); put(br, "E32", f"=1-(SUM('Margin_Inputs'!F7:F8,'Margin_Inputs'!F10:F11)/{REV}-E29)/(1-E22)", GRN, PCT)
+put(br, "F29", "Should fall between rows 30 and 31: services cost = tech-enabled cost plus part of launch & support.", Font(name=F, size=9))
+put(br, "F32", "Close to the 75% SaaS assumption means the updated mix is consistent with reported COGS.", Font(name=F, size=9))
+
+put(br, "B35", "Sensitivity (updated column): services share vs microtransit $/hr and paratransit share of hours", H)
+put(br, "B36", "Micro $/hr \\ para share", B)
+paras = [0.10, 0.20, 0.30, 0.40]; prices = [60, 64.52, 67.26, 70, 75]
+for j, p in enumerate(paras): put(br, f"{'CDEF'[j]}36", p, BLUE, PCT)
+for i, pr in enumerate(prices):
+    rr = 37 + i; put(br, f"B{rr}", pr, BLUE, USD)
+    for j in range(4):
+        c = "CDEF"[j]
+        tg = f"((1-{c}$36)*(($B{rr}-SUM($E$8:$E$11))/$B{rr})+{c}$36*$E$17)"
+        put(br, f"{c}{rr}", f"=($E$20-$E$21)/($E$20-{tg})", BLK, PCT)
+put(br, "B43", "Sensitivity: services share vs SaaS GM (rows) and blended adj GM (cols), updated TaaS GM", H)
+put(br, "B44", "SaaS GM \\ blended GM", B)
+gms = [0.39, 0.40, 0.4025, 0.415]
+for j, g in enumerate(gms): put(br, f"{'CDEF'[j]}44", g, BLUE, PCT)
+for i, sg in enumerate([0.70, 0.75, 0.80, 0.85]):
+    rr = 45 + i; put(br, f"B{rr}", sg, BLUE, PCT)
+    for j in range(4):
+        c = "CDEF"[j]; put(br, f"{c}{rr}", f"=($B{rr}-{c}$44)/($B{rr}-$E$19)", BLK, PCT)
 # ================= Sheet 2: Margin_Inputs =================
 mi = wb.create_sheet("Margin_Inputs")
 for col, w in zip("ABCDEFGHI", [14, 13, 16, 16, 13, 13, 13, 11, 70]): mi.column_dimensions[col].width = w
@@ -126,6 +208,14 @@ for i, (p, rev, tes, lsp, it, note) in enumerate(data):
 put(mi, "A13", "Check: Q2'26 COGS", B); put(mi, "B13", 80.1, BLUE, USD); put(mi, "C13", "=F11-B13", BLK, USD); put(mi, "D13", "← should be ~0 (rounding)", Font(name=F, size=9))
 put(mi, "A14", "Check: Q1'26 COGS", B); put(mi, "B14", 77.4, BLUE, USD); put(mi, "C14", "=F10-B14", BLK, USD)
 put(mi, "A15", "Check: Q3'25 COGS", B); put(mi, "B15", 66.567, BLUE, USD); put(mi, "C15", "=F7-B15", BLK, USD)
+put(mi, "A19", "Adjusted gross profit (non-GAAP, from press-release reconciliations)", H)
+hdr(mi, 20, ["Period", "Revenue", "Adj. gross profit", "Adj. GM %", "", "", "", "", "Source / note"])
+adj = [("Q3 2025", "=B7", 43.471, "Q3'25 PR reconciliation."), ("Q4 2025", "=B8", 47.404, "Q4'25 PR: adj GP $47,404K."),
+       ("Q1 2026", "=B10", 50.725, "Derived: 6M'26 adj GP $107.022M − Q2'26 $56.297M."), ("Q2 2026", "=B11", 56.297, "Q2'26 PR: adj GP $56,297K.")]
+for i,(p,rf,v,n) in enumerate(adj):
+    r=21+i; put(mi,f"A{r}",p,B); put(mi,f"B{r}",rf,BLK,USD); put(mi,f"C{r}",v,BLUE,USD); put(mi,f"D{r}",f"=C{r}/B{r}",BLK,PCT); put(mi,f"I{r}",n,Font(name=F,size=9))
+put(mi,"A25","TTM to Q2'26",B); put(mi,"B25","=SUM(B21:B24)",BLK,USD); put(mi,"C25","=SUM(C21:C24)",BLK,USD); put(mi,"D25","=C25/B25",BLK,PCT)
+put(mi,"I25","Base-case blended GM for the Bleecker update. Mgmt says Q2'26 was boosted by one-time revenue that will revert.",Font(name=F,size=9))
 put(mi, "A17", "Adjusted GM (non-GAAP, excludes SBC and acquired-intangible amortization) is within ~0.5pt of GAAP (e.g. Q3'25 adj. GP $43.471M vs GAAP $43.086M), so GAAP is used throughout. Mgmt: Q2'26 adj. GM 41%, LT target 50%.", Font(name=F, size=9))
 mi.merge_cells("A17:I17"); mi["A17"].alignment = WRAP; mi.row_dimensions[17].height = 28
 
@@ -142,7 +232,7 @@ md["C5"].comment = Comment("Base case 22%. Contract transit operators typically 
 put(md, "B6", "Share of launch & support personnel allocated to services (α)"); put(md, "C6", 0.5, BLUE, PCT, YEL)
 md["C6"].comment = Comment("Per the 10-K, launch & support personnel covers local ops staff and field managers doing implementation AND ongoing operations support. 50% is a split-the-difference assumption.", "model")
 put(md, "B7", "Insurance outside COGS, % of revenue (Bleecker claim)"); put(md, "C7", 0.0, BLUE, PCT, YEL)
-md["C7"].comment = Comment("Bleecker alleges insurance sits in G&A, not cost of revenue, overstating GM by ~3–4pts. Set to 3.5% to test.", "model")
+md["C7"].comment = Comment("CONFIRMED in the FY2025 10-K: G&A includes insurance expenses and customer support costs (not cost of revenue). Bleecker estimates insurance at ~3–4pts of GM. Set to 3.5% to test.", "model")
 put(md, "B8", "Bleecker services share (target to reconcile)"); put(md, "C8", 0.72, BLUE, PCT)
 
 hdr(md, 10, ["", "Line", "FY2024", "H1 2025", "Q3 2025", "Q4 2025", "FY2025", "Q1 2026", "Q2 2026"], 1)
@@ -216,81 +306,84 @@ for i, gs in enumerate([0.70, 0.75, 0.80, 0.85]):
 put(bf, "B19", "Limitation: blended GM alone can't separate a high services share at good margins from a lower share at poor margins. Margin_Decomp adds the second equation (the reported cost split), which pins down the trade-off.", Font(name=F, size=9))
 bf.merge_cells("B19:G19"); bf["B19"].alignment = WRAP; bf.row_dimensions[19].height = 40
 
-# ================= Sheet 5: Contracts =================
+# ================= Contracts =================
 ct = wb.create_sheet("Contracts")
-heads = ["#", "Agency / customer", "Via entity", "Approved / effective", "Window", "Scope", "Total value ($mm)", "Term (months)", "Annualized value ($mm)", "Software % of value", "Software $ (annual)", "Services $ (annual)", "Line-item basis", "Include in update (1/0)", "Possible network deal (1/0)", "Notes", "Source"]
-widths = [4, 30, 18, 14, 11, 14, 11, 9, 12, 10, 11, 11, 16, 10, 10, 60, 8]
+heads = ["#", "Agency / customer", "Via entity", "Approved / effective", "Window", "Scope", "Total value ($mm)", "Term (months)", "Hourly rate ($/veh-hr)", "Rate type", "Annualized value ($mm)", "Software % of value", "Software $ (annual)", "Services $ (annual)", "Line-item basis", "Include in ACV update (1/0)", "Possible network deal (1/0)", "Notes", "Source"]
+widths = [4, 30, 18, 14, 9, 14, 11, 9, 10, 9, 12, 10, 11, 11, 12, 10, 10, 60, 8]
 for i, w in enumerate(widths): ct.column_dimensions[L(i + 1)].width = w
-put(ct, "A1", "Contract tracker: Bleecker reference set (pre-Dec 16, 2025) + new contracts since", T)
-put(ct, "A2", "Software % column: 'Actual' = from contract line items; 'Assumed' = links to the turnkey software-share assumption on Updated_Mix!C8 (Bleecker: software <5% of TCV on turnkey deals). Include = 1 only for post-window contracts with a public $ value that were actually approved.", Font(name=F, italic=True, size=9))
-ct.merge_cells("A2:Q2"); ct["A2"].alignment = WRAP; ct.row_dimensions[2].height = 28
+put(ct, "A1", "Contract tracker: Bleecker reference set (pre-Dec 16, 2025) + contracts since", T)
+put(ct, "A2", "Hourly rate + rate type (Micro/Para) on 'Post' rows feed Bleecker_Replication (updated $/hr). Software % 'Assumed' links to ACV_CrossCheck!C8. 'Include' = 1 only for post-window contracts with a public $ value that were actually approved and are additive.", Font(name=F, italic=True, size=9))
+ct.merge_cells("A2:S2"); ct["A2"].alignment = WRAP; ct.row_dimensions[2].height = 28
 hdr(ct, 4, heads)
-TK = "='Updated_Mix'!$C$8"
+TK = "='ACV_CrossCheck'!$C$8"
 C = [
- # pre-window reference set
- ("LA Metro – Metro Micro ops (North+South)", "Nomad Transit LLC", "2024-11-21", "Pre", "Turnkey", 135.0, 72, 0.0, "Actual", 0, 0, "IDIQ, 3+3 yrs; $82.35→$94.50/rev. hr on 253,003 hrs. Software went to Spare Labs ($61K→$447K). Via kept operations only.", "S24,S26"),
- ("Arlington, TX – On-Demand", "Via", "2024-12", "Pre", "Turnkey", 20.7, 24, 0.04, "Actual", 0, 0, "Ceiling cut 31% from $30.2M. 'Micro TaaS' ~96% of value; software <5% and doesn't scale with usage.", "S8,S26"),
- ("DCTA GoZone (2023–24 extension)", "Via", "2023", "Pre", "Turnkey", 10.46, 12, 0.0, "Actual", 0, 0, "234,895 van hrs @ ~$42.11/hr + customer service $283.5K per 6 months. All hour/labor-based. Status after 9/30/24 unverified.", "S26"),
- ("King County Metro – Metro Flex", "Via", "2023-02", "Pre", "Turnkey", 21.0, 36, TK, "Assumed", 0, 0, "~$7M/yr, 3-yr term. Issaquah recommended not renewing its piece at end-2025 (~$41/ride).", "S26"),
- ("Mobile, AL – The Wave (full system)", "Port City Transit LLC", "2025-09-16", "Pre", "Turnkey", 36.3, 36, TK, "Assumed", 0, 1, "$12.1M/yr, 3 yrs + two 1-yr options. Takeover from Transdev, staff transfer. A network deal.", "S26"),
- ("New Braunfels, TX", "River North Transit LLC", "2025-10-13", "Pre", "Turnkey", 6.08, 60, TK, "Assumed", 0, 0, "$1.15–1.29M/yr; yr-1 funded mostly by ARPA.", "S26"),
- ("Miami-Dade", "River North Transit LLC", "2020", "Pre", "Turnkey", 4.66, 36, TK, "Assumed", 0, 0, "Up to $4.66M over 3 yrs; 45 vehicles as of late 2024.", "S26"),
- ("Lorain County, OH – ViaLC extension", "River North Transit LLC", "2025-07", "Pre", "Turnkey", 2.2, 12, TK, "Assumed", 0, 0, "1-yr extension through Jul 2026. Jan 2026: $2.8M federal grant to expand (grant, not a contract).", "S23"),
- ("Gastonia, NC", "River North Transit LLC", "2024", "Pre", "Turnkey", 1.65, 12, TK, "Assumed", 0, 0, "$1.65M in yr 1 of 36 months.", "S26"),
- ("Q4'25 call example – Texas customer", "Via", "2025", "Pre", "Turnkey", 3.4, 36, 0.0044, "Actual", 0, 0, "~22,000 veh-hrs/yr @ $50/hr = $1.1M ACV; only $15K upfront software implementation (0.44% of TCV).", "S26"),
- ("Transport for London – Dial-a-Ride (software)", "Via Technologies B.V.", "2022-08-05", "Pre", "Software-only", 2.93, 60, 1.0, "Actual", 0, 0, "£2,307,950 over 5 yrs (converted at ~$1.27/£). Shows how small software-only ACVs are even at a very large agency.", "S25"),
- # post-window new contracts
- ("TCATA (Benton Harbor / St. Joseph, MI)", "Via", "2025-12 (ops 2026-04-01)", "Post", "Turnkey (network)", 0, 12, TK, "Assumed", 0, 1, "Board approved Dec 2025; Via took over the whole network Apr 1, 2026. $ value not found in public search. Not in the report (published Dec 16).", "S20"),
- ("Plano, TX – Plano Rides", "Via Transportation Inc.", "2026-02-23", "Post", "Turnkey", 3.952247, 6, TK, "Assumed", 1, 1, "$3,952,247 for 6 months; three 1-yr auto renewals est. ~$8M/yr. 22 vehicles, seniors 65+ microtransit + paratransit.", "S11"),
- ("Addison, TX – Addison Orbit", "Via Transportation Inc.", "2026-03-24", "Post", "Turnkey", 0.872231, 6, TK, "Assumed", 1, 0, "NTE $872,231, 6-month pilot, microtransit + ADA paratransit, 5am–midnight.", "S12"),
- ("NJ TRANSIT MicroLink – Bergen", "Via", "2026-04-06", "Post", "Turnkey", 0, 24, TK, "Assumed", 0, 0, "Via operates. FTA-funded 2-yr pilot. Value not found.", "S15"),
- ("NJ TRANSIT MicroLink – Monmouth", "Via", "2026-04-06", "Post", "Software-only", 0, 24, 1.0, "Actual", 0, 0, "NJ TRANSIT runs service itself on Via software. The only software-only deal found in the new window. Value not found.", "S15"),
- ("Highland Park, TX – On-Demand", "Via", "2026-04 (launch 5/13)", "Post", "Turnkey", 1.55, 6, TK, "Assumed", 1, 0, "$1.55M FY26 budget amendment for 6-month pilot (4 vehicles + paratransit). That's a budget appropriation, not the signed contract value.", "S13"),
- ("University Park, TX", "Via", "2026-04-07", "Post", "Turnkey", 1.06, 12, TK, "Assumed", 0, 0, "Tabled, then CANCELLED after voters stayed in DART. Excluded.", "S14"),
- ("Union County, NJ", "River North Transit LLC", "2026-06", "Post", "Turnkey", 0, 12, TK, "Assumed", 0, 0, "1-yr pilot; Via supplies vehicles, drivers, tech, customer service, maintenance. Value not disclosed.", "S16"),
- ("Douglas County, CO – Link On Demand Castle Rock", "River North Transit LLC", "2026-07-14", "Post", "Turnkey", 1.99172, 12, TK, "Assumed", 1, 0, "MSA + initial scope $1,991,720; 2-yr contract + 3 one-yr options; ~$2M/yr; $33–40 per ride.", "S17"),
- ("Cobb County, GA – microtransit expansion", "Via", "2026-09 (consent agenda)", "Post", "Turnkey", 6.3, 24, TK, "Assumed", 1, 0, "$6.3M total: Acworth/Kennesaw (2 yrs) + Mableton (1 yr). Split unknown, so annualized over 24 months (conservative). Mostly state funds.", "S18"),
- ("Jersey City, NJ – Via service cut", "Via", "2026-07-01", "Post", "Reduction", -4.0, 12, 0.0, "Assumed", 1, 0, "City cut Via hours roughly in half and ended Saturday service: ~$4M/yr savings. A services-hours cut; software is kept.", "S19"),
- ("Garner, NC – feasibility study", "Via", "2026", "Post", "Consulting (one-time)", 0, 2, 1.0, "Assumed", 0, 0, "60-day feasibility contract. One-time planning/consulting, value n/a.", "S22"),
+ ("LA Metro – Metro Micro ops (North+South)", "Nomad Transit LLC", "2024-11-21", "Pre", "Turnkey", 135.0, 72, 82.35, "", 0.0, "Actual", 0, 0, "IDIQ, 3+3 yrs; $82.35→$94.50/rev-hr on 253,003 hrs. Software went to Spare Labs; Via kept operations only.", "S24,S26"),
+ ("Arlington, TX – On-Demand", "Via", "2024-12", "Pre", "Turnkey", 20.7, 24, None, "", 0.04, "Actual", 0, 0, "Ceiling cut 31% from $30.2M. TaaS ~96% of value; software <5% (Bleecker).", "S8,S26"),
+ ("DCTA GoZone (2023–24 extension)", "Via", "2023", "Pre", "Turnkey", 10.46, 12, 42.11, "", 0.0, "Actual", 0, 0, "234,895 van hrs @ ~$42.11/hr + customer service $283.5K per 6 months.", "S26"),
+ ("King County Metro – Metro Flex", "Via", "2023-02", "Pre", "Turnkey", 21.0, 36, None, "", TK, "Assumed", 0, 0, "~$7M/yr, 3-yr term.", "S26"),
+ ("Mobile, AL – The Wave (full system)", "Port City Transit LLC", "2025-09-16", "Pre", "Turnkey", 36.3, 36, None, "", TK, "Assumed", 0, 1, "$12.1M/yr; takeover from Transdev. Network deal.", "S26"),
+ ("New Braunfels, TX", "River North Transit LLC", "2025-10-13", "Pre", "Turnkey", 6.08, 60, None, "", TK, "Assumed", 0, 0, "$1.15–1.29M/yr; ARPA-funded yr 1.", "S26"),
+ ("Miami-Dade", "River North Transit LLC", "2020", "Pre", "Turnkey", 4.66, 36, None, "", TK, "Assumed", 0, 0, "", "S26"),
+ ("Lorain County, OH – ViaLC extension", "River North Transit LLC", "2025-07", "Pre", "Turnkey", 2.2, 12, None, "", TK, "Assumed", 0, 0, "Through Jul 2026. Jan 2026 $2.8M federal expansion grant (grant, not contract).", "S23"),
+ ("Gastonia, NC", "River North Transit LLC", "2024", "Pre", "Turnkey", 1.65, 12, None, "", TK, "Assumed", 0, 0, "", "S26"),
+ ("Q4'25 call example – Texas customer", "Via", "2025", "Pre", "Turnkey", 3.4, 36, 50.0, "", 0.0044, "Actual", 0, 0, "22,000 veh-hrs/yr @ $50/hr; $15K implementation; 3% annual escalator.", "S26"),
+ ("OMNIA co-op catalog – microtransit (pricing reference)", "Via", "2025-05", "Pre", "Pricing ref", 0, 12, 66.95, "", 0.0, "Actual", 0, 0, "Midpoint TaaS fee per vehicle-hour (Bleecker exhibit).", "S8"),
+ ("OMNIA co-op catalog – paratransit (pricing reference)", "Via", "2025-05", "Pre", "Pricing ref", 0, 12, 82.40, "", 0.0, "Actual", 0, 0, "Midpoint paratransit fee per vehicle-hour (Bleecker exhibit).", "S8"),
+ ("Transport for London – Dial-a-Ride (software)", "Via Technologies B.V.", "2022-08-05", "Pre", "Software-only", 2.93, 60, None, "", 1.0, "Actual", 0, 0, "£2,307,950 over 5 yrs (~$1.27/£).", "S25"),
+ # ---- post-window ----
+ ("TCATA (Benton Harbor / St. Joseph, MI)", "Via", "2025-12 (ops 2026-04-01)", "Post", "Turnkey (network)", 0, 12, None, "", TK, "Assumed", 0, 1, "Full network takeover; $ value not found.", "S20"),
+ ("Plano, TX – Plano Rides", "Via Transportation Inc.", "2026-02-23", "Post", "Turnkey", 3.952247, 6, None, "", TK, "Assumed", 1, 1, "$3,952,247 for 6 months; ~$8M/yr renewals. Bought through 791 Cooperative Contract 791202505008 (same vehicle as the Dallas-area deals).", "S11,S28"),
+ ("Douglas County, CO – Link On Demand (Lone Tree/Highlands Ranch/Parker)", "River North Transit LLC", "2026-02", "Post", "Turnkey", 4.4, 12, None, "", TK, "Assumed", 0, 0, "$4.4M to continue and expand service east into Parker. Mostly a renewal of existing service, so not added to ACV.", "S33"),
+ ("Addison, TX – Addison Orbit", "Via Transportation Inc.", "2026-03-24", "Post", "Turnkey", 0.872231, 6, None, "", TK, "Assumed", 1, 0, "NTE $872,231, 6-month pilot, micro + ADA paratransit.", "S12"),
+ ("NJ TRANSIT MicroLink – Bergen", "Via", "2026-04-06", "Post", "Turnkey", 0, 24, None, "", TK, "Assumed", 0, 0, "Via operates; value not found.", "S15"),
+ ("NJ TRANSIT MicroLink – Monmouth", "Via", "2026-04-06", "Post", "Software-only", 0, 24, None, "", 1.0, "Actual", 0, 0, "NJT operates on Via software. The only software-only new deal found.", "S15"),
+ ("Highland Park, TX – On-Demand", "Via", "2026-04 (launch 5/14)", "Post", "Turnkey", 1.55, 6, None, "", TK, "Assumed", 1, 0, "$1.55M FY26 budget amendment for 6-month pilot (4 vehicles + paratransit).", "S13"),
+ ("University Park, TX – paratransit", "Via", "2026-04-21", "Post", "Turnkey", 1.06, 12, 67.75, "Para", TK, "Assumed", 0, 0, "Approved 4/21 at $67.75 per vehicle-hr; CANCELLED after the DART vote. Excluded from ACV, but the rate is used as 2026 pricing evidence.", "S27,S14"),
+ ("University Park, TX – microtransit option", "Via", "2026-04-21", "Post", "Pricing ref", 0, 12, 64.52, "Micro", 0.0, "Actual", 0, 0, "Quoted microtransit rate $64.52 per vehicle-hr (not exercised). Pricing evidence only.", "S27"),
+ ("Union County, NJ", "River North Transit LLC", "2026-06", "Post", "Turnkey", 0, 12, None, "", TK, "Assumed", 0, 0, "Turnkey pilot; value not disclosed.", "S16"),
+ ("Douglas County, CO – Link On Demand Castle Rock", "River North Transit LLC", "2026-07-14", "Post", "Turnkey", 1.99172, 12, 70.0, "Micro", TK, "Assumed", 1, 0, "$1,991,720 initial scope; ~$70/hr operating cost per county (search extract).", "S17,S31"),
+ ("Cobb County, GA – microtransit expansion", "Via", "2026-09 (consent agenda)", "Post", "Turnkey", 6.3, 24, None, "", TK, "Assumed", 1, 0, "$6.3M: Acworth/Kennesaw (2 yrs) + Mableton (1 yr); Via paid a fixed cost. Existing south Cobb pilot ~$1.1M/yr.", "S18"),
+ ("Jersey City, NJ – Via service cut", "Via", "2026-07-01", "Post", "Reduction", -4.0, 12, None, "", 0.0, "Assumed", 1, 0, "Hours roughly halved, Saturday service ended: ~$4M/yr.", "S19"),
+ ("Garner, NC – feasibility study", "Via", "2026", "Post", "Consulting (one-time)", 0, 2, None, "", 1.0, "Assumed", 0, 0, "60-day feasibility contract.", "S22"),
 ]
+M2 = '$#,##0.00;($#,##0.00);-'
 for i, row in enumerate(C):
     r = 5 + i
-    (name, ent, dt, win, scope, tcv, term, swp, basis, inc, net, note, src) = row
+    (name, ent, dt, win, scope, tcv, term, rate, rtype, swp, basis, inc, net, note, src) = row
     put(ct, f"A{r}", i + 1)
     put(ct, f"B{r}", name); put(ct, f"C{r}", ent); put(ct, f"D{r}", dt, BLUE); put(ct, f"E{r}", win, BLUE); put(ct, f"F{r}", scope, BLUE)
-    put(ct, f"G{r}", tcv, BLUE, '$#,##0.00;($#,##0.00);-'); put(ct, f"H{r}", term, BLUE, '0')
-    put(ct, f"I{r}", f"=IF(H{r}=0,0,G{r}/H{r}*12)", BLK, '$#,##0.00;($#,##0.00);-')
-    if isinstance(swp, str): put(ct, f"J{r}", swp, GRN, PCT)
-    else: put(ct, f"J{r}", swp, BLUE, PCT)
-    put(ct, f"K{r}", f"=I{r}*J{r}", BLK, '$#,##0.00;($#,##0.00);-')
-    put(ct, f"L{r}", f"=I{r}-K{r}", BLK, '$#,##0.00;($#,##0.00);-')
-    put(ct, f"M{r}", basis); put(ct, f"N{r}", inc, BLUE, '0'); put(ct, f"O{r}", net, BLUE, '0')
-    c = put(ct, f"P{r}", note, Font(name=F, size=9)); c.alignment = WRAP
-    put(ct, f"Q{r}", src, Font(name=F, size=9))
+    put(ct, f"G{r}", tcv, BLUE, M2); put(ct, f"H{r}", term, BLUE, '0')
+    if rate is not None: put(ct, f"I{r}", rate, BLUE, M2)
+    if rtype: put(ct, f"J{r}", rtype, BLUE)
+    put(ct, f"K{r}", f"=IF(H{r}=0,0,G{r}/H{r}*12)", BLK, M2)
+    if isinstance(swp, str): put(ct, f"L{r}", swp, GRN, PCT)
+    else: put(ct, f"L{r}", swp, BLUE, PCT)
+    put(ct, f"M{r}", f"=K{r}*L{r}", BLK, M2)
+    put(ct, f"N{r}", f"=K{r}-M{r}", BLK, M2)
+    put(ct, f"O{r}", basis); put(ct, f"P{r}", inc, BLUE, '0'); put(ct, f"Q{r}", net, BLUE, '0')
+    c = put(ct, f"R{r}", note, Font(name=F, size=9)); c.alignment = WRAP
+    put(ct, f"S{r}", src, Font(name=F, size=9))
     ct.row_dimensions[r].height = 36
 last = 4 + len(C)
 tr = last + 2
-put(ct, f"B{tr}", "Pre-window turnkey reference set: $-weighted services share", B)
-put(ct, f"I{tr}", f'=SUMIFS(L5:L{last},E5:E{last},"Pre",F5:F{last},"Turnkey")/SUMIFS(I5:I{last},E5:E{last},"Pre",F5:F{last},"Turnkey")', BLK, PCT)
-put(ct, f"B{tr+1}", "Pre-window, all rows incl. software-only: $-weighted services share", B)
-put(ct, f"I{tr+1}", f'=SUMIFS(L5:L{last},E5:E{last},"Pre")/SUMIFS(I5:I{last},E5:E{last},"Pre")', BLK, PCT)
-put(ct, f"B{tr+2}", "Why the raw contract sample overstates services vs Bleecker's 72%: public records over-sample big turnkey deals, so the sample has to be re-weighted to Via's customer base (see Updated_Mix, section 4).", Font(name=F, size=9))
-ct.merge_cells(f"B{tr+2}:P{tr+2}")
+put(ct, f"B{tr}", "Avg hourly rate, 2026 contracts – microtransit", B); put(ct, f"I{tr}", f'=AVERAGEIFS(I5:I{last},J5:J{last},"Micro",E5:E{last},"Post")', BLK, M2)
+put(ct, f"B{tr+1}", "Avg hourly rate, 2026 contracts – paratransit", B); put(ct, f"I{tr+1}", f'=AVERAGEIFS(I5:I{last},J5:J{last},"Para",E5:E{last},"Post")', BLK, M2)
+put(ct, f"B{tr+2}", "Pre-window turnkey reference set: $-weighted services share", B)
+put(ct, f"K{tr+2}", f'=SUMIFS(N5:N{last},E5:E{last},"Pre",F5:F{last},"Turnkey")/SUMIFS(K5:K{last},E5:E{last},"Pre",F5:F{last},"Turnkey")', BLK, PCT)
 ct.freeze_panes = "C5"
 CT_LAST = last
-
 # ================= Sheet 6: Updated_Mix =================
-um = wb.create_sheet("Updated_Mix")
+um = wb.create_sheet("ACV_CrossCheck")
 um.column_dimensions["A"].width = 3; um.column_dimensions["B"].width = 62
 for col in "CDEF": um.column_dimensions[col].width = 14
-put(um, "B1", "Updated software/services mix: Bleecker baseline + post-Dec-2025 contracts", T)
+put(um, "B1", "Cross-check: Bleecker 72% baseline + incremental contract ACV (NOT Bleecker's method)", T)
 put(um, "B3", "1) Baseline (Bleecker, Dec 16, 2025)", H)
 put(um, "B4", "Run-rate revenue base at Bleecker date: Q4'25 ARR ($mm)"); put(um, "C4", 476, BLUE, USD)
 um["C4"].comment = Comment("Q4 2025 Annual Run-Rate Revenue $476M (4x Q4 revenue). Source: Q4/FY25 press release.", "model")
 put(um, "B5", "Also: FY2025 revenue ($mm), for reference"); put(um, "C5", "='Margin_Inputs'!B9", GRN, USD)
 put(um, "B6", "Bleecker services share"); put(um, "C6", 0.72, BLUE, PCT, YEL)
 put(um, "B7", "Baseline services $ / software $"); put(um, "C7", "=C4*C6", BLK, USD); put(um, "D7", "=C4-C7", BLK, USD)
-put(um, "B8", "Turnkey contracts: software % of contract value"); put(um, "C8", 0.04, BLUE, PCT, YEL)
+put(um, "B8", "Turnkey contracts: software % of contract value (Bleecker exhibit: 1.9–4.6% on OMNIA pricing)"); put(um, "C8", 0.04, BLUE, PCT, YEL)
 um["C8"].comment = Comment("Arlington TX: software <5%, TaaS ~96% (Bleecker). Texas Q4'25 example: 0.44%. LA Metro: 0% (unbundled). 4% is the high end, which is generous to software.", "model")
 
 rng = lambda col: f"'Contracts'!{col}5:{col}{CT_LAST}"
@@ -298,12 +391,12 @@ put(um, "B10", "2) Scenario A: add identified public contracts (Include = 1)", H
 hdr(um, 11, ["", "Item", "Services $", "Software $", "Total $"], 1)
 put(um, "B12", "Baseline"); put(um, "C12", "=C7", BLK, USD); put(um, "D12", "=D7", BLK, USD); put(um, "E12", "=C12+D12", BLK, USD)
 put(um, "B13", "New turnkey wins (annualized)")
-put(um, "C13", f'=SUMIFS({rng("L")},{rng("N")},1,{rng("F")},"<>Reduction")', GRN, USD)
-put(um, "D13", f'=SUMIFS({rng("K")},{rng("N")},1,{rng("F")},"<>Reduction")', GRN, USD)
+put(um, "C13", f'=SUMIFS({rng("N")},{rng("P")},1,{rng("F")},"<>Reduction")', GRN, USD)
+put(um, "D13", f'=SUMIFS({rng("M")},{rng("P")},1,{rng("F")},"<>Reduction")', GRN, USD)
 put(um, "E13", "=C13+D13", BLK, USD)
 put(um, "B14", "Reductions (Jersey City)")
-put(um, "C14", f'=SUMIFS({rng("L")},{rng("N")},1,{rng("F")},"Reduction")', GRN, USD)
-put(um, "D14", f'=SUMIFS({rng("K")},{rng("N")},1,{rng("F")},"Reduction")', GRN, USD)
+put(um, "C14", f'=SUMIFS({rng("N")},{rng("P")},1,{rng("F")},"Reduction")', GRN, USD)
+put(um, "D14", f'=SUMIFS({rng("M")},{rng("P")},1,{rng("F")},"Reduction")', GRN, USD)
 put(um, "E14", "=C14+D14", BLK, USD)
 put(um, "B15", "Updated total", B); put(um, "C15", "=SUM(C12:C14)", BLK, USD); put(um, "D15", "=SUM(D12:D14)", BLK, USD); put(um, "E15", "=C15+D15", BLK, USD)
 put(um, "B17", "New-contract-only services share (flow, excl. reductions)"); put(um, "D17", "=IF(E13=0,0,C13/E13)", BLK, PCT)
@@ -315,8 +408,8 @@ put(um, "B27", "3) Scenario B: A, but replace possible network deals with mgmt's
 put(um, "B28", "Mgmt: 4 network deals won in 2026, >$40M total ACV (Q1'26 call)"); put(um, "C28", 40, BLUE, USD)
 put(um, "B29", "Network deals software % (turnkey)"); put(um, "C29", "=C8", BLK, PCT)
 put(um, "B30", "Identified A contracts NOT flagged as possible network ($)")
-put(um, "C30", f'=SUMIFS({rng("L")},{rng("N")},1,{rng("O")},0)', GRN, USD)
-put(um, "D30", f'=SUMIFS({rng("K")},{rng("N")},1,{rng("O")},0)', GRN, USD)
+put(um, "C30", f'=SUMIFS({rng("N")},{rng("P")},1,{rng("Q")},0)', GRN, USD)
+put(um, "D30", f'=SUMIFS({rng("M")},{rng("P")},1,{rng("Q")},0)', GRN, USD)
 put(um, "B31", "Network deals")
 put(um, "C31", "=C28*(1-C29)", BLK, USD); put(um, "D31", "=C28*C29", BLK, USD)
 put(um, "B32", "Updated total (baseline + rows 30–31)", B)
