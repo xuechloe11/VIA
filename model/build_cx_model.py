@@ -84,83 +84,56 @@ put_row("cg", 12, "   % growth");                        style(12, "consgr", PCT
 put_row("vs", 13, "   Model vs consensus");              style(13, "consgr", PCT, italic=True)
 put_row("ss", 14, "Services % of revenue");              style(14, "ital", PCT, italic=True)
 
-# ---------------------------------------------------------------- drivers
+# ---------------------------------------------------------------- drivers (one per stream)
 put_row("dh", 16, "DRIVERS");                            style(16, "band", cols=ALL)
 for c in ALL: rb[f"{c}16"].value = None
-put_row("h_sw", 17, "SOFTWARE");                         style(17, "subhdr")
-put_row("cust", 18, "Customers (year-end, #)");          style(18, "drv", "#,##0")
-put_row("cust_g", 19, "   % growth");                    style(19, "drvgr", PCT)
-put_row("rpc", 20, "Software revenue per customer ($000)"); style(20, "drv", "#,##0")
-put_row("rpc_g", 21, "   % growth");                     style(21, "drvgr", PCT)
-put_row("swsh", 22, "   Software share of recurring revenue"); style(22, "drv", PCT, italic=True)
+put_row("sw_g", 17, "Software revenue % growth");        style(17, "drvgr", PCT)
+put_row("mp_g", 18, "Microtransit & paratransit % growth (net of downsell)"); style(18, "drvgr", PCT)
+put_row("new", 19, "Network: new contract value launched ($mm)"); style(19, "drvgr", USD1)
+put_row("rr", 20, "Network: contract run-rate, year-end ($mm)"); style(20, "drv", USD1)
+put_row("otp", 21, "One-time revenue % of total");       style(21, "drvgr", PCT)
 
-put_row("h_mp", 24, "MICROTRANSIT & PARATRANSIT");       style(24, "subhdr")
-put_row("hrs", 25, "Vehicle-hours (mm)");                style(25, "drv", "0.00")
-put_row("exp", 26, "   Expansion (existing + new customers)"); style(26, "drvgr", PCT)
-put_row("dn", 27, "   Downsell / budget cuts");          style(27, "drvgr", PCT)
-put_row("hg", 28, "   Net hours growth");                style(28, "drv", PCT, italic=True)
-put_row("px", 29, "Price per vehicle-hour ($)");         style(29, "drv", "$#,##0.00")
-put_row("px_g", 30, "   % growth");                      style(30, "drvgr", PCT)
+put_row("h_gp", 23, "GROSS MARGIN BY STREAM");           style(23, "subhdr")
+put_row("gm_sw", 24, "Software");                        style(24, "drvgr", PCT)
+put_row("gm_mp", 25, "Microtransit & paratransit");      style(25, "drvgr", PCT)
+put_row("gm_nw", 26, "Network deals");                   style(26, "drvgr", PCT)
+put_row("gm_ot", 27, "One-time");                        style(27, "drvgr", PCT)
+put_row("gp", 28, "Gross profit ($mm)");                 style(28, "tot", USD)
+put_row("gm", 29, "   Gross margin");                    style(29, "gr", PCT, italic=True)
+put_row("gmc", 30, "   Consensus gross margin (CapIQ)"); style(30, "consgr", PCT, italic=True)
 
-put_row("h_nw", 32, "NETWORK DEALS");                    style(32, "subhdr")
-put_row("rr", 33, "Contract run-rate, year-end ($mm)");  style(33, "drv", USD1)
-put_row("new", 34, "   New contract value launched ($mm)"); style(34, "drvgr", USD1)
-put_row("lf", 35, "   Launch-year revenue factor");      style(35, "drvgr", "0.00")
-
-put_row("h_ot", 37, "ONE-TIME");                         style(37, "subhdr")
-put_row("otp", 38, "One-time revenue % of total");       style(38, "drvgr", PCT)
-
-put_row("h_gp", 40, "GROSS PROFIT BY STREAM");           style(40, "subhdr")
-put_row("gm_sw", 41, "Software gross margin");           style(41, "drvgr", PCT)
-put_row("gm_mp", 42, "Microtransit & paratransit gross margin"); style(42, "drvgr", PCT)
-put_row("gm_nw", 43, "Network gross margin");            style(43, "drvgr", PCT)
-put_row("gm_ot", 44, "One-time gross margin");           style(44, "drvgr", PCT)
-put_row("gp", 45, "Gross profit ($mm)");                 style(45, "tot", USD)
-put_row("gm", 46, "   Gross margin");                    style(46, "gr", PCT, italic=True)
-put_row("gmc", 47, "   Consensus gross margin (CapIQ)"); style(47, "consgr", PCT, italic=True)
-
-# historical driver cells are black formulas or blue hardcodes; forecast input cells keep the
-# template's blue input style (drvgr); drv-row forecasts are black formulas.
-for key in ["cust_g", "rpc_g", "exp", "dn", "px_g", "new", "lf", "otp", "gm_sw", "gm_mp", "gm_nw", "gm_ot"]:
+# historical cells in input rows are black formulas (or blue hardcodes set below)
+for key in ["sw_g", "mp_g", "new", "otp", "gm_sw", "gm_mp", "gm_nw", "gm_ot"]:
     for c in HIST:
         rb[f"{c}{R[key]}"]._style = copy(P["drv"][c]); rb[f"{c}{R[key]}"].number_format = rb[f"F{R[key]}"].number_format
         setfont(rb, f"{c}{R[key]}", BLACK)
 
 r = R
 # ---- historical inputs (blue) ----
-for c, v in zip(HIST, [597, 665, 821]):
-    rb[f"{c}{r['cust']}"] = v; setfont(rb, f"{c}{r['cust']}", BLUE)
-note(rb[f"C{r['cust']}"], "Customer count at year-end. Source: Via S-1 (FY23, FY24) and FY25 10-K (821). Includes 94 Downtowner customers acquired Dec 2025.")
-for c, v in zip(HIST, [56.50, 58.20, 60.00]):
-    rb[f"{c}{r['px']}"] = v; setfont(rb, f"{c}{r['px']}", BLUE)
-note(rb[f"E{r['px']}"], "ESTIMATE. Blended $/vehicle-hour across legacy (~$42-50, e.g. DCTA $42.95) and 2025-26 contracts (micro $64.5-70, para $67.75, LA Metro $82.35). FY23-24 deflated 3%/yr (Via's example contract escalator).")
+for c, v in zip(HIST, [57.9, 78.6, 101.1]):
+    rb[f"{c}{r['sw']}"] = v; setfont(rb, f"{c}{r['sw']}", BLUE)
+note(rb[f"E{r['sw']}"], "ESTIMATE. Via reports all recurring revenue as one 'subscription' line. Software ~24% of recurring revenue, services ~76% (margin back-out in VIA_software_services_mix.xlsx; Bleecker 72% as published).")
 for c, v in zip(HIST, [0.0, 11.1, 23.5]):
     rb[f"{c}{r['rr']}"] = v; setfont(rb, f"{c}{r['rr']}", BLUE)
-note(rb[f"D{r['rr']}"], "Sioux Falls: 2024 NTD purchased-transportation paid $11.07M (first Via network deal).")
+note(rb[f"D{r['rr']}"], "Sioux Falls: 2024 NTD purchased transportation paid $11.07M (Via's first network deal).")
 note(rb[f"E{r['rr']}"], "Sioux Falls ~$11.4M + Mobile $12.1M/yr (from Oct 2025).")
 for c, v in zip(HIST, [0.0, 11.1, 14.4]):
     rb[f"{c}{r['nw']}"] = v; setfont(rb, f"{c}{r['nw']}", BLUE)
 note(rb[f"E{r['nw']}"], "ESTIMATE. Sioux Falls ~$11.4M + one quarter of Mobile ($12.1M/4).")
 for c in HIST:
     rb[f"{c}{r['otp']}"] = 0.03; setfont(rb, f"{c}{r['otp']}", BLUE)
-    rb[f"{c}{r['swsh']}"] = 0.24; setfont(rb, f"{c}{r['swsh']}", BLUE)
 note(rb[f"E{r['otp']}"], "10-K: one-time revenue 3% of total in FY24 and FY25 (97% recurring). FY23 assumed the same.")
-note(rb[f"E{r['swsh']}"], "ESTIMATE. Software ~24% of recurring revenue, services ~76% (margin back-out in VIA_software_services_mix.xlsx; Bleecker 72% services as published).")
 
 # ---- forecast inputs (blue) ----
 FIN = {
-    "cust_g": ([0.08, 0.09, 0.08, 0.07, 0.06], "Organic customer growth ~9% ex-Downtowner (thesis 3). FY26 +8%: 847 at Q2'26."),
-    "rpc_g":  ([-0.05, 0.02, 0.02, 0.02, 0.02], "FY26 -5%: 94 small Downtowner customers dilute the average. Then +2%/yr: software fees face $0.01 bids (Spare at LA Metro)."),
-    "exp":    ([0.28, 0.16, 0.15, 0.14, 0.13], "Expansion with existing customers drives most growth (10-K). FY26 +28% (net +25%) calibrated so FY26 revenue matches 1H26 actuals ($263M) plus the H2 ramp (~consensus)."),
-    "dn":     ([-0.03, -0.06, -0.06, -0.05, -0.05], "Budget-bound downsell (thesis 3.2): Jersey City cut ~half of Via spend (Jul 2026); ARPA / federal stopgap cliff from FY27."),
-    "px_g":   ([0.03, 0.02, 0.02, 0.02, 0.02], "3% escalator on existing contracts, but rebids reset price (thesis 3.1: LA Metro set the target cost per trip)."),
-    "new":    ([30.0, 25.0, 20.0, 20.0, 20.0], "FY26: Twin Cities MI (Apr), Rochester $14.6M (Sep), part of 2026 wins (>$40M ACV). Signed book ~$70M once launched. Mid-sized US cities only (thesis 1.1)."),
-    "lf":     ([0.30, 0.50, 0.50, 0.50, 0.50], "Share of a year's launched contract value earned in the launch year. FY26 H2-weighted (Rochester from Sep)."),
-    "otp":    ([0.03, 0.03, 0.03, 0.03, 0.03], "3% (10-K FY24-25; 1H26 also 3%)."),
-    "gm_sw":  ([0.75] * 5, "Software gross margin (Bleecker assumption; reported cost split implies ~73%)."),
-    "gm_mp":  ([0.293] * 5, "Microtransit/paratransit services gross margin (Bleecker TaaS GM, arithmetic corrected and updated to 2026 contract pricing)."),
-    "gm_nw":  ([0.20] * 5, "ASSUMPTION (undisclosed): bus-operator economics. Labor is 72% of mid-sized bus system cost (NTD 2024); CFO: 'some accretive, some less.'"),
-    "gm_ot":  ([0.75] * 5, "Implementation / consulting."),
+    "sw_g":  ([0.03, 0.11, 0.10, 0.09, 0.08], "Organic customer growth ~9% ex-Downtowner (thesis 3), ~+2%/yr price. FY26 +3%: 94 small Downtowner customers add little. Software fees face near-zero bids (Spare bid $0.01 at LA Metro)."),
+    "mp_g":  ([0.28, 0.14, 0.13, 0.12, 0.11], "Expansion at existing customers less budget-driven downsell (~4%/yr: Jersey City cut ~half, federal stopgap / ARPA cliff), with price +2%/yr as rebids reset rates. FY26 +28% ties to 1H26 actuals ($263M revenue) plus the H2 ramp."),
+    "new":   ([20.0, 30.0, 20.0, 20.0, 20.0], "FY26: Twin Cities MI (Apr), Rochester $14.6M (Sep) and part of the 2026 wins; FY27: rest of the signed ~$70M book. Then ~2 mid-sized cities a year (thesis 1.1). Earned at half rate in the launch year."),
+    "otp":   ([0.03] * 5, "3% (10-K FY24-25; 1H26 also 3%)."),
+    "gm_sw": ([0.75] * 5, "Bleecker assumption; reported cost split implies ~73%."),
+    "gm_mp": ([0.293] * 5, "Bleecker TaaS gross margin, arithmetic corrected and updated to 2026 contract pricing."),
+    "gm_nw": ([0.25] * 5, "ASSUMPTION (undisclosed): operator economics, below the ~29% on microtransit. Labor is 72% of mid-sized bus system cost (NTD 2024); CFO: 'some accretive, some less.'"),
+    "gm_ot": ([0.75] * 5, "Implementation / consulting."),
 }
 for key, (vals, txt) in FIN.items():
     for c, v in zip(FCST, vals):
@@ -170,34 +143,25 @@ for key, (vals, txt) in FIN.items():
 # ---- formulas ----
 for i, c in enumerate(ALL):
     p = ALL[i - 1] if i else None
-    hist = c in HIST
-    if hist:
+    if c in HIST:
         rb[f"{c}{r['tot']}"] = f"='Annual IS'!{IS_COL[c]}7"; setfont(rb, f"{c}{r['tot']}", GREEN)
         rb[f"{c}{r['ot']}"] = f"={c}{r['tot']}*{c}{r['otp']}"
-        rb[f"{c}{r['sw']}"] = f"=({c}{r['tot']}-{c}{r['ot']})*{c}{r['swsh']}"
         rb[f"{c}{r['mp']}"] = f"={c}{r['tot']}-{c}{r['ot']}-{c}{r['sw']}-{c}{r['nw']}"
-        rb[f"{c}{r['rpc']}"] = f"={c}{r['sw']}/{c}{r['cust']}*1000"
-        rb[f"{c}{r['hrs']}"] = f"={c}{r['mp']}/{c}{r['px']}"
         rb[f"{c}{r['cons']}"] = f"={c}{r['tot']}"
         rb[f"{c}{r['gp']}"] = f"='Annual IS'!{IS_COL[c]}10"; setfont(rb, f"{c}{r['gp']}", GREEN)
         rb[f"{c}{r['gmc']}"] = f"={c}{r['gm']}"
         if p:
-            for g, base in [("cust_g", "cust"), ("rpc_g", "rpc"), ("hg", "hrs"), ("px_g", "px")]:
-                rb[f"{c}{r[g]}"] = f"={c}{r[base]}/{p}{r[base]}-1"
+            rb[f"{c}{r['sw_g']}"] = f"={c}{r['sw']}/{p}{r['sw']}-1"
+            rb[f"{c}{r['mp_g']}"] = f"={c}{r['mp']}/{p}{r['mp']}-1"
             rb[f"{c}{r['new']}"] = f"={c}{r['rr']}-{p}{r['rr']}"
+            rb[f"{c}{r['cg']}"] = f"={c}{r['cons']}/{p}{r['cons']}-1"
     else:
-        rb[f"{c}{r['cust']}"] = f"={p}{r['cust']}*(1+{c}{r['cust_g']})"
-        rb[f"{c}{r['rpc']}"] = f"={p}{r['rpc']}*(1+{c}{r['rpc_g']})"
-        rb[f"{c}{r['sw']}"] = f"={c}{r['cust']}*{c}{r['rpc']}/1000"
-        rb[f"{c}{r['hg']}"] = f"={c}{r['exp']}+{c}{r['dn']}"
-        rb[f"{c}{r['hrs']}"] = f"={p}{r['hrs']}*(1+{c}{r['hg']})"
-        rb[f"{c}{r['px']}"] = f"={p}{r['px']}*(1+{c}{r['px_g']})"
-        rb[f"{c}{r['mp']}"] = f"={c}{r['hrs']}*{c}{r['px']}"
+        rb[f"{c}{r['sw']}"] = f"={p}{r['sw']}*(1+{c}{r['sw_g']})"
+        rb[f"{c}{r['mp']}"] = f"={p}{r['mp']}*(1+{c}{r['mp_g']})"
         rb[f"{c}{r['rr']}"] = f"={p}{r['rr']}+{c}{r['new']}"
-        rb[f"{c}{r['nw']}"] = f"={p}{r['rr']}+{c}{r['new']}*{c}{r['lf']}"
+        rb[f"{c}{r['nw']}"] = f"={p}{r['rr']}+0.5*{c}{r['new']}"
         rb[f"{c}{r['ot']}"] = f"=({c}{r['sw']}+{c}{r['svc']})*{c}{r['otp']}/(1-{c}{r['otp']})"
         rb[f"{c}{r['tot']}"] = f"={c}{r['sw']}+{c}{r['svc']}+{c}{r['ot']}"
-        rb[f"{c}{r['swsh']}"] = f"={c}{r['sw']}/({c}{r['sw']}+{c}{r['svc']})"
         rb[f"{c}{r['gp']}"] = (f"={c}{r['sw']}*{c}{r['gm_sw']}+{c}{r['mp']}*{c}{r['gm_mp']}"
                                f"+{c}{r['nw']}*{c}{r['gm_nw']}+{c}{r['ot']}*{c}{r['gm_ot']}")
         if c in KS_COL:
@@ -206,27 +170,22 @@ for i, c in enumerate(ALL):
             rb[f"{c}{r['vs']}"] = f"={c}{r['tot']}/{c}{r['cons']}-1"
             rb[f"{c}{r['cg']}"] = f"={c}{r['cons']}/{p}{r['cons']}-1"
     rb[f"{c}{r['svc']}"] = f"={c}{r['mp']}+{c}{r['nw']}"
-    if p:
-        rb[f"{c}{r['tg']}"] = f"={c}{r['tot']}/{p}{r['tot']}-1"
-        if hist: rb[f"{c}{r['cg']}"] = f"={c}{r['cons']}/{p}{r['cons']}-1"
+    if p: rb[f"{c}{r['tg']}"] = f"={c}{r['tot']}/{p}{r['tot']}-1"
     rb[f"{c}{r['ss']}"] = f"={c}{r['svc']}/{c}{r['tot']}"
     rb[f"{c}{r['gm']}"] = f"={c}{r['gp']}/{c}{r['tot']}"
 
-note(rb[f"C{r['tot']}"], "Historical total revenue links to Annual IS (CapIQ). Stream split is an estimate: Via reports all recurring revenue as one 'subscription' line.")
-note(rb[f"F{r['mp']}"], "Vehicle-hours x price per hour.")
-note(rb[f"F{r['nw']}"], "Opening run-rate + launch-year factor x new contract value launched.")
+note(rb[f"C{r['tot']}"], "Historical total revenue links to Annual IS (CapIQ).")
 note(rb[f"C{r['mp']}"], "Historical: residual = total - one-time - software - network.")
+note(rb[f"F{r['nw']}"], "Opening run-rate + half of the contract value launched in the year.")
 
-# notes block (merged rows, as in the template)
 notes = [
     "Colour key: blue = hardcoded input, black = formula, green = link to another tab. Hover over cells with a red corner for sources.",
-    "Revenue = Software (customers x revenue per customer) + Services (microtransit/paratransit hours x $/hr, and network contract run-rate) + one-time.",
-    "Thesis 1: network deals are bus-operator contracts priced at ~95-107% of the city's transit budget, so their gross margin is set at 20% (operator economics).",
-    "Thesis 3: hours growth = expansion less budget-driven downsell; price per hour grows 2%/yr after FY26 because rebids reset price.",
+    "Thesis 1: network deals are bus-operator contracts priced at ~95-107% of the city's transit budget, so they carry a 25% gross margin vs ~29% on microtransit and 75% on software.",
+    "Thesis 3: microtransit/paratransit growth is net of budget-driven downsell and rebid price resets.",
     "Consensus: CapIQ (Key Stats tab) FY26-28E. FY29-30 have no consensus.",
 ]
 for k, t in enumerate(notes):
-    rr = 49 + k
+    rr = 32 + k
     rb.merge_cells(f"B{rr}:J{rr}")
     rb[f"B{rr}"] = t
     rb[f"B{rr}"].font = Font(name="Arial", size=9, italic=True)
@@ -287,14 +246,14 @@ note(dc["E29"], "FY23-25 weighted diluted shares are pre-IPO (IPO Sep 2025); for
 
 dc["F29"] = "='Key Stats'!B51*(1+F41)"; setfont(dc, "F29", GREEN)
 
-fc_in = {33: [0.065] * 5, 34: [0.08, 0.04, 0.04, 0.04, 0.04], 35: [0.12, 0.11, 0.10, 0.09, 0.08],
+fc_in = {33: [0.065] * 5, 34: [0.08, 0.04, 0.04, 0.04, 0.04], 35: [0.12, 0.10, 0.08, 0.07, 0.06],
          36: [0.21] * 5, 37: [0.018] * 5, 38: [0] * 5, 39: [-0.02] * 5, 40: [0.014] * 5, 41: [0.025] * 5}
 for rr, vals in fc_in.items():
     for c, v in zip(FCST, vals):
         dc[f"{c}{rr}"] = v
 note(dc["F33"], "Thesis 2.1: insurance ~3.5% (Bleecker: 3-4 pts of GM) + customer support ~3% of services revenue, both booked in G&A (10-K). Scales with hours.")
 note(dc["F34"], "Other G&A + S&M + R&D ex-SBC. FY26 +8%: 1H26 annualised opex ex-SBC ($239M incl. hour-driven G&A) is ~10% above FY25 (Quarterly IS); fixed part ~8%. FY27+: 4% (consensus total opex +3.9%).")
-note(dc["F35"], "1H26 SBC = 12% of revenue (Cash Flow tab).")
+note(dc["F35"], "1H26 SBC = 12% of revenue (Cash Flow tab), inflated by IPO grants; falls to 6% by FY30 as they vest.")
 note(dc["F36"], "US federal rate on positive EBIT only; NOLs ignored (conservative for a short).")
 note(dc["F38"], "0 = stock comp treated as a real cost (not added back). Set to 1 to add it back as the template originally did.")
 note(dc["F39"], "Receivables grow with revenue (AR +$23.7M in 1H26).")
@@ -328,15 +287,15 @@ dc["L3"] = "Terminal-Year UFCF (normalized)"
 dc["M3"] = "=J4*M6"
 dc["L6"] = "Terminal UFCF Margin (normalized)"
 dc["L6"]._style = copy(dc["L4"]._style)
-dc["M6"] = 0.04
+dc["M6"] = 0.10
 dc["M6"]._style = copy(dc["M4"]._style)
-note(dc["M6"], "Steady-state UFCF margin after SBC: ~10% adj. EBITDA (operator-like) less ~5% SBC, ~1.4% capex and working capital. 2030 UFCF is still negative, so it cannot be capitalized directly.")
+note(dc["M6"], "Steady-state UFCF margin after SBC: ~16% adj. EBITDA (below mgmt's 20-25% target) less ~4% SBC and ~1.4% capex, plus some working capital; taxes shielded by NOLs. 2030 UFCF is still negative, so it cannot be capitalized directly.")
 dc["L26"] = "Last Year Revenue"
 dc["M26"] = "=J4"
 dc["L27"] = "Terminal EV/Revenue Multiple"
-dc["M27"] = 1.5
+dc["M27"] = 2.5
 dc["M27"].number_format = MULT
-note(dc["M27"], "Blend: ~20% software revenue at ~5x + ~80% services at ~0.6x (transit operators) = ~1.5x. VIA trades at 2.9x FY27E revenue (Key Stats). 2030 EBIT is negative, so an EBIT multiple cannot be used.")
+note(dc["M27"], "De-rating from 2.9x FY27E EV/revenue today (Key Stats) toward a services mix: ~20% software at ~6x + ~80% services at ~1.5x = ~2.5x. 2030 EBIT is negative, so an EBIT multiple cannot be used.")
 
 # WACC tab: Via price and shares
 wacc["C15"] = "='Key Stats'!B50"; setfont(wacc, "C15", GREEN)
