@@ -57,7 +57,7 @@ for r, l, n in zip(ROWS, lines, nlines):
         if i == 1: fw = "bold"
         if i == 3 and net: col, fw = ACC, "bold"
         if i == 4 and r[4].startswith("-"): col = NEG
-        ax.text(x[i] + 0.004, y - 0.06, "\n".join(cell), fontsize=8.6, color=col,
+        ax.text(x[i] + 0.004, y - 0.06, "\n".join(cell).replace("$", r"\$"), fontsize=8.6, color=col,
                 va="top", fontweight=fw, linespacing=1.25)
     y -= rh
     ax.plot([0, 1], [y, y], color=LINE, lw=0.6)
