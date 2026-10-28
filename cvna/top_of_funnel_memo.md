@@ -272,7 +272,7 @@ Brand data [D]: Morgan Stanley AlphaWise (~2,000 consumers, via TheStreet ~2026-
 
 ## 3b. Top-of-funnel health: visitors, conversion and cost per visitor (10-Q/10-K data)
 
-Full series Q1'19–Q2'26: `cvna_muv_conversion.csv`. MUV = average monthly unique visitors (web + app since Q2'24, about 9% above the old web-only basis).
+Full series Q1'19–Q2'26: `cvna_muv_conversion.csv`. Chart: `cvna_funnel_chart.png`. MUV = average monthly unique visitors (web + app since Q2'24, about 9% above the old web-only basis).
 
 | Quarter | MUV (M) | MUV YoY | Units YoY | Units per 1k visitor-months | Ad $ per visitor-month | Ad $ per unit |
 |---|---|---|---|---|---|---|
