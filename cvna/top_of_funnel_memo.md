@@ -18,6 +18,10 @@ Labels: **[D]** = sourced data, **[I]** = our inference. Full ad-spend table: `c
 
 **Better version of the thesis [I]:** Carvana's top-of-funnel advantage today is *bought* on Google. It holds ~53% of paid clicks among online car retailers vs CarMax at ~2%. In LLM answers it can't buy that position; it sits at parity with CarMax (~7% each) and is weak on bad-credit and price prompts. Each shopper who moves from Google to an LLM moves from a channel where CVNA dominates by spend to one where it is merely equal and is framed as the pricier option. That is a Carvana-specific headwind even though LLMs don't "route away" from Carvana. Caveat: much of the Google "dominance" is brand defense (paying for clicks on people already searching "carvana"), so the at-risk piece is the non-brand, conquest and generic traffic. Amazon is the same story on a different surface: it captures *shopping intent*, not fulfillment.
 
+**Two Carvana-specific aggravators [D/I]:**
+1. Carvana's inventory is **not on the marketplaces** (CarGurus, Autotrader, Cars.com) whose ChatGPT apps power in-chat car shopping, and Carvana has no app of its own. Its outside reach is almost entirely Google.
+2. Part of its local Google reach rests on **143 Google Business Profiles at non-Carvana addresses** (77 of them government or civic buildings; DealershipGuy, Oct-26). Google policy requires a physical location, so enforcement is a binary risk (see §3a).
+
 ---
 
 ## 1. Amazon Autos: is Carvana "just early"?
