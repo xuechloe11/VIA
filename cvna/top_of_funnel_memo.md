@@ -38,6 +38,22 @@ Labels: **[D]** = sourced data, **[I]** = our inference. Full ad-spend table: `c
 - Hyundai says >10 shoppers research on Amazon for every 1 who buys there ([MediaPost, Sep-26](https://www.mediapost.com/publications/article/418026/hyundai-amazon-release-details-of-shopping-engage.html?edition=143859)). So Amazon is a **research/ad funnel**, not a transaction engine yet.
 - Amazon–Carvana partnership: only an unsourced Substack rumor.
 
+**Update: Amazon's direction in 2026 [D unless marked]**
+- **Monetization:** dealers pay a fee to list, per WSJ 2026-04-13. That contradicts "no fees" claims elsewhere. eMarketer frames the payoff as the >$30B/yr automaker ad budget.
+- **Weak dealer conversion:** South Bay Hyundai's Amazon sales fell from ~10/month to ~5. Amazon has repeatedly paid Prime gift cards on *new* cars only ($1,250 in Mar-26; $1,500 in Jun-26 and Sep–Oct-26). [I] Paying for demand like this suggests weak organic conversion.
+- **No move toward Carvana's model:**
+  - Still no home delivery and no reconditioning.
+  - Trade-in values come from ACV Auctions, and sell-only cars go to a local *dealer*, not Amazon.
+  - No Amazon lending product.
+  - Management's attention is on new cars and on Europe: a UK launch is targeted for end-2026, and Hyundai talks about international "as early as 2027". [I] That pulls resources away from US used-car logistics.
+- **Supply:**
+  - Hertz spreads disposals across Amazon, eBay and Cox. Its digital channels earn ~$2k more per car than wholesale. Hertz signed a national disposal deal with Carvana in 2021; whether it is still active is unknown.
+  - ~80% of Carvana's inventory comes from consumers (Citi), so fleet diversion is minor.
+- **Market reaction:** CVNA fell 2–4% intraday on the Hertz–Amazon news (2025-08-20) and −2.6% on the Ford news (2025-11-17). Both moves faded.
+- **Carvana management:** has not mentioned Amazon on any 2025–26 call. Carvana is instead moving *into* new cars ("profitable for us today").
+- **Verdict:** Amazon is behaving like an ad-funded lead-gen marketplace for franchise new cars. The used-car fulfillment threat to Carvana is further off than the Aug-25 selloff implied.
+- **Price note:** CVNA did a 5-for-1 split effective 2026-05-07. Pre-split targets ($450) correspond to ~$90 post-split ([Carvana IR](https://investors.carvana.com/news-releases/2026/03-13-2026-130513902)).
+
 **Head-to-head [D unless marked]**
 
 | | Carvana Q2'26 | CarMax FQ2'27 (to 8/31/26) | Amazon Autos |
