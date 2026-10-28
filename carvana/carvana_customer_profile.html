@@ -1,0 +1,333 @@
+<title>Carvana Customer Profile</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column (~72ch) with full-width data bands; charts drawn from one scale each */
+:root{
+  --bg:#f7f8fa; --panel:#ffffff; --ink:#14171c; --ink-2:#4a5160; --ink-3:#737b8a;
+  --rule:#dfe3ea; --accent:#1f5fae; --accent-soft:#e6eef8;
+  --s1:#2a78d6; --s2:#eb6834; --grid:#e8ebf0;
+  --good:#1d7a4f; --warn:#a15c00;
+  --f-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121417; --panel:#1a1d22; --ink:#eef0f3; --ink-2:#b9bfca; --ink-3:#8d95a3;
+  --rule:#2c313a; --accent:#7fb0ee; --accent-soft:#1e2a3a; --s1:#3987e5; --s2:#d95926; --grid:#262a31;
+  --good:#5cc192; --warn:#e0a24a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121417; --panel:#1a1d22; --ink:#eef0f3; --ink-2:#b9bfca; --ink-3:#8d95a3;
+  --rule:#2c313a; --accent:#7fb0ee; --accent-soft:#1e2a3a; --s1:#3987e5; --s2:#d95926; --grid:#262a31;
+  --good:#5cc192; --warn:#e0a24a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(30px,5vw,44px)}
+h2{font-size:clamp(23px,3.4vw,30px)}
+h3{font-size:19px;font-family:var(--f-body);font-weight:600}
+p{margin:0;max-width:68ch}
+.eyebrow{font:500 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.meta{color:var(--ink-3);font-size:14px}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:24px}
+section{display:flex;flex-direction:column;gap:18px}
+.lede{font-size:18px;color:var(--ink-2)}
+ol.bl{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;max-width:72ch}
+ol.bl b{color:var(--ink)}
+.panel{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:16px}
+.tag{font:500 11px/1 var(--f-mono);color:var(--ink-3);letter-spacing:.04em}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:600 12px/1.3 var(--f-body);color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
+td.n,th.n{text-align:right;white-space:nowrap}
+.verdict{display:inline-block;font:600 12px/1 var(--f-body);padding:5px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.v-mac{background:transparent;border:1px solid var(--rule);color:var(--ink-2)}
+.callout{border-left:3px solid var(--accent);padding:4px 0 4px 16px;color:var(--ink-2);max-width:72ch}
+.callout b{color:var(--ink)}
+.persona{background:var(--accent-soft);border-radius:10px;padding:16px 18px;color:var(--ink);max-width:72ch}
+/* charts */
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+svg text{font-family:var(--f-mono);font-size:11px;fill:var(--ink-3)}
+svg .lbl{fill:var(--ink-2)}
+.hbar{display:grid;grid-template-columns:minmax(120px,38%) 1fr;gap:6px 12px;align-items:center;font-size:14px}
+.hbar .k{color:var(--ink-2)}
+.hbar .track{position:relative;height:18px;margin-right:52px}
+.hbar .fill{height:100%;background:var(--s1);border-radius:0 4px 4px 0;min-width:2px}
+.hbar .val{position:absolute;top:0;font:500 12px/18px var(--f-mono);color:var(--ink);padding-left:6px}
+.hbar .row{display:contents}
+.hbar .row:hover .fill{filter:brightness(1.12)}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font:12px/1.4 var(--f-body);padding:6px 9px;border-radius:6px;opacity:0;transition:opacity .1s;z-index:20;max-width:240px}
+.src{font-size:13px;color:var(--ink-3)}
+.src a{color:var(--ink-2)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){#tip{transition:none}}
+footer{border-top:1px solid var(--rule);padding-top:20px;display:flex;flex-direction:column;gap:10px}
+footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">CVNA · Customer research · Oct 28, 2026</span>
+  <h1>Who sells to Carvana, who buys, and is supply really shrinking?</h1>
+  <p class="lede">Built from Carvana and CarMax filings, Carvana's loan-level securitization data, a 10,000-person consumer panel, and Cox Automotive industry data.</p>
+  <p class="meta">Q3'26 results come out after the close today. Refresh the unit chart when they land.</p>
+</header>
+
+<section>
+  <h2>Bottom line</h2>
+  <ol class="bl">
+    <li><b>Sellers want speed and certainty.</b> 54% of people who sold to Carvana say convenience was the main reason; 43% say highest price. Nothing locks them in. Carvana wins each sale on mindshare and on paying more for retail-grade cars.</li>
+    <li><b>Sellers aren't leaving.</b> Cars Carvana buys from customers and then wholesales grew 44% YoY in Q2'26 (about 45% TTM). CarMax's purchases from consumers were flat. Carvana is taking share of a flat pool.</li>
+    <li><b>The supply constraint is mostly Carvana's own.</b> In Carvana's own words, "supply" means reconditioning throughput. The macro shortage of late-model cars bottomed in 2025 and eases into 2027.</li>
+    <li><b>Buyers are near-prime to prime and shop by monthly payment.</b> Prime-pool FICO 702, 76% of loan balances on 73 to 84 month terms, average loan about $30K. Customers earning over $100K grew more than 60% YoY.</li>
+    <li><b>Convenience is the main reason buyers choose Carvana, then price, then easier financing.</b> Brand trust is rarely the primary driver and scores at parity with CarMax. The brand spreads by word of mouth.</li>
+  </ol>
+</section>
+
+<section>
+  <span class="eyebrow">Supply side</span>
+  <h2>Carvana's customer-sourced flow is growing about 45% while CarMax's is flat</h2>
+  <div class="panel">
+    <h3>YoY growth: cars bought from consumers</h3>
+    <div class="legend"><span><i style="background:var(--s1)"></i>Carvana wholesale vehicle units (customer-sourced proxy)</span><span><i style="background:var(--s2)"></i>CarMax vehicles bought from consumers</span></div>
+    <div class="tw"><svg id="supply" viewBox="0 0 640 280" width="100%" role="img" aria-label="Grouped bar chart of year-over-year growth by quarter, Carvana versus CarMax"></svg></div>
+    <span class="tag">CarMax fiscal quarters aligned to the nearest calendar quarter. Sources: Carvana shareholder letters; CarMax earnings releases (SEC EDGAR).</span>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Quarter</th><th class="n">Carvana retail</th><th class="n">Carvana wholesale</th><th class="n">Wholesale ÷ retail</th><th class="n">CarMax from consumers</th></tr></thead>
+    <tbody>
+      <tr><td>Q2'25</td><td class="n">143,280</td><td class="n">72,770</td><td class="n">0.51</td><td class="n">262,000</td></tr>
+      <tr><td>Q3'25</td><td class="n">155,941</td><td class="n">80,369</td><td class="n">0.52</td><td class="n">208,000</td></tr>
+      <tr><td>Q4'25</td><td class="n">163,522</td><td class="n">81,050</td><td class="n">0.50</td><td class="n">229,000</td></tr>
+      <tr><td>Q1'26</td><td class="n">187,393</td><td class="n">83,574</td><td class="n">0.45</td><td class="n">281,000</td></tr>
+      <tr><td>Q2'26</td><td class="n">197,325</td><td class="n">105,052</td><td class="n">0.53</td><td class="n">262,570</td></tr>
+    </tbody>
+  </table></div>
+  <p class="callout">The 10-K says wholesale vehicle units are "primarily acquired from customers" who sell or trade in cars that don't meet retail standards. The ratio to retail units has held near 0.5 since 2023, so customer buying is scaling with the business. On a TTM basis this proxy alone (350K) is already about 36% of CarMax's consumer buying, before counting the customer cars Carvana retails.</p>
+
+  <div class="panel">
+    <h3>What is actually constraining supply</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Driver</th><th>Type</th><th>Evidence</th><th>Direction</th></tr></thead>
+      <tbody>
+        <tr><td><b>Reconditioning throughput</b></td><td><span class="verdict">Carvana</span></td><td>"Inventory in the quarter was less than we wish." "Inventory has undergrown sales." Regions where production grew fastest also grew sales fastest. Q4'25 recon costs rose at new ADESA sites.</td><td>Improving. New tools were at only 5 sites in June.</td></tr>
+        <tr><td><b>Sourcing mix</b></td><td><span class="verdict">Carvana</span></td><td>Retail grows about 40%, faster than retail-grade cars from customers, so the gap is filled at auction and through marketplace partners such as Hertz. 85% of retail units came from customers in 2023, the last time it was disclosed.</td><td>Watch. Auction cars carry fees and lower GPU.</td></tr>
+        <tr><td><b>Missing late-model cars</b></td><td><span class="verdict v-mac">Macro</span></td><td>About 8M vehicles were never built in 2020–22. The lease collapse put off-lease returns at a low point in 2025.</td><td>Easing. Off-lease volume goes from about 190K to 220K a month in H2'26, +23% for 2026, and grows again in 2027.</td></tr>
+        <tr><td><b>People keep cars longer</b></td><td><span class="verdict v-mac">Macro</span></td><td>The average vehicle age is a record 12.8 years.</td><td>Structural and slow.</td></tr>
+        <tr><td><b>Lease buyout restrictions</b></td><td><span class="verdict v-mac">Industry</span></td><td>Honda, Ford, GM, Hyundai/Kia and Tesla restrict third-party buyouts, so these cars reach Carvana via auction, not from the driver.</td><td>Persistent. Partly offset by owning ADESA.</td></tr>
+        <tr><td><b>Industry volume</b></td><td><span class="verdict v-mac">Macro</span></td><td>The used market is down 2% YTD. Used inventory is up 3.3% YoY and days' supply is 49. Sub-$15K supply is down 16%.</td><td>Neutral for Carvana's ~$28K price band.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <p class="callout"><b>Disclosure flags to raise:</b> Carvana stopped reporting ADESA marketplace units in 2026, right after their growth slowed to +2.9% in Q4'25. It has not disclosed the customer-sourced share of retail units since 2023.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Seller profile</span>
+  <h2>A convenience-first owner of a late-model car who wants a firm number this week</h2>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Primary reason sold to Carvana</h3>
+      <div class="hbar" data-max="60">
+        <div class="row" data-tip="Convenience: 53.7% of sellers to Carvana (N=190)"><span class="k">Convenience</span><span class="track"><span class="fill" style="width:89.5%"></span></span></div>
+        <div class="row" data-tip="Highest price: 43.2% (N=190)"><span class="k">Highest price</span><span class="track"><span class="fill" style="width:72%"></span></span></div>
+        <div class="row" data-tip="Other: 3.2% (N=190)"><span class="k">Other</span><span class="track"><span class="fill" style="width:5.3%"></span></span></div>
+      </div>
+      <span class="tag">Bespoke CVNA survey, Jun 2025, N=190</span>
+    </div>
+    <div class="panel">
+      <h3>Carvana's offer vs others received</h3>
+      <div class="hbar">
+        <div class="row" data-tip="Much better: 36.9% (N=716)"><span class="k">Much better</span><span class="track"><span class="fill" style="width:61.5%"></span></span></div>
+        <div class="row" data-tip="Better: 24.0%"><span class="k">Better</span><span class="track"><span class="fill" style="width:40%"></span></span></div>
+        <div class="row" data-tip="About the same: 20.1%"><span class="k">About the same</span><span class="track"><span class="fill" style="width:33.5%"></span></span></div>
+        <div class="row" data-tip="Worse: 9.4%"><span class="k">Worse</span><span class="track"><span class="fill" style="width:15.7%"></span></span></div>
+        <div class="row" data-tip="Much worse: 6.2%"><span class="k">Much worse</span><span class="track"><span class="fill" style="width:10.3%"></span></span></div>
+      </div>
+      <span class="tag">People who requested a Carvana offer, N=716</span>
+    </div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Trait</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td>Skips the dealer</td><td>46.8% did not visit a dealer before selling to Carvana. 60% of sellers finish without talking to anyone before pickup.</td></tr>
+      <tr><td>Default first click</td><td>Of people who would sell online, 59.7% name Carvana first, 14.2% CarMax and 10.0% Cars.com.</td></tr>
+      <tr><td>Two entry points</td><td>A trade-in during a Carvana purchase usually cuts sales tax, so it sticks. A one-way sale means the seller buys elsewhere or gives up the car.</td></tr>
+      <tr><td>The car</td><td>Late-model and retail-grade. Older or rougher cars go to ADESA wholesale, about 0.5 per retail unit.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="persona"><b>Persona (our synthesis):</b> A 30 to 55-year-old suburban owner of a 3 to 7-year-old car, often with a loan Carvana will pay off. They want an offer in two minutes, valid for 7 days and paid at pickup. They will check CarMax or KBB once and won't list on Facebook Marketplace.</p>
+  <h3>Who goes elsewhere, and why there's no lock-in</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Segment</th><th>Where they go</th></tr></thead>
+    <tbody>
+      <tr><td>Private sellers (47.7% of all sellers)</td><td>They maximize price and tolerate the hassle. Only 11.1% of sellers use an online or app buyer; 35.5% sell to a dealer.</td></tr>
+      <tr><td>New-car buyers</td><td>They trade in at the franchise dealer to get the sales-tax credit.</td></tr>
+      <tr><td>Lessees</td><td>Their captive lender blocks third-party buyouts.</td></tr>
+      <tr><td>Old or non-running cars</td><td>Peddle and junk buyers.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="callout">Switching cost is near zero. Sellers pull two or three quotes, and third-party tests disagree on who pays most. Carvana keeps winning because it can pay more for retail-grade cars: it earns on each car three ways (retail GPU, loan sale, VSC/GAP; total GPU $7,014 in Q2'26), skips auction fees, and is the default first click. The ways sellers leak are offer cuts at inspection, title and payoff delays (the top BBB complaint theme), and CarMax pricing more aggressively in 2026.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Buyer profile</span>
+  <h2>A near-prime to prime household that shops by monthly payment</h2>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Loan balance by FICO, prime pool 2026-P3</h3>
+      <div class="hbar">
+        <div class="row" data-tip="FICO 550 or below (incl. no score): 4.9% of balance"><span class="k">≤550</span><span class="track"><span class="fill" style="width:23.4%"></span></span></div>
+        <div class="row" data-tip="551–600: 8.2%"><span class="k">551–600</span><span class="track"><span class="fill" style="width:39%"></span></span></div>
+        <div class="row" data-tip="601–650: 15.4%"><span class="k">601–650</span><span class="track"><span class="fill" style="width:73.5%"></span></span></div>
+        <div class="row" data-tip="651–700: 21.0%"><span class="k">651–700</span><span class="track"><span class="fill" style="width:100%"></span></span></div>
+        <div class="row" data-tip="701–750: 20.0%"><span class="k">701–750</span><span class="track"><span class="fill" style="width:95.3%"></span></span></div>
+        <div class="row" data-tip="751–800: 15.3%"><span class="k">751–800</span><span class="track"><span class="fill" style="width:73.1%"></span></span></div>
+        <div class="row" data-tip="801+: 15.2%"><span class="k">801+</span><span class="track"><span class="fill" style="width:72.5%"></span></span></div>
+      </div>
+      <span class="tag">52,339 loans; WA FICO 702; avg loan $29.6K; WA APR 10.77% (424B5, Aug 2026)</span>
+    </div>
+    <div class="panel">
+      <h3>Share who have visited Carvana, by credit</h3>
+      <div class="hbar">
+        <div class="row" data-tip="300–579: 23.5% have visited (N=311)"><span class="k">300–579</span><span class="track"><span class="fill" style="width:56.5%"></span></span></div>
+        <div class="row" data-tip="580–669: 31.1% (N=646)"><span class="k">580–669</span><span class="track"><span class="fill" style="width:74.8%"></span></span></div>
+        <div class="row" data-tip="670–739: 38.2% (N=940)"><span class="k">670–739</span><span class="track"><span class="fill" style="width:91.8%"></span></span></div>
+        <div class="row" data-tip="740–799: 41.6% (N=855)"><span class="k">740–799</span><span class="track"><span class="fill" style="width:100%"></span></span></div>
+        <div class="row" data-tip="800–850: 28.3% (N=570)"><span class="k">800–850</span><span class="track"><span class="fill" style="width:68%"></span></span></div>
+      </div>
+      <span class="tag">Bespoke CVNA survey, Jun 2025, self-reported credit</span>
+    </div>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Trait</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td>Payment buyer</td><td>76% of loan balance is on 73 to 84 month terms. The average loan ($29.6K) is above the average retail price ($27.9K) because taxes, fees and service contracts get financed.</td></tr>
+      <tr><td>Finances in-house</td><td>We estimate about 78% of retail units are financed with Carvana (H1'26 originations ÷ average loan). In the survey, 49% say Carvana, 28% a bank and 20% cash.</td></tr>
+      <tr><td>Income moving up</td><td>Customers earning over $100K grew more than 60% YoY in Q2'26. Management says lower-income segments show "less express demand."</td></tr>
+      <tr><td>Geography</td><td>Over-indexes the Sunbelt and Midwest suburbs: TX 10.8%, OH 5.0%, PA 5.0%, GA 4.9%, AZ 4.3% of balances. Under-indexes California (7.2% vs about 11.6% of the US population) and New York.</td></tr>
+      <tr><td>Still shops dealers</td><td>60.5% visited a dealer first. The 39.5% who didn't is up from about 27% in 2021.</td></tr>
+      <tr><td>If not Carvana</td><td>Another online platform, mostly CarMax (36%); a franchise dealer (28%); an independent dealer (20%); a private party (16%).</td></tr>
+      <tr><td>Loyal</td><td>36.6% have bought again from Carvana, vs 8.8% who bought their next car elsewhere. NPS is 63, vs −7 for dealerships.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="persona"><b>Persona (our synthesis):</b> A 30 to 50-year-old suburban household in Texas, Ohio, Georgia or Arizona with a FICO of about 650 to 780 and $60K to $150K income. They shop by monthly payment on a 72 to 84 month loan, trade in their old car in the same checkout, and heard about Carvana from a friend.</p>
+
+  <h3>Why they choose Carvana: testing price, convenience and brand</h3>
+  <div class="panel">
+    <h3>Primary reason for buying from Carvana</h3>
+    <div class="hbar">
+      <div class="row" data-tip="Convenience: 27.8% (N=519)"><span class="k">Convenience</span><span class="track"><span class="fill" style="width:100%"></span></span></div>
+      <div class="row" data-tip="Price competitive/fair: 27.4%"><span class="k">Price competitive / fair</span><span class="track"><span class="fill" style="width:98.6%"></span></span></div>
+      <div class="row" data-tip="Saves time: 16.0%"><span class="k">Saves time</span><span class="track"><span class="fill" style="width:57.6%"></span></span></div>
+      <div class="row" data-tip="Got financing more easily: 14.6%"><span class="k">Easier financing</span><span class="track"><span class="fill" style="width:52.5%"></span></span></div>
+      <div class="row" data-tip="Someone I trusted recommended Carvana: 7.1%"><span class="k">Trusted recommendation</span><span class="track"><span class="fill" style="width:25.5%"></span></span></div>
+      <div class="row" data-tip="Dislike the typical dealership: 6.7%"><span class="k">Dislike dealerships</span><span class="track"><span class="fill" style="width:24.1%"></span></span></div>
+    </div>
+    <span class="tag">Bespoke CVNA survey, Jun 2025, N=519 Carvana buyers</span>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Hypothesis</th><th>Verdict</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td>Price</td><td><span class="verdict">#2, rising</span></td><td>27.4% primary reason, gaining on convenience. Carvana charges no dealer fees: after the FTC fee guidance, dealers' advertised prices rose $500 to $600 and Carvana's didn't. But price is also the top reason people reject Carvana (26.4%).</td></tr>
+      <tr><td>Convenience and experience</td><td><span class="verdict">#1</span></td><td>Convenience plus saves time is 43.8% primary. 95% disliked nothing. 66% got delivery within 10 days. 30% buy without talking to anyone.</td></tr>
+      <tr><td>Brand and trust</td><td><span class="verdict v-mac">Weak as primary</span></td><td>Only 7.1% name it as the primary reason. Trust is at parity with CarMax (Bespoke 2.10 vs 2.15; Morgan Stanley AlphaWise 56% vs 52%). About 70% of buyers were influenced by a friend's recommendation, and 31% call it the main reason.</td></tr>
+      <tr><td>Financing access</td><td><span class="verdict">Underrated</span></td><td>14.6% primary. Instant pre-qualification works across the credit spectrum.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="callout"><b>On Hertz:</b> Hertz is a Carvana supplier, not a competitor. It has sold ex-rental cars through Carvana as a "retail marketplace partner" since 2021. The real buy-side competitor is CarMax (68% of sales omnichannel, 13% fully online, investing in price in 2026). Franchise dealers and Amazon Autos (dealer-listed used cars in 130 cities) come next.</p>
+
+  <h3>Why people don't buy, by credit tier</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Reason</th><th class="n">FICO &lt;580</th><th class="n">FICO 800+</th></tr></thead>
+    <tbody>
+      <tr><td>Didn't have the car I want</td><td class="n">20.5%</td><td class="n">33.6%</td></tr>
+      <tr><td>Didn't want to buy sight unseen</td><td class="n">19.7%</td><td class="n">32.0%</td></tr>
+      <tr><td>Didn't get good financing terms</td><td class="n">23.3%</td><td class="n">10.6%</td></tr>
+      <tr><td>Down payment too expensive</td><td class="n">24.0%</td><td class="n">6.8%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="callout">Prime buyers are held back by <b>selection</b> and by buying sight unseen. Subprime buyers are held back by <b>down payment and loan terms</b>. Selection is a production problem, so more reconditioning capacity unlocks the most profitable customers directly.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Tonight</span>
+  <h2>What to watch in the Q3'26 print</h2>
+  <ol class="bl">
+    <li>Wholesale units ÷ retail units. A reading below about 0.45 would be the first real sign of sellers leaking.</li>
+    <li>Whether inventory caught up with sales, and any commentary on production.</li>
+    <li>Any disclosure of the customer-sourced share or the marketplace-partner mix.</li>
+    <li>Other GPU against interest rates (Morgan Stanley models −$100 QoQ), and the income and credit mix of buyers.</li>
+  </ol>
+</section>
+
+<footer>
+  <h3>Caveats</h3>
+  <ul class="src">
+    <li>Wholesale vehicle units are a proxy for customer buying. They miss customer cars that Carvana retails.</li>
+    <li>The Bespoke panel skews lower-income (55% earn under $50K). Its Carvana sub-samples are small (190 sellers, 519 buyers).</li>
+    <li>The ABS data covers the prime shelf only. Nonprime deals are private (144A).</li>
+    <li>The 78% financing penetration is our estimate.</li>
+  </ul>
+  <h3>Sources</h3>
+  <ul class="src">
+    <li>Carvana shareholder letters Q2'23–Q2'26, FY25 10-K, Q2'26 10-Q; Carvana Auto Receivables Trust 2026-P3 and 2025-P1 prospectuses; CarMax earnings releases Apr 2024–Sep 2026 (all SEC EDGAR)</li>
+    <li><a href="https://bespokeintel.com/wp-content/uploads/2025/07/Bespoke-CVNA-10000N-Survey-Wave-12-1.pdf">Bespoke CVNA Consumer Survey Vol. 12</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/carvana-winning-customers-faces-costly-021700810.html">Morgan Stanley AlphaWise (Yahoo)</a> · <a href="https://gloom.sh/stocks/cvna/transcripts/q2-2026">Q2'26 call</a></li>
+    <li><a href="https://www.coxautoinc.com/insights/used-vehicle-inventory-september-2026/">Cox used inventory, Sep 2026</a> · <a href="https://www.coxautoinc.com/wp-content/uploads/2026/09/Q3-2026-Cox-Automotive-Sales-Forecast-Update-Transcript.pdf">Cox Q3'26 forecast</a> · <a href="https://www.automotive-fleet.com/news/wholesale-used-vehicle-values-fall-as-cox-automotive-cuts-2026-forecast">off-lease outlook</a> · <a href="https://www.autoremarketing.com/ar/sp-global-mobility-sees-average-age-of-vehicles-in-operation-set-another-record/">vehicle age</a></li>
+    <li><a href="https://leasematurity.com/learn/lease-buyouts-by-manufacturer/">Lease buyout restrictions</a> · <a href="https://www.autoremarketing.com/ar/wholesale/hertz-sell-vehicles-directly-consumers-carvana/">Hertz–Carvana</a> · <a href="https://www.autonews.com/hyundai/an-amazon-starts-selling-used-cars-hyundai-0804">Amazon Autos</a> · <a href="https://caredge.com/guides/best-instant-cash-offer-websites">offer comparisons</a> · <a href="https://www.motor1.com/news/587603/carvana-loses-license-sell-illinois/">title actions</a></li>
+  </ul>
+</footer>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+(function(){
+  const q=["Q1'25","Q2'25","Q3'25","Q4'25","Q1'26","Q2'26"];
+  const cv=[43.7,44.5,42.3,66.2,31.7,44.4];
+  const km=[3.2,-2.6,-12.2,2.7,-2.4,0.0];
+  const svg=document.getElementById('supply'), NS='http://www.w3.org/2000/svg';
+  const L=44,R=630,T=16,B=250,min=-20,max=70;
+  const y=v=>T+(max-v)/(max-min)*(B-T);
+  const mk=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e};
+  for(let v=min;v<=max;v+=10){
+    mk('line',{x1:L,x2:R,y1:y(v),y2:y(v),stroke:v===0?'var(--ink-3)':'var(--grid)','stroke-width':v===0?1:1});
+    const t=mk('text',{x:L-6,y:y(v)+4,'text-anchor':'end'});t.textContent=v+'%';
+  }
+  const gw=(R-L)/q.length, bw=Math.min(28,gw*0.32);
+  q.forEach((lab,i)=>{
+    const cx=L+gw*i+gw/2;
+    [[cv[i],'var(--s1)',-1,'Carvana wholesale vehicle units'],[km[i],'var(--s2)',1,'CarMax bought from consumers']].forEach(([v,c,s,name])=>{
+      const x=cx+(s<0?-bw-1:1), y0=y(0), y1=y(v), h=Math.max(Math.abs(y1-y0),1.5);
+      const r=mk('rect',{x:x,y:Math.min(y0,y1),width:bw,height:h,fill:c,rx:2,tabindex:0});
+      r.dataset.tip=lab+' · '+name+': '+(v>0?'+':'')+v.toFixed(1)+'% YoY';
+    });
+    const t=mk('text',{x:cx,y:B+18,'text-anchor':'middle',class:'lbl'});t.textContent=lab;
+  });
+  const lt=mk('text',{x:L+gw*5+gw/2-bw/2,y:y(44.4)-6,'text-anchor':'middle',class:'lbl'});lt.textContent='+44%';
+  const lk=mk('text',{x:L+gw*5+gw/2+bw/2+1,y:y(0)-6,'text-anchor':'middle',class:'lbl'});lk.textContent='0%';
+
+  const tip=document.getElementById('tip');
+  function show(e,el){tip.textContent=el.dataset.tip;tip.style.opacity=1;move(e)}
+  function move(e){const x=Math.min(e.clientX+12,innerWidth-250);tip.style.left=x+'px';tip.style.top=(e.clientY+14)+'px'}
+  document.querySelectorAll('[data-tip]').forEach(el=>{
+    el.addEventListener('pointerenter',e=>show(e,el));
+    el.addEventListener('pointermove',move);
+    el.addEventListener('pointerleave',()=>tip.style.opacity=0);
+    el.addEventListener('focus',()=>{const b=el.getBoundingClientRect();show({clientX:b.left,clientY:b.top},el)});
+    el.addEventListener('blur',()=>tip.style.opacity=0);
+  });
+  document.querySelectorAll('.hbar .row').forEach(row=>{
+    const v=(row.dataset.tip.match(/(\d+(\.\d+)?)%/)||[])[1];
+    const tr=row.querySelector('.track'), f=row.querySelector('.fill');
+    const s=document.createElement('span');s.className='val';s.textContent=v+'%';
+    s.style.left='calc('+f.style.width+' )';tr.appendChild(s);
+  });
+})();
+</script>

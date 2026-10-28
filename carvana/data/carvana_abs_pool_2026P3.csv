@@ -1,0 +1,20 @@
+metric,value,note
+deal,Carvana Auto Receivables Trust 2026-P3 (prime shelf),424B5 filed 2026-08-20
+receivables,52339,
+avg_principal_balance,29620.53,vs $24146 in 2025-P1 (Mar 2025)
+wa_apr_pct,10.77,vs 14.06 in 2025-P1
+wa_original_term_months,75,vs 73 in 2025-P1
+share_balance_73_84_month_terms_pct,75.67,
+share_balance_61_72_month_terms_pct,20.79,
+wa_fico_nonzero,702,same as 2025-P1
+fico_no_score_pct,0.50,
+fico_le_550_pct,4.38,
+fico_551_600_pct,8.17,
+fico_601_650_pct,15.43,
+fico_651_700_pct,20.98,
+fico_701_750_pct,19.99,
+fico_751_800_pct,15.34,
+fico_801plus_pct,15.22,
+used_vehicles_pct,95.50,
+top_states_pct_balance,"TX 10.81, CA 7.15, FL 6.04, OH 4.99, PA 4.95, GA 4.85, AZ 4.27, NY 4.18, NC 3.64, IL 3.17",
+nonprime_shelf_wa_fico,589,2025-N1 per Morningstar DBRS (144A deals are not on EDGAR)

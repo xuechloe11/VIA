@@ -1,0 +1,58 @@
+question,answer,pct,n,page
+Primary reason bought from Carvana,Convenience,27.8,519,55
+Primary reason bought from Carvana,Price competitive/fair,27.4,519,55
+Primary reason bought from Carvana,Saves time,16.0,519,55
+Primary reason bought from Carvana,Got financing more easily,14.6,519,55
+Primary reason bought from Carvana,Someone I trusted recommended Carvana,7.1,519,55
+Primary reason bought from Carvana,Dislike typical dealership experience,6.7,519,55
+Primary reason sold to Carvana,Convenience,53.7,190,88
+Primary reason sold to Carvana,Highest price,43.2,190,88
+Primary reason sold to Carvana,Other,3.2,190,88
+Visited a dealer before selling to Carvana,Yes,53.2,190,89
+Visited a dealer before buying from Carvana,Yes,60.5,519,51
+Carvana offer vs offers elsewhere,Much better,36.9,716,18
+Carvana offer vs offers elsewhere,Better,24.0,716,18
+Carvana offer vs offers elsewhere,About the same,20.1,716,18
+Carvana offer vs offers elsewhere,Worse,9.4,716,18
+Carvana offer vs offers elsewhere,Much worse,6.2,716,18
+Where sold last vehicle (all sellers),Private individual,47.7,5736,86
+Where sold last vehicle (all sellers),Car dealership,35.5,5736,86
+Where sold last vehicle (all sellers),Online website/app,11.1,5736,86
+Which online platform sold to,Carvana,29.9,636,87
+Which online platform sold to,CarMax,21.2,636,87
+Which online platform sold to,Cars.com,13.2,636,87
+Would sell online - most likely platform,Carvana,59.7,570,95
+Would sell online - most likely platform,CarMax,14.2,570,95
+Would sell online - most likely platform,Cars.com,10.0,570,95
+How paid for Carvana car,Financed through Carvana,49.3,519,38
+How paid for Carvana car,Financed through bank,28.1,519,38
+How paid for Carvana car,Cash,19.9,519,38
+If not Carvana would have bought from,Other online platform (CarMax etc),36.2,519,7
+If not Carvana would have bought from,Franchise dealer,28.3,519,7
+If not Carvana would have bought from,Independent dealer,19.9,519,7
+If not Carvana would have bought from,Private party,15.6,519,7
+Repeat behaviour,Bought again from Carvana,36.6,465,5
+Repeat behaviour,Bought again elsewhere,8.8,465,5
+Repeat behaviour,Only one car so far,54.6,465,5
+Friend/family recommendation influence,Primary reason,31.0,465,16
+Friend/family recommendation influence,Slightly more likely,38.9,465,16
+Why considered but did not buy,Prices too high,26.4,2723,40
+Why considered but did not buy,Selection not good,20.9,2723,40
+Why considered but did not buy,Down payment too expensive,14.8,2723,40
+Why considered but did not buy,Financing rate,13.9,2723,40
+Why considered but did not buy,Delivery too long,8.4,2723,40
+Visited Carvana by credit score,300-579,23.5,311,118
+Visited Carvana by credit score,580-669,31.1,646,118
+Visited Carvana by credit score,670-739,38.2,940,118
+Visited Carvana by credit score,740-799,41.6,855,118
+Visited Carvana by credit score,800-850,28.3,570,118
+Visited but did not buy: no car I want,300-579,20.5,249,119
+Visited but did not buy: no car I want,740-799,38.5,502,119
+Visited but did not buy: bad financing terms,300-579,23.3,249,119
+Visited but did not buy: bad financing terms,800-850,10.6,378,119
+Visited but did not buy: sight unseen,300-579,19.7,249,119
+Visited but did not buy: sight unseen,800-850,32.0,378,119
+Considered but did not buy: down payment,300-579,24.0,300,122
+Considered but did not buy: down payment,800-850,6.8,411,122
+NPS (Carvana buyers),Carvana,63,519,10
+NPS (dealership buyers),Dealership,-7,,10
