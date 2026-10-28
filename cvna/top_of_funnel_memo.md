@@ -270,6 +270,29 @@ Brand data [D]: Morgan Stanley AlphaWise (~2,000 consumers, via TheStreet ~2026-
   - [I] Carvana likely started buying some Hertz cars outright. This is a supply arrangement, not distribution.
   - Confirm with IR.
 
+## 3b. Top-of-funnel health: visitors, conversion and cost per visitor (10-Q/10-K data)
+
+Full series Q1'19–Q2'26: `cvna_muv_conversion.csv`. MUV = average monthly unique visitors (web + app since Q2'24, about 9% above the old web-only basis).
+
+| Quarter | MUV (M) | MUV YoY | Units YoY | Units per 1k visitor-months | Ad $ per visitor-month | Ad $ per unit |
+|---|---|---|---|---|---|---|
+| Q1'22 (peak traffic) | 24.7 (web only) | +87% | +14% | 1.42 | $2.09 | $1,474 |
+| Q2'24 | 18.6 | +17% | +33% | 1.82 | **$0.98** (trough) | $542 |
+| Q3'24 | 17.3 | +5% | +34% | 2.09 | $1.08 | $515 |
+| Q2'25 | 18.1 | −3% | +41% | 2.63 | $1.54 | $586 |
+| Q3'25 | 19.6 | +13% | +44% | 2.65 | $1.73 | $654 |
+| Q1'26 | 21.4 | +23% | +40% | 2.92 | $1.84 | $630 |
+| Q2'26 | 21.8 | +20% | +38% | 3.02 | $1.85 | $613 |
+
+**Reads [D → I]:**
+- **Traffic is still ~20% below the 2022 peak** on a like-for-like basis (~19.9M web-only vs 24.7M), while units are 68% above their peak.
+- From 2024 to 2025, growth came almost entirely from **conversion**: units per 1k visitor-months rose 1.6 → 3.0, back to 2019 levels.
+- **Ad $ per visitor is up ~75–90% from the 2024 trough** ($0.98 → $1.85). Ad $ doubled (Q2'24 $55M → Q2'26 $121M) while visitors rose ~17%.
+- Each marginal visitor costs much more. That fits paid-channel and CPC inflation, though the filings can't separate brand/TV spend from search.
+- **Ad $/unit has held at ~$540–650 only because conversion kept rising.** In 2026, conversion gains are slowing (units − MUV growth gap narrowed from 30–44 pts to ~17 pts) while cost per visitor stays elevated.
+- **This is the mechanism the thesis needs.** If conversion plateaus near 2019's ~3.0–3.2 ceiling, rising cost per visitor flows straight into ad $/unit.
+- **Watch in Q3'26:** MUV, units per 1k visitor-months (does it stay above ~3.0?), and ad $ per visitor-month vs $1.73 a year ago.
+
 ## 4. Subprime keyword claim
 
 - **Source [D]:** [Hindenburg (2025-01-02)](https://hindenburgresearch.com/carvana/), quoting one former marketing head. "Low credit / bad credit auto loan" SEM was "one of the most expensive but highest ROI areas," and "behind the scenes they are doing a lot to push that market."
