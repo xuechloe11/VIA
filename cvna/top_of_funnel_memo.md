@@ -171,6 +171,30 @@ By prompt type, Carvana is mentioned in:
 - If LLM/Amazon pressure just keeps ad $/unit flat at ~$600+, that 0.65 pt never arrives. Combined with the severe case, roughly 1 pt of the 13.5% target is at risk.
 - That ~1 pt is the honest size of this thesis. It is a real but second-order lever next to GPU and credit; frame it as part of a GPU/credit short, not the core.
 
+## 4a. Analogs: has any paid-search-heavy brand shown an "LLM tax" yet?
+
+**Short answer: no company has disclosed an LLM-driven rise in paid CAC by Q3'26 [D/I].** The harm so far shows up as an *SEO tax*: organic traffic falls, so companies buy more paid search at rising CPCs. LLM referral traffic is ≤ ~1% everywhere it is disclosed, and it converts at or above other channels.
+
+| Archetype | Examples | Outcome 2024 to Q3'26 |
+|---|---|---|
+| Free-answer / content | Chegg (non-subscriber traffic −49%, suing Google), Tripadvisor (SEO falling toward <10% of Experiences bookings) | Collapse or structural decline |
+| Lead-gen comparison | LendingTree (Q2'26 variable marketing +36%, marketing margin 33% → 28%), Trivago | Margin squeeze or forced pivot to brand |
+| Transactional brand with fulfillment | Booking (marketing 4.4% of gross bookings, flat FY24→25, but "lower performance marketing ROIs"), Expedia B2C (4.7%, −31bp), Zillow (~80% direct), Etsy | Ratios flat or better; AI referrals small but high-converting |
+
+**Cost inputs [D]:**
+- Google paid clicks +13% YoY in Q1 and Q2'26, with CPC growth slowing to ~+3% (Q2'26, secondary source).
+- **Automotive CPC +12.6% YoY to $3.49** (LocaliQ, Apr-25 to Jun-26, updated 2026-09-29).
+- Ads now run inside AI Overviews and AI Mode (Conversational Discovery Ads, GML 2026).
+
+**Where Carvana falls [I]:**
+- By business model, it belongs in the transactional/fulfillment group, which has held up so far.
+- Two differences raise its exposure versus Booking and Expedia:
+  1. Much less direct/loyalty traffic relative to paid (52.8% paid click share).
+  2. A rare, high-consideration purchase where comparison answers matter. Here Carvana is at parity with CarMax and seen as pricier.
+- The near-term mechanism is rising auto CPCs and new AI Mode ad inventory needed to defend paid share, not Google traffic vanishing.
+- **Frame the thesis as a 2027–28 operating-leverage risk, not something the analogs already prove.**
+- **Watch:** Alphabet Q3 CPC (out tonight), Booking Q3 (Nov 3) marketing % and SEO language, and Expedia's answer-engine optimization (AEO) disclosures.
+
 ## 4. Subprime keyword claim
 
 - **Source [D]:** [Hindenburg (2025-01-02)](https://hindenburgresearch.com/carvana/), quoting one former marketing head. "Low credit / bad credit auto loan" SEM was "one of the most expensive but highest ROI areas," and "behind the scenes they are doing a lot to push that market."
