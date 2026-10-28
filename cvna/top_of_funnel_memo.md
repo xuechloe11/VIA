@@ -195,6 +195,39 @@ By prompt type, Carvana is mentioned in:
 - **Frame the thesis as a 2027–28 operating-leverage risk, not something the analogs already prove.**
 - **Watch:** Alphabet Q3 CPC (out tonight), Booking Q3 (Nov 3) marketing % and SEO language, and Expedia's answer-engine optimization (AEO) disclosures.
 
+## 4b. How fast is the shift to LLMs among used-car buyers?
+
+**Cox Car Buyer Journey 2025** (n = 2,300 buyers, released 2026-01-13) [D]:
+
+| Site type used by used-car buyers | % |
+|---|---|
+| 3rd-party marketplaces (KBB, Autotrader, Edmunds, Cars.com) | 77% |
+| Dealer sites | 60% |
+| Search engines | 41% |
+| Used online retailers (Carvana, CarMax type) | 34% |
+| **AI sites** | **11%** |
+| Avg. sites visited | 4.8 |
+
+Other adoption data [D]:
+- 19% of all buyers used AI sites or AI Overviews in 2025.
+- Stated intent is far higher: 63% plan to use AI next time (Cox AI tracker, Aug-26) and 44% have used AI tools (Cars.com, promotional).
+- Pew (Feb-26), any-chatbot use by group:
+  - by age: 18–29 66%, 30–49 61%, 50–64 42%, 65+ 23%;
+  - by income: upper 66% vs lower 41%;
+  - overall: up from 33% to 49% in about two years.
+
+Brand data [D]: Morgan Stanley AlphaWise (~2,000 consumers, via TheStreet ~2026-10-18; snippet only):
+- Carvana-only users among online used-car buyers 43% (from 31% in Sep-25); CarMax-only 37% (from 44%).
+- Trust: Carvana 56% vs CarMax 52%.
+
+**Read [I]:**
+- LLMs add a stop (4.8 sites, and 80% verify on Search per the India Google/Kantar study); they don't yet replace one.
+- Carvana's prime and younger buyers adopt fast. Its non-prime buyers (lower income) adopt slower, and their financing-led searches ("bad credit car loans near me") stay on Google/Meta lead-gen longer.
+- Estimate for 2028: ~30–45% of Carvana buyers use an LLM somewhere in the journey, and ~10–15% start there. That supports the mid case in the sensitivity (m ≈ 25%), not the severe case.
+- Brand momentum (AlphaWise) argues Carvana is a *named destination*, the kind of entity LLMs cite.
+
+**Data conflict to resolve:** 247 Wall St says 44% of the loan book is non-prime at FICO 601–660. The DBRS N-shelf pools show WA FICO 567–589 with 58% ≤600. Hindenburg's 44% figure is the ABS share, not a FICO band; use the DBRS figures.
+
 ## 4. Subprime keyword claim
 
 - **Source [D]:** [Hindenburg (2025-01-02)](https://hindenburgresearch.com/carvana/), quoting one former marketing head. "Low credit / bad credit auto loan" SEM was "one of the most expensive but highest ROI areas," and "behind the scenes they are doing a lot to push that market."
