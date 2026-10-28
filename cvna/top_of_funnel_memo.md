@@ -7,6 +7,57 @@ Labels: **[D]** = sourced data, **[I]** = our inference. Full ad-spend table: `c
 
 > Top-of-funnel competition from entrants like Amazon Autos, combined with user migration from Google search to LLMs (seemingly less favorable to CVNA than to CarMax and local dealers), means CVNA must grow advertising at or above revenue growth, limiting operating leverage.
 
+## Q3'26 addendum (reported 2026-10-28 after close)
+
+Sources: [shareholder letter](https://www.sec.gov/Archives/edgar/data/1690820/000169082026000066/ex99_1q32026.htm), [10-Q](https://www.sec.gov/Archives/edgar/data/1690820/000169082026000067/cvna-20260930.htm). [D] unless marked.
+
+| | Q3'25 | Q3'26 | Change |
+|---|---|---|---|
+| Retail units | 155,941 | 217,385 | +39.4% |
+| Revenue | $5.65B | $8.04B | +42.4% |
+| Advertising | $102M | **$152M** | **+49%** |
+| **Ad $ / retail unit** | $654 | **$699** | **+7%**; 6th straight YoY rise; highest since Q4'23 |
+| Marginal ad $ / incremental unit [I] | | **~$814** | (+$50M ÷ +61.4k units) |
+| Avg. monthly unique visitors | 19.6M | 23.8M | +21.2% |
+| Units per 1k visitor-months | 2.65 | 3.05 | Q2'26 was 3.02, so roughly flat sequentially |
+| **Ad $ / visitor-month** | $1.73 | **$2.13** | **+23%**; highest since Q3'22 |
+| Retail GPU (GAAP) | $3,456 | $3,556 | +$100 |
+| Other GPU (GAAP; mostly loan sales) | $3,040 | $2,733 | −$307 |
+| Total GPU (GAAP) | $7,362 | $6,997 | −$365 |
+| Adj. EBITDA (margin) | $637M (11.3%) | $800M (10.0%) | −130 bp |
+| Operating income (margin) | $552M (9.8%) | $714M (8.9%) | −90 bp |
+
+**What Q3 says about the thesis [I]:**
+1. **The predicted pattern showed up.**
+   - Conversion is plateauing at ~3.0 units per 1k visitor-months, the 2019 ceiling (3.02 → 3.05 QoQ).
+   - Cost per visitor stepped up again (+23% YoY, +15% QoQ).
+   - So ad $/unit turned up: $613 in Q2 → $699 in Q3.
+   - This is the first quarter where better conversion did not offset higher cost per visitor.
+2. **Traffic is not shrinking.** Visitors grew 21%, so LLMs are not visibly draining Carvana's top of funnel. Carvana is *paying more per visitor* to keep it growing. That fits "advertising grows ≥ units", but nothing in the filing ties it to LLMs or Amazon.
+3. **The margin-bridge problem got bigger.**
+   - Ad $/unit is now ~$325 above the ~$375 "mature market" level the 13.5% target relies on. That gap is ~0.9 pt of margin at ~$37k revenue per unit.
+   - Management is retiring the adj. EBITDA framing in favor of a 12.5% GAAP *operating* margin target for 2030–35, and will stop giving quarterly/annual outlooks from Q4'26.
+4. **Profit per car is falling via finance, not retail.**
+   - Other GPU −$307 YoY: loan rates were cut by >100 bp vs benchmarks, and gain on loan sales rose only +15% vs units +39%.
+   - Management cites a ~$200/unit hit from fuel prices and benchmark rates.
+   - This ties the top-of-funnel thesis to Tab 1's variant view: Carvana is buying growth with both ads and loan pricing.
+
+**Management commentary [D]:**
+- No mention of ChatGPT, LLMs, Google search or Amazon.
+- On AI: AI tools let more customers buy without an advocate, which "reduced average calls per sale and driven higher conversion rates and Net Promoter Scores."
+- On advertising: "investments in advertising and new campaigns to expand our reach and educate customers."
+- On competition: "industry was once again approximately flat… our growth is coming from market share gains."
+- Retail marketplace partner units were a lower share of the total, which raised revenue per unit.
+- Other: inventory $3.46B (+44% vs YE25); 21 integrated ADESA sites.
+
+**Questions for the call / IR:**
+- How much of the Q3 advertising step-up was brand/TV vs performance/search?
+- Any change in paid-search CPCs or Google vehicle-ads eligibility (the Business Profile issue)?
+- Who is the retail marketplace partner?
+- Any plans for ChatGPT / AI Mode distribution?
+
+---
+
 ## Bottom line
 
 | Sub-claim | Verdict | Key evidence |
