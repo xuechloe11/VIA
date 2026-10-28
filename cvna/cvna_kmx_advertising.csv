@@ -1,0 +1,29 @@
+company,period,period_type,advertising_usd_m,revenue_usd_m,retail_units,ad_pct_revenue,ad_per_retail_unit_usd,source
+CVNA,2017,FY,55.7,859,44252,6.5%,1259,10-K XBRL AdvertisingExpense + 10-K KPI table
+CVNA,2018,FY,111.2,1955,94108,5.7%,1182,10-K
+CVNA,2019,FY,204,3940,177549,5.2%,1149,10-K
+CVNA,2020,FY,286,5587,244111,5.1%,1172,10-K
+CVNA,2021,FY,479,12814,425237,3.7%,1126,10-K
+CVNA,2022,FY,490,13604,412296,3.6%,1188,10-K
+CVNA,2023,FY,228,10771,312847,2.1%,729,10-K
+CVNA,2024,FY,229,13673,416348,1.7%,550,10-K
+CVNA,2025,FY,363,20322,596641,1.8%,608,10-K filed 2026-02-18
+CVNA,Q1'24,Q,54,3061,91878,1.76%,588,shareholder letter SG&A table
+CVNA,Q2'24,Q,55,3410,101440,1.61%,542,shareholder letter
+CVNA,Q3'24,Q,56,3655,108651,1.53%,515,shareholder letter
+CVNA,Q4'24,Q,64,3547,114379,1.80%,560,shareholder letter
+CVNA,Q1'25,Q,72,4232,133898,1.70%,538,shareholder letter
+CVNA,Q2'25,Q,84,4840,143280,1.74%,586,shareholder letter
+CVNA,Q3'25,Q,102,5647,155941,1.81%,654,shareholder letter
+CVNA,Q4'25,Q,105,5603,163522,1.87%,642,shareholder letter
+CVNA,Q1'26,Q,118,6432,187393,1.83%,630,shareholder letter
+CVNA,Q2'26,Q,121,7376,197325,1.64%,613,shareholder letter 2026-07-29
+KMX,FY18 (Feb-18),FY,157.7,17120,721512,0.92%,219,Q4 earnings release
+KMX,FY20 (Feb-20),FY,191.3,20320,832640,0.94%,230,Q4 earnings release
+KMX,FY22 (Feb-22),FY,325.9,31900,924338,1.02%,353,Q4 earnings release
+KMX,FY23 (Feb-23),FY,288.5,29685,807823,0.97%,357,Q4 earnings release
+KMX,FY24 (Feb-24),FY,264.4,26536,765572,1.00%,345,Q4 earnings release
+KMX,FY25 (Feb-25),FY,260.7,26353,789050,0.99%,330,Q4 earnings release
+KMX,FY26 (Feb-26),FY,283.0,25881,780684,1.09%,363,Q4 earnings release
+KMX,Q1 FY27 (May-26),Q,75.9,8013,230293,0.95%,330,earnings release
+KMX,Q2 FY27 (Aug-26),Q,66.9,7878,227391,0.85%,294,earnings release 2026-09-29
