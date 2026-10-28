@@ -244,6 +244,28 @@ Brand data [D]: Morgan Stanley AlphaWise (~2,000 consumers, via TheStreet ~2026-
 
 **Data conflict to resolve:** 247 Wall St says 44% of the loan book is non-prime at FICO 601–660. The DBRS N-shelf pools show WA FICO 567–589 with 58% ≤600. Hindenburg's 44% figure is the ABS share, not a FICO band; use the DBRS figures.
 
+## 3a. Where Carvana's distribution actually comes from: Google, not marketplaces
+
+- **Not on the marketplaces that feed LLMs [D]:**
+  - Carvana's CarGurus dealer pages show "0 vehicles found" (checked 2026-10-28); iSeeCars shows 0 current listings.
+  - No current feed to Autotrader/KBB, Cars.com or Edmunds was found.
+  - So the CarGurus ChatGPT app, CarMax's app and Edmunds' app cannot show Carvana cars.
+  - [I] The risk isn't commoditization as "one dealer among many". It is **absence** from LLM answers built on marketplace inventory, unless Carvana builds its own app.
+- **Google is the channel [D]:**
+  - Carvana runs Google Vehicle Ads, which now show automatically in AI Mode for existing advertisers (vendor sources). Google began testing "Vehicle Top Ads" in Oct-26.
+  - Google's policy requires a licensed dealer with a brick-and-mortar location in the state; online-delivery sellers are only in a "beta".
+- **New and Carvana-specific: Google Business Profile risk [D]** ([DealershipGuy, 2026-10-14](https://news.dealershipguy.com/p/carvana-google-business-profile-listings-point-to-government-buildings-other-non-carvana-sites-analy)):
+  - 327 Google Business Profiles are tied to Carvana. Only 106 are verified Carvana facilities; 143 point to non-Carvana addresses, 77 of them civic or government buildings.
+  - Carvana's vehicle ads rank near the top in markets where it has no facility.
+  - Carvana's response: the listings help local searchers find cars "that can be delivered to or picked up in their area."
+  - [I] Part of Carvana's local Google reach may rest on profiles that sit outside Google's location rules. If Google enforces those rules, Carvana could lose local-ad eligibility overnight, with no LLM or marketplace channel to fall back on.
+  - **This is the sharpest Carvana-specific top-of-funnel risk we found.**
+- **The "large retail marketplace partner" (Q3'25–Q2'26 letters) is probably Hertz [I, medium-high confidence]:**
+  - Hertz has sold to consumers through Carvana since 2021.
+  - The switch to gross revenue treatment began in Q3'25, right after Hertz joined Amazon (Aug-25).
+  - [I] Carvana likely started buying some Hertz cars outright. This is a supply arrangement, not distribution.
+  - Confirm with IR.
+
 ## 4. Subprime keyword claim
 
 - **Source [D]:** [Hindenburg (2025-01-02)](https://hindenburgresearch.com/carvana/), quoting one former marketing head. "Low credit / bad credit auto loan" SEM was "one of the most expensive but highest ROI areas," and "behind the scenes they are doing a lot to push that market."
@@ -271,6 +293,8 @@ Brand data [D]: Morgan Stanley AlphaWise (~2,000 consumers, via TheStreet ~2026-
    - *Would change this:* Carvana's unit growth or monthly unique visitors (MUV) slowing in the Amazon launch metros (LA, Seattle, Dallas, Houston) relative to other markets; MUV growing slower than units; Amazon adding delivery or its own financing.
 
 ## 6. Open items / what would move us
+
+0. **Google Business Profile / Vehicle Ads enforcement.** Track Google's actions on Carvana's 143 non-Carvana-address profiles. Ask management on the call.
 
 1. **Q3'26 tonight:** ad $/unit vs $654 (Q3'25). Management guided ad $ up. Above ~$650 with decelerating units supports the thesis; flat or down undercuts it.
 2. Test the standalone Gemini app and Perplexity by hand on these prompts:
