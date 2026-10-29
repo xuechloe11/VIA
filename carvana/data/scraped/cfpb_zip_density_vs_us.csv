@@ -1,0 +1,6 @@
+density_bucket,carvana_complainants_pct,carmax_complainants_pct,bridgecrest_complainants_pct,us_population_pct
+rural <500/sq mi,11.5,12.4,13.1,32.6
+exurban 500-1.5K,18.3,18.9,19.9,18.4
+suburban 1.5-3K,24.3,24.3,24.5,16.0
+dense suburban 3-8K,30.5,31.4,31.0,22.9
+urban 8K+,15.4,12.9,11.5,10.0
