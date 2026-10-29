@@ -52,19 +52,13 @@ tr.hl td{background:var(--accent-soft)}
 .v-mac{background:transparent;border:1px solid var(--rule);color:var(--ink-2)}
 .callout{border-left:3px solid var(--accent);padding:4px 0 4px 16px;color:var(--ink-2);max-width:74ch}
 .callout b{color:var(--ink)}
+.note{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;color:var(--ink-2);font-size:14.5px;max-width:74ch}
+.note b{color:var(--ink)}
 .persona{background:var(--accent-soft);border-radius:10px;padding:16px 18px;color:var(--ink);max-width:74ch}
 .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 svg text{font-family:var(--f-mono);font-size:11px;fill:var(--ink-3)}
 svg .lbl{fill:var(--ink-2)}
-/* single-series horizontal bars */
-.hbar{display:grid;grid-template-columns:minmax(110px,36%) 1fr;gap:6px 12px;align-items:center;font-size:14px}
-.hbar .k{color:var(--ink-2)}
-.hbar .track{display:block;position:relative;height:18px;margin-right:56px}
-.hbar .fill{display:block;height:100%;background:var(--s1);border-radius:0 4px 4px 0;min-width:2px}
-.hbar .val{position:absolute;top:0;font:500 12px/18px var(--f-mono);color:var(--ink);padding-left:6px;white-space:nowrap}
-.hbar .row{display:contents}
-.hbar .row:hover .fill{filter:brightness(1.12)}
 /* two-series bars */
 .pair{display:grid;grid-template-columns:minmax(110px,34%) 1fr;gap:4px 12px;align-items:center;font-size:14px}
 .pair .k{color:var(--ink-2);grid-row:span 2}
@@ -101,88 +95,119 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
 
 <div class="wrap">
 <header>
-  <span class="eyebrow">CVNA · Customer research · Oct 29, 2026</span>
+  <span class="eyebrow">CVNA · Customer research · October 2026</span>
   <h1>Who sells to Carvana, who buys, and is supply really shrinking?</h1>
-  <p class="lede">Built from data scraped at the record level: Carvana's and CarMax's loan-by-loan SEC filings, the CFPB complaint database joined to Census neighborhoods, app-store reviews, Reddit, and multi-year consumer surveys. Includes Q3'26 results.</p>
-  <div class="sources-strip"><span><b>1.55M</b> SEC loan records</span><span><b>4.1M</b> loan-month statuses</span><span><b>14.3K</b> CFPB complaints</span><span><b>13.8K</b> app reviews</span><span><b>24.3K</b> Reddit posts</span><span><b>33.8K</b> Census ZIP areas</span></div>
+  <p class="lede">Every source refreshed to its latest October 2026 data. That includes Q3'26 results and call, the status of every loan in Carvana's public pools as of Sep 30, 2026, complaints and reviews through late October, and Cox's mid-October market read.</p>
+  <div class="sources-strip"><span><b>1.62M</b> SEC loan records</span><span><b>4.8M</b> loan-month statuses</span><span><b>14.3K</b> CFPB complaints</span><span><b>13.8K</b> app reviews</span><span><b>24.3K</b> Reddit posts</span><span><b>33.8K</b> Census ZIP areas</span></div>
 </header>
 
 <section>
-  <h2>Bottom line</h2>
+  <h2>Bottom line, October 2026</h2>
   <ol class="bl">
-    <li><b>Carvana's buyer moved upmarket fast.</b> Median implied income in its prime loan pools rose from $62K in 2021 to $97K in 2026, and half now earn over $100K. Credit scores did not move (FICO about 700).</li>
-    <li><b>They maximize the monthly payment.</b> 69% of 2026 prime loans run longer than 72 months, up from 10% in 2021. Only a quarter of buyers bring real equity.</li>
-    <li><b>Compared with CarMax buyers: same income, weaker credit, longer loans, different cars.</b> Carvana buyers lean to Chevy, Ford, Jeep, Ram, pickups and Tesla. CarMax buyers lean to Toyota and Honda.</li>
-    <li><b>It is a heartland suburban product.</b> Arizona, the Carolinas, Georgia, Indiana, Oklahoma and Ohio over-index. California, New York and Washington under-index. Penetration falls as state income and college share rise.</li>
-    <li><b>Sellers are not leaving.</b> Cars bought from customers and wholesaled grew 38% in Q3'26 while CarMax's consumer buying was flat. Sellers now come for convenience more than top dollar, and when they compare offers in public, Carvana usually wins.</li>
-    <li><b>Buyers choose Carvana for convenience first, then price, then financing.</b> Brand trust is at parity with CarMax. The brand spreads through word of mouth: 69% of customers know another Carvana customer.</li>
+    <li><b>The 2026 Carvana buyer earns about $98K, and half earn over $100K.</b> Median FICO is 707. They borrow $26.5K against a $28K car, pay $496 a month, and 70% take loans longer than 72 months.</li>
+    <li><b>Against CarMax's 2026 buyers, incomes match but credit doesn't.</b> Median income is $98K vs $102K, but FICO is 707 vs 769. Carvana's buyers take bigger, longer loans with less equity. They buy Chevy, Ford, Jeep, Ram and Tesla; CarMax's buy Toyota and Honda.</li>
+    <li><b>The move upmarket is industry-wide.</b> Since 2021, financed-buyer income rose 58% at Carvana and 50% at CarMax. Carvana's management says its prime mix "really shift[ed] up" in Q3.</li>
+    <li><b>Customers are paying about as well as a year ago.</b> At the same age, this year's pools are as late or less late than last year's. The step-down came earlier: 2024–25 loans charge off about 45–65% faster than 2021's.</li>
+    <li><b>Strongest in middle-income Sunbelt and Midwest states.</b> Arizona is at 2x its population share, then New Mexico, South Carolina, Oklahoma, Georgia, Indiana and Ohio. California, Washington and New York are well below.</li>
+    <li><b>Sellers are not leaving; production is the constraint.</b> Customer-sourced cars grew 38% in Q3 to 111K. The CEO says growth is "constrained by our ability to scale the supply chain." Q3 production passed 200K for the first time.</li>
+    <li><b>Convenience keeps winning, and complaints are falling.</b> Ease appears in 37% of 2026 Carvana app reviews vs 17% of CarMax's. CFPB complaints are down 31% this year while units grew 39%.</li>
   </ol>
+  <p class="note"><b>Corrections since Oct 28:</b> Charge-offs for 2024–25 pools were undercounted, because the filings re-code a charged-off loan as "third-party sale" once the car or balance is sold. 2024-P2 is at 3.9% by month 29, not 3.3%. The Carvana vs CarMax income comparison is now by year the loan was made: CarMax's buyers moved upmarket almost as fast (+50% vs +58%).</p>
 </section>
 
 <section>
-  <span class="eyebrow">Buyer profile · loan-level SEC data</span>
+  <span class="eyebrow">Buyer profile · loans made in 2026</span>
   <h2>Higher earners, the same credit, longer loans</h2>
-  <p>Every public auto securitization files a record for each loan with the SEC, giving the borrower's credit score, state, car, loan terms and payment-to-income ratio. Dividing the monthly payment by that ratio gives each borrower's income. We parsed 22 Carvana pools and 11 CarMax pools.</p>
+  <p>Every public auto securitization files a record for each loan with the SEC, giving the borrower's credit score, state, car, loan terms and payment-to-income ratio. Dividing the monthly payment by that ratio gives each borrower's income. These figures group loans by the year they were made, through July 2026 for Carvana and August for CarMax.</p>
   <div class="panel">
-    <h3>Financed buyers by implied annual income</h3>
+    <h3>Financed buyers by implied annual income, by year the loan was made</h3>
     <div class="legend"><span><i style="background:var(--q1)"></i>Under $50K</span><span><i style="background:var(--q2)"></i>$50–100K</span><span><i style="background:var(--q3)"></i>$100–150K</span><span><i style="background:var(--q4)"></i>$150K+</span></div>
     <div class="stack" id="incstack"></div>
     <span class="tag">Implied income = monthly payment ÷ reported payment-to-income × 12. Source: SEC ABS-EE exhibit 102 asset files.</span>
   </div>
   <div class="tw"><table>
-    <thead><tr><th></th><th class="n">Carvana nonprime 2021</th><th class="n">Carvana prime 2021</th><th class="n">Carvana prime 2026</th><th class="n">CarMax 2025–26</th></tr></thead>
+    <thead><tr><th></th><th class="n">Carvana nonprime 2020–21</th><th class="n">Carvana prime 2021</th><th class="n">Carvana prime 2026</th><th class="n">CarMax 2026</th></tr></thead>
     <tbody>
-      <tr><td>Loans</td><td class="n">85,178</td><td class="n">146,018</td><td class="n">130,546</td><td class="n">526,774</td></tr>
-      <tr class="hl"><td>Median implied income</td><td class="n">$45K</td><td class="n">$62K</td><td class="n">$97K</td><td class="n">$90K</td></tr>
-      <tr><td>Median FICO</td><td class="n">572</td><td class="n">696</td><td class="n">707</td><td class="n">755</td></tr>
-      <tr><td>Median payment / payment-to-income</td><td class="n">$451 / 12.4%</td><td class="n">$388 / 7.7%</td><td class="n">$491 / 6.2%</td><td class="n">$417 / 5.6%</td></tr>
-      <tr><td>Median loan / car value</td><td class="n">$18.9K / $18.8K</td><td class="n">$21.5K / $23.6K</td><td class="n">$26.2K / $27.7K</td><td class="n">$21.7K / $25.0K</td></tr>
-      <tr class="hl"><td>Loans longer than 72 months</td><td class="n">4%</td><td class="n">10%</td><td class="n">69%</td><td class="n">20%</td></tr>
-      <tr><td>Median APR</td><td class="n">19.5%</td><td class="n">7.1%</td><td class="n">9.6%</td><td class="n">7.4%</td></tr>
-      <tr><td>Loan under 90% of car value</td><td class="n">16%</td><td class="n">37%</td><td class="n">25%</td><td class="n">42%</td></tr>
-      <tr><td>Pickups / SUVs / cars</td><td class="n">3 / 39 / 57%</td><td class="n">7 / 44 / 46%</td><td class="n">14 / 55 / 28%</td><td class="n">11 / 55 / 32%</td></tr>
-      <tr><td>EVs</td><td class="n">1.0%</td><td class="n">2.0%</td><td class="n">6.2%</td><td class="n">1.3%</td></tr>
+      <tr><td>Loans</td><td class="n">84,196</td><td class="n">147,823</td><td class="n">123,012</td><td class="n">129,625</td></tr>
+      <tr class="hl"><td>Median implied income</td><td class="n">$45K</td><td class="n">$62K</td><td class="n">$98K</td><td class="n">$102K</td></tr>
+      <tr><td>Single-applicant median</td><td class="n">$45K</td><td class="n">$62K</td><td class="n">$84K</td><td class="n">$84K</td></tr>
+      <tr class="hl"><td>Median FICO</td><td class="n">573</td><td class="n">696</td><td class="n">707</td><td class="n">769</td></tr>
+      <tr><td>FICO under 650</td><td class="n">84%</td><td class="n">25%</td><td class="n">25%</td><td class="n">0%</td></tr>
+      <tr><td>Median payment / payment-to-income</td><td class="n">$452 / 12.4%</td><td class="n">$391 / 7.7%</td><td class="n">$496 / 6.2%</td><td class="n">$429 / 5.0%</td></tr>
+      <tr><td>Median loan / car value</td><td class="n">$18.9K / $18.8K</td><td class="n">$21.7K / $23.9K</td><td class="n">$26.5K / $28.0K</td><td class="n">$22.2K / $26.0K</td></tr>
+      <tr class="hl"><td>Loans longer than 72 months</td><td class="n">4%</td><td class="n">11%</td><td class="n">70%</td><td class="n">23%</td></tr>
+      <tr><td>Median APR</td><td class="n">19.5%</td><td class="n">7.1%</td><td class="n">9.5%</td><td class="n">7.2%</td></tr>
+      <tr><td>Loan under 90% of car value</td><td class="n">16%</td><td class="n">38%</td><td class="n">26%</td><td class="n">48%</td></tr>
+      <tr><td>Pickups / SUVs / cars</td><td class="n">3 / 39 / 57%</td><td class="n">7 / 44 / 46%</td><td class="n">14 / 56 / 28%</td><td class="n">11 / 58 / 29%</td></tr>
+      <tr><td>EVs</td><td class="n">1.0%</td><td class="n">2.0%</td><td class="n">6.4%</td><td class="n">2.2%</td></tr>
     </tbody>
   </table></div>
-  <p class="callout"><b>Read:</b> Income rose 58% while FICO stayed flat. Carvana now serves higher-earning households, not higher-credit ones, and they stretch to bigger cars on longer loans. Compared with CarMax's financed buyers, Carvana reaches further down the credit curve at similar incomes, which is the gap its in-house financing monetizes.</p>
+  <p class="callout"><b>Read:</b> Carvana's and CarMax's 2026 financed buyers earn the same. What sets Carvana apart is credit: a quarter of its buyers score under 650, while CarMax's public pools have none. Those buyers stretch to bigger cars on longer loans with less equity, which is the gap Carvana's in-house financing monetizes.</p>
 
   <div class="panel">
-      <h3>Make mix: Carvana 2026 vs CarMax 2025–26</h3>
-      <div class="legend"><span><i style="background:var(--s1)"></i>Carvana</span><span><i style="background:var(--s2)"></i>CarMax</span></div>
-      <div class="pair" id="makes"></div>
-      <span class="tag">Share of financed vehicles in public loan pools</span>
+    <h3>Make mix, 2026 loans: Carvana vs CarMax</h3>
+    <div class="legend"><span><i style="background:var(--s1)"></i>Carvana</span><span><i style="background:var(--s2)"></i>CarMax</span></div>
+    <div class="pair" id="makes"></div>
+    <span class="tag">Share of financed vehicles in public loan pools</span>
   </div>
   <div class="panel">
-      <h3>Three buyer segments (2026 prime pools)</h3>
-      <div class="tw"><table>
-        <thead><tr><th>Segment</th><th class="n">Share</th><th class="n">Car</th><th class="n">FICO</th><th class="n">Payment</th></tr></thead>
-        <tbody>
-          <tr><td>Value commuter<br><span class="meta">under $50K · 6-yr-old cars · 4% EV</span></td><td class="n">13%</td><td class="n">$22.0K</td><td class="n">697</td><td class="n">$399</td></tr>
-          <tr><td>Payment-stretcher<br><span class="meta">$50–100K · 13% pickups</span></td><td class="n">39%</td><td class="n">$26.1K</td><td class="n">696</td><td class="n">$476</td></tr>
-          <tr><td>Affluent upgrader<br><span class="meta">$100K+ · 17% pickups · 7–9% EV</span></td><td class="n">48%</td><td class="n">$29.5–33.7K</td><td class="n">711–733</td><td class="n">$519–571</td></tr>
-        </tbody>
-      </table></div>
-      <span class="tag">Plus the credit-access buyer in the nonprime pools: about $45K income, FICO about 570, APR 18–22%.</span>
+    <h3>Three buyer segments (Carvana loans made in 2026)</h3>
+    <div class="tw"><table>
+      <thead><tr><th>Segment</th><th class="n">Share</th><th class="n">Car</th><th class="n">FICO</th><th class="n">Payment</th></tr></thead>
+      <tbody>
+        <tr><td>Value commuter<br><span class="meta">under $50K · 5-yr-old cars · 4% EV</span></td><td class="n">12.5%</td><td class="n">$22.2K</td><td class="n">696</td><td class="n">$402</td></tr>
+        <tr><td>Payment-stretcher<br><span class="meta">$50–100K · 13% pickups</span></td><td class="n">38.8%</td><td class="n">$26.4K</td><td class="n">695</td><td class="n">$481</td></tr>
+        <tr><td>Affluent upgrader<br><span class="meta">$100K+ · 17% pickups · 7–9% EV</span></td><td class="n">48.6%</td><td class="n">$29.8–33.9K</td><td class="n">711–733</td><td class="n">$526–575</td></tr>
+      </tbody>
+    </table></div>
+    <span class="tag">Plus the credit-access buyer in the nonprime pools: about $45K income, FICO about 570, APR 18–22%.</span>
   </div>
-  <p class="meta">Top 2026 models: Nissan Rogue, Tesla Model 3, Ram 1500, Ford F-150, Chevy Equinox, Tesla Model Y, Silverado 1500, Jeep Grand Cherokee, Chevy Trax, Toyota Camry. New cars are 1.9% of 2026 loans, all Stellantis (Jeep, Ram, Chrysler, Dodge) from Carvana's own dealerships.</p>
-
-  <div class="panel">
-    <h3>Who defaults: cumulative charge-off by borrower income</h3>
-    <div class="legend"><span><i style="background:var(--s1)"></i>2021-N1 (nonprime)</span><span><i style="background:var(--s2)"></i>2021-P1 (prime)</span></div>
-    <div class="pair" id="chargeoff"></div>
-    <span class="tag">Share of loans charged off over the pool's life, tracked across 190 monthly SEC filings. Overall: 31% (N1), 42% (N3), 5% (P1).</span>
-  </div>
-  <p class="callout">Default risk rises with lower income, higher payment-to-income, higher loan-to-value and older cars. The 2024-P2 prime pool had charged off 3.3% of loans by month 29, against 2.6% for 2021-P1 at the same age. Higher incomes have not yet bought better credit, because longer terms and thinner equity offset them.</p>
+  <p class="meta">Top 2026 models: Nissan Rogue, Tesla Model 3, Ram 1500, Ford F-150, Chevy Equinox, Tesla Model Y, Silverado 1500, Jeep Grand Cherokee, Chevy Trax, Toyota Camry. New cars are 2.0% of 2026 loans (2,428), all Stellantis (Jeep 1,702, Ram 494, Chrysler 123, Dodge 109) from Carvana's own dealerships.</p>
 </section>
 
 <section>
-  <span class="eyebrow">Geography</span>
+  <span class="eyebrow">Credit check · status at Sep 30, 2026</span>
+  <h2>Customers are paying about as well as a year ago</h2>
+  <p>The October 15 SEC filings report the status of every loan in Carvana's 19 active public pools: 338K active loans and $6.6B outstanding. Comparing each pool with last year's pool at the same age and season removes most seasoning and seasonal effects.</p>
+  <div class="panel">
+    <h3>Share 30+ days late at the same age: last year's pool vs this year's</h3>
+    <div class="legend"><span><i style="background:var(--s1)"></i>Sep 2025 (prior-year pool)</span><span><i style="background:var(--s2)"></i>Sep 2026 (current pool)</span></div>
+    <div class="pair" id="sameage"></div>
+    <span class="tag">Share of active loans 30+ days past due. Pairs: 2024-P2/2025-P2, 2024-P3/2025-P3, 2024-P4/2025-P4, 2025-P1/2026-P1, 2025-P2/2026-P2.</span>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h3>Charge-offs to date by income</h3>
+      <div class="legend"><span><i style="background:var(--s1)"></i>Loans in 2024 pools</span><span><i style="background:var(--s2)"></i>Loans in 2025 pools</span></div>
+      <div class="pair" id="coinc"></div>
+      <span class="tag">Share of loans charged off as of Sep 30, 2026. Includes loans later re-coded as third-party sales.</span>
+    </div>
+    <div class="panel">
+      <h3>Active book by vintage</h3>
+      <div class="tw"><table>
+        <thead><tr><th>Pools</th><th class="n">Active</th><th class="n">30+ late</th><th class="n">60+ late</th></tr></thead>
+        <tbody>
+          <tr><td>2021–22 prime</td><td class="n">64,812</td><td class="n">6.2%</td><td class="n">3.0%</td></tr>
+          <tr><td>2021 nonprime</td><td class="n">14,022</td><td class="n">29.8%</td><td class="n">17.4%</td></tr>
+          <tr><td>2024 prime</td><td class="n">42,714</td><td class="n">3.6%</td><td class="n">1.6%</td></tr>
+          <tr><td>2025 prime</td><td class="n">95,723</td><td class="n">2.5%</td><td class="n">1.0%</td></tr>
+          <tr><td>2026 prime</td><td class="n">121,226</td><td class="n">0.7%</td><td class="n">0.2%</td></tr>
+        </tbody>
+      </table></div>
+      <span class="tag">Older pools carry their weakest remaining borrowers.</span>
+    </div>
+  </div>
+  <p class="callout">There is no broad deterioration through September 2026, despite higher rates and gas prices. The step-down came earlier: 2024-P2 has charged off 3.9% of loans by month 29, against 2.3% for 2021-P1 by month 28. 2021 was helped by the used-car price spike, and newer loans carry longer terms and thinner equity. Over the whole life of the 2021 pools, about 1 in 3 nonprime borrowers charged off, vs about 5% of prime.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Geography · loans made in 2026</span>
   <h2>Strongest in middle-income Sunbelt and Midwest states</h2>
   <div class="grid2">
     <div class="panel">
       <h3>Penetration index (100 = population share)</h3>
       <div class="div" id="states"></div>
-      <span class="tag">Share of 2025–26 Carvana prime loans ÷ share of US population. Arizona is Carvana's home market.</span>
+      <span class="tag">Share of Carvana's 2026 loans ÷ share of US population. Arizona is Carvana's home market.</span>
     </div>
     <div class="panel">
       <h3>Where customers live (CFPB complainant ZIPs vs US)</h3>
@@ -196,32 +221,32 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
           <tr><td>Urban (8K+)</td><td class="n">15.4%</td><td class="n">12.9%</td><td class="n">10.0%</td></tr>
         </tbody>
       </table></div>
-      <span class="tag">Complainant ZIPs matched to ACS 2024. Median ZIP household income $79K (US: $80K); median age 37.3 (US: 39.1).</span>
+      <span class="tag">Complainant ZIPs (2021 to Oct 2026) matched to ACS 2024. Median ZIP household income $79K (US: $80K); median age 37.3 (US: 39.1).</span>
     </div>
   </div>
-  <p class="callout">Across states, Carvana's penetration falls as median household income (rank correlation −0.32) and college share (−0.29) rise. Its borrowers earn about 1.14 times their state's median household income: above-median earners in middle-income states. Complaint tags show modestly more servicemembers (14.5% vs 12.1% industry) and fewer older Americans (3.3% vs 5.2%).</p>
+  <p class="callout">Across states, Carvana's penetration falls as median household income (rank correlation −0.32) and college share (−0.34) rise. Its borrowers earn about 1.2 times their state's median household income: above-median earners in middle-income states. Servicemembers were 14.9% of Carvana's 2026 vehicle-loan complaints, against a 12.1% industry baseline.</p>
 </section>
 
 <section>
   <span class="eyebrow">Why they choose Carvana</span>
   <h2>Convenience first, then price, then financing</h2>
   <div class="panel">
-    <h3>What reviewers mention: Carvana vs CarMax app reviews, 2024+</h3>
-    <div class="legend"><span><i style="background:var(--s1)"></i>Carvana (4,482 reviews)</span><span><i style="background:var(--s2)"></i>CarMax (817 reviews)</span></div>
+    <h3>What reviewers mention in 2026: Carvana vs CarMax app reviews</h3>
+    <div class="legend"><span><i style="background:var(--s1)"></i>Carvana (1,319 reviews)</span><span><i style="background:var(--s2)"></i>CarMax (224 reviews)</span></div>
     <div class="pair" id="themes"></div>
-    <span class="tag">Share of reviews mentioning each theme (keyword match). Apple App Store and Google Play.</span>
+    <span class="tag">Share of 2026 reviews (through Oct 27) mentioning each theme, by keyword match. Apple App Store and Google Play.</span>
   </div>
   <div class="tw"><table>
     <thead><tr><th>Driver</th><th>Verdict</th><th>Evidence</th></tr></thead>
     <tbody>
-      <tr><td>Convenience</td><td><span class="verdict">#1</span></td><td>Convenience 27.8% plus "saves time" 16.0% as the primary reason. Ease appears in 45% of 5-star Carvana reviews.</td></tr>
-      <tr><td>Price</td><td><span class="verdict">#2, rising</span></td><td>Primary reason for 22% in 2021 and 27% in 2025. No dealer fees. Also the top reason people reject Carvana (26%).</td></tr>
-      <tr><td>Financing access</td><td><span class="verdict">Matters, and hurts</span></td><td>Primary reason for 15%. Financing is the top theme in 1–2 star reviews (20%) and in 30% of CFPB complaints ("getting a loan").</td></tr>
-      <tr><td>Brand and trust</td><td><span class="verdict v-mac">Parity</span></td><td>7% primary. Trust is level with CarMax (Bespoke 2.10 vs 2.15; Morgan Stanley 56% vs 52%). 69% of customers know another Carvana customer, vs 24% of all adults.</td></tr>
-      <tr><td>Age and gender</td><td><span class="verdict v-mac">Weak data</span></td><td>"Roughly the car-buying population, slightly younger" (Carvana). Fewer older Americans in complaints. Millennials were 65% of Carvana EV buyers.</td></tr>
+      <tr><td>Convenience</td><td><span class="verdict">#1</span></td><td>Convenience 27.8% plus "saves time" 16.0% as the primary reason. Ease mentions rose from 32% of Carvana reviews in 2025 to 37% in 2026.</td></tr>
+      <tr><td>Price</td><td><span class="verdict">#2, rising</span></td><td>Primary reason for 22% in 2021 and 27% in 2025. No dealer fees, and the CEO says new FTC fee rules "directionally" benefit Carvana. Price is also the top reason people reject Carvana.</td></tr>
+      <tr><td>Financing access</td><td><span class="verdict">Matters</span></td><td>Primary reason for 15%. "Getting a loan" fell from 28% of Carvana's complaints in 2025 to 21% in 2026 as the prime mix rose.</td></tr>
+      <tr><td>Brand and trust</td><td><span class="verdict">Improving</span></td><td>Trust is level with CarMax in surveys. NPS is up 9 points over two years. Complaints per 100K cars sold halved year over year (33 vs 67). 69% of customers know another Carvana customer.</td></tr>
+      <tr><td>Age and gender</td><td><span class="verdict v-mac">Weak data</span></td><td>"Roughly the car-buying population, slightly younger" (Carvana). Fewer older Americans in complaints.</td></tr>
     </tbody>
   </table></div>
-  <p class="callout"><b>On Hertz:</b> Hertz is a Carvana supplier, not a competitor. It has sold ex-rental cars through Carvana since 2021. The real competitor for buyers is CarMax, followed by franchise dealers and Amazon Autos.</p>
+  <p class="callout"><b>On Hertz:</b> Hertz is a Carvana supplier, not a competitor. The CEO says Carvana is "knocking on the door of becoming the largest" used-car seller, with just over 2% of the used market. CarMax remains the main competitor for buyers.</p>
 </section>
 
 <section>
@@ -232,27 +257,27 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
       <h3>Primary reason for selling to Carvana</h3>
       <div class="legend"><span><i style="background:var(--s1)"></i>Convenience</span><span><i style="background:var(--s2)"></i>Highest price</span></div>
       <div class="pair" id="sellwhy"></div>
-      <span class="tag">Bespoke CVNA survey waves (N=122–190 Carvana sellers per wave)</span>
+      <span class="tag">Bespoke CVNA survey waves; June 2025 is the latest public wave (N=122–190 sellers per wave)</span>
     </div>
     <div class="panel">
       <h3>When sellers compare offers in public</h3>
       <div class="tw"><table>
         <thead><tr><th>Source</th><th class="n">Carvana higher</th><th class="n">Rival higher</th></tr></thead>
         <tbody>
-          <tr><td>r/carvana seller posts</td><td class="n">50</td><td class="n">11</td></tr>
-          <tr><td class="meta">· vs CarMax / dealers / KBB</td><td class="n">16 / 28 / 5</td><td class="n">2 / 6 / 1</td></tr>
+          <tr><td>r/carvana seller posts, 2022 to Oct 2026</td><td class="n">50</td><td class="n">11</td></tr>
+          <tr><td class="meta">· 2026 so far</td><td class="n">6</td><td class="n">1</td></tr>
           <tr><td>r/askcarsales (dealer staff)</td><td class="n">16</td><td class="n">14</td></tr>
           <tr><td>r/personalfinance</td><td class="n">8</td><td class="n">3</td></tr>
           <tr><td>Survey: offer better vs worse</td><td class="n">60.9%</td><td class="n">15.6%</td></tr>
         </tbody>
       </table></div>
-      <span class="tag">Sentence-level matches of "X offered more than Y" in posts since 2022. Small counts; directional.</span>
+      <span class="tag">Sentence-level matches of "X offered more than Y". Small counts; directional.</span>
     </div>
   </div>
   <div class="tw"><table>
     <thead><tr><th>Seller archetype</th><th>Signal</th></tr></thead>
     <tbody>
-      <tr><td>Upgrader / trade-in</td><td>The largest group. About a fifth of seller posts mention buying or replacing a car. Trading in on a Carvana purchase usually keeps the sales-tax credit.</td></tr>
+      <tr><td>Upgrader / trade-in</td><td>The largest group: about a fifth of seller posts mention buying or replacing a car. Trading in on a Carvana purchase usually keeps the sales-tax credit.</td></tr>
       <tr><td>Payoff or negative-equity escaper</td><td>Carvana pays off the lender. Negative equity comes up in 128 r/personalfinance and 74 r/askcarsales posts that mention Carvana.</td></tr>
       <tr><td>Mover / relocator</td><td>4.6% of seller posts.</td></tr>
       <tr><td>Private-sale avoider</td><td>Wants no Marketplace hassle. 47.7% of all US sellers still sell privately.</td></tr>
@@ -260,17 +285,17 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
     </tbody>
   </table></div>
   <p class="persona"><b>Persona (our synthesis):</b> A suburban owner of a 3 to 7-year-old car, often still financed, who is trading up or getting out of a payment. They want a firm offer in minutes, valid for 7 days and paid at pickup. They check one other quote and never list privately.</p>
-  <p class="callout">Nothing locks sellers in, and dealer staff see offers as a coin flip. Carvana keeps winning on the margin it earns per car ($6,997 total gross profit per unit in Q3'26), on being the first place sellers think of (60% of would-be online sellers name it, vs 14% for CarMax), and on handling the payoff and pickup. Sellers leak over condition disputes (20% of seller posts), title and payoff delays (19%) and offer cuts at pickup (3.6%).</p>
+  <p class="callout">Sellers wrote 8.0% of Carvana's 2026 app reviews, up from 6.8% in 2025, and seller posts hold steady at about 29% of r/carvana. Nothing locks sellers in. Carvana keeps winning on the margin it earns per car ($6,997 total gross profit per unit in Q3'26), on being the first place sellers think of, and on handling the payoff and pickup. Sellers leak over condition disputes (20% of seller posts), title and payoff delays (19%) and offer cuts at pickup (3.6%).</p>
 </section>
 
 <section>
   <span class="eyebrow">Supply side</span>
-  <h2>Carvana's customer-sourced flow is growing about 40% while CarMax's is flat</h2>
+  <h2>Customer-sourced cars grew 38% in Q3; production is the bottleneck</h2>
   <div class="panel">
     <h3>YoY growth: cars bought from consumers</h3>
     <div class="legend"><span><i style="background:var(--s1)"></i>Carvana wholesale vehicle units (customer-sourced proxy)</span><span><i style="background:var(--s2)"></i>CarMax vehicles bought from consumers</span></div>
     <div class="tw"><svg id="supply" viewBox="0 0 640 280" width="100%" role="img" aria-label="Grouped bar chart of year-over-year growth by quarter, Carvana versus CarMax"></svg></div>
-    <span class="tag">CarMax fiscal quarters aligned to calendar; its Sep–Nov quarter is not reported yet. Sources: Carvana shareholder letters; CarMax earnings releases (SEC EDGAR).</span>
+    <span class="tag">CarMax fiscal quarters aligned to calendar; its Sep–Nov quarter reports in December. Sources: Carvana shareholder letters; CarMax earnings releases (SEC EDGAR).</span>
   </div>
   <div class="tw"><table>
     <thead><tr><th>Quarter</th><th class="n">Carvana retail</th><th class="n">Carvana wholesale</th><th class="n">Wholesale ÷ retail</th><th class="n">CarMax from consumers</th></tr></thead>
@@ -282,55 +307,74 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
       <tr class="hl"><td>Q3'26</td><td class="n">217,385</td><td class="n">111,119</td><td class="n">0.51</td><td class="n">n/a</td></tr>
     </tbody>
   </table></div>
-  <p class="callout">The 10-K says wholesale vehicle units are "primarily acquired from customers." The ratio to retail has held near 0.5 since 2023. Over the trailing twelve months they total 381K, up 44%. Inventory caught up in Q3: 87,370 website units, up 30% YoY. Seller activity online is steady too: seller posts are 25–31% of r/carvana every year since 2021.</p>
+  <div class="panel">
+    <h3>What management said on Oct 28</h3>
+    <div class="tw"><table>
+      <tbody>
+        <tr><td><b>CEO Ernie Garcia</b></td><td>"our rate of growth is constrained by our ability to scale the supply chain. And so we think that is by far and away the biggest driver."</td></tr>
+        <tr><td><b>CFO Mark Jenkins</b></td><td>Q3 was "our first quarter producing more than 200,000 units," and "we slightly outproduced retail units sold." Cars immediately available on the website are still growing "much below what our sales growth is."</td></tr>
+        <tr><td><b>Garcia</b></td><td>Inventory "was growing a little slower than we kind of ideally would have liked." Gas prices and rates cost "about $200 per unit" in the quarter.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
   <div class="panel">
     <h3>What actually constrains supply</h3>
     <div class="tw"><table>
       <thead><tr><th>Driver</th><th>Type</th><th>Direction</th></tr></thead>
       <tbody>
-        <tr><td><b>Reconditioning throughput</b>: "the supply side of our business… gets better through our execution"</td><td><span class="verdict">Carvana</span></td><td>Improving. 21 ADESA sites integrated, 3 full buildouts due in 2027.</td></tr>
+        <tr><td><b>Reconditioning throughput</b></td><td><span class="verdict">Carvana</span></td><td>Improving. Production passed 200K and slightly exceeded sales; 21 ADESA sites integrated, 3 full buildouts due in 2027.</td></tr>
         <tr><td><b>Sourcing mix</b>: auctions and partners such as Hertz fill the gap above customer supply</td><td><span class="verdict">Carvana</span></td><td>Watch. Auction cars carry fees and lower gross profit.</td></tr>
-        <tr><td><b>Missing late-model cars</b>: about 8M cars never built in 2020–22; off-lease returns bottomed in 2025</td><td><span class="verdict v-mac">Macro</span></td><td>Easing. Off-lease volume goes from about 190K to 220K a month in H2'26 and keeps rising into 2027.</td></tr>
-        <tr><td><b>Cars kept longer</b>: average age 12.8 years</td><td><span class="verdict v-mac">Macro</span></td><td>Structural and slow.</td></tr>
-        <tr><td><b>Lease-buyout restrictions</b> at Honda, Ford, GM, Hyundai/Kia and Tesla</td><td><span class="verdict v-mac">Industry</span></td><td>Persistent. Partly offset by owning ADESA.</td></tr>
+        <tr><td><b>Lean used-car supply</b>: Manheim 207.4 in mid-October, +2.2% YoY; wholesale supply 28.2 days. Cox: "Supply, not demand, appears to be what slowed depreciation."</td><td><span class="verdict v-mac">Macro</span></td><td>Off-lease volume keeps recovering from its 2025 trough.</td></tr>
+        <tr><td><b>Cars kept longer</b> (average age 12.8 years) and lease-buyout restrictions</td><td><span class="verdict v-mac">Industry</span></td><td>Structural. Partly offset by owning ADESA.</td></tr>
       </tbody>
     </table></div>
   </div>
-  <p class="callout"><b>Disclosure flags:</b> Carvana stopped reporting ADESA marketplace units in 2026, and it has not disclosed the customer-sourced share of retail units since 2023, when it was 85%.</p>
+  <p class="callout"><b>Disclosure flags:</b> Carvana no longer reports ADESA marketplace units, and it has not disclosed the customer-sourced share of retail units since 2023, when it was 85%.</p>
 </section>
 
 <section>
   <span class="eyebrow">Method</span>
-  <h2>How the data was gathered</h2>
+  <h2>Data as of October 2026</h2>
   <div class="tw"><table>
-    <thead><tr><th>Source</th><th>What we pulled</th><th class="n">Size</th></tr></thead>
+    <thead><tr><th>Source</th><th>Latest data used</th><th class="n">Size</th></tr></thead>
     <tbody>
-      <tr><td>SEC EDGAR loan-level filings (ABS-EE, Reg AB II)</td><td>Credit score, payment-to-income, payment, state, make/model/year, car value, term, APR and co-borrower for every loan</td><td class="n">658K Carvana + 896K CarMax loans</td></tr>
-      <tr><td>SEC monthly status files</td><td>Charge-offs loan by loan for 2021-N1, N3 and P1; latest status for 2024–25 pools</td><td class="n">4.1M records</td></tr>
-      <tr><td>CFPB complaint API</td><td>Issue, state, ZIP and servicemember/older-American tags for Carvana, Bridgecrest, DriveTime and CarMax</td><td class="n">14,305</td></tr>
-      <tr><td>Census ACS 2024 bulk files</td><td>Income, age, education, density, veterans and vehicles by state and ZIP</td><td class="n">33,772 ZIPs</td></tr>
-      <tr><td>App Store and Google Play</td><td>Carvana and CarMax app reviews</td><td class="n">13,838</td></tr>
-      <tr><td>Reddit archive (Arctic Shift)</td><td>All r/carvana posts; Carvana mentions in r/askcarsales and r/personalfinance</td><td class="n">24,264</td></tr>
-      <tr><td>Bespoke CVNA surveys and DBRS releases</td><td>Reasons over time, word-of-mouth networks, credit crosstabs; nonprime pool stats 2022–25</td><td class="n">4 waves, 5 deals</td></tr>
+      <tr><td>SEC loan-level filings (ABS-EE, Reg AB II)</td><td>Loans made through Jul 2026 (Carvana) and Aug 2026 (CarMax, incl. its Oct 2026 pool)</td><td class="n">658K + 966K loans</td></tr>
+      <tr><td>SEC monthly status files</td><td>Every loan in 19 active Carvana pools at Sep 30, 2026 (filed Oct 15), plus Sep 2025 for comparison</td><td class="n">4.8M records</td></tr>
+      <tr><td>Carvana results</td><td>Q3'26 letter, 10-Q and call (Oct 28)</td><td class="n">—</td></tr>
+      <tr><td>CFPB complaint API</td><td>Through Oct 28, 2026</td><td class="n">14,305</td></tr>
+      <tr><td>App Store, Google Play, Reddit</td><td>Through Oct 27–29, 2026</td><td class="n">13.8K reviews, 24.3K posts</td></tr>
+      <tr><td>Cox Automotive</td><td>Manheim mid-October (Oct 19); September used inventory</td><td class="n">—</td></tr>
+      <tr><td>Census ACS</td><td>2024 (the 2025 tables are not yet published)</td><td class="n">33,772 ZIPs</td></tr>
+      <tr><td>Bespoke surveys, DBRS</td><td>Latest public: Jun 2025 survey wave; 2025-N1 nonprime pool</td><td class="n">—</td></tr>
     </tbody>
   </table></div>
-  <p class="meta">Not collected: carvana.com and its press site are behind a bot challenge, which we did not bypass; the loan data covers the vehicle profile instead. Google Trends and Wikipedia pageviews were rate-limited from this network. The CFPB no longer serves complaint narratives through its API.</p>
+  <p class="meta">Not collected: carvana.com and its press site are behind a bot challenge, which we did not bypass. Google Trends and Wikipedia pageviews were rate-limited from this network. CFPB no longer publishes complaint narratives. Bespoke's later waves and Carvana's 2022–26 nonprime pools are not public.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Next</span>
+  <h2>What to watch</h2>
+  <ol class="bl">
+    <li><b>Mid-November SEC filings:</b> 30+ day delinquency in the 2025–26 pools against the same-age comparison above. Watch under-$50K and sub-650 FICO borrowers first.</li>
+    <li><b>Q4'26 results (February):</b> wholesale ÷ retail units (0.51 now; below about 0.45 would signal sellers leaking), website inventory vs sales growth, and the move to GAAP reporting in 2027.</li>
+    <li><b>CarMax:</b> strategic update on Nov 3, and its Sep–Nov consumer buys in December.</li>
+  </ol>
 </section>
 
 <footer>
   <h3>Caveats</h3>
   <ul class="src">
-    <li>Loan pools are securitized subsets. Prime pools are selected for credit, and public loan-level files exist only for the 2020–22 and 2024–26 prime pools and the 2021 nonprime pools. Income and FICO describe financed buyers in those pools, not every customer.</li>
-    <li>Implied income uses the reported payment-to-income ratio; joint applications combine incomes (26% of 2026 loans).</li>
-    <li>Complaints, reviews and Reddit are self-selected and skew to problems. Use them for comparisons, not levels. Theme tags are keyword matches.</li>
-    <li>Bespoke's Carvana sub-samples are small (190 sellers, 519 buyers in June 2025).</li>
+    <li>Loan pools are securitized subsets. Prime pools are selected for credit, and CarMax's public pools exclude buyers with FICO under 650. Income and FICO describe financed buyers in those pools, not every customer.</li>
+    <li>Implied income uses the reported payment-to-income ratio; joint applications combine incomes (26% of Carvana's 2026 loans).</li>
+    <li>Charge-off rates are shares of loans, not dollar losses. 2021 vintages were helped by the 2021–22 used-car price spike.</li>
+    <li>Complaints, reviews and Reddit are self-selected and skew to problems. Use them for comparisons and trends, not levels. Theme tags are keyword matches.</li>
   </ul>
   <h3>Sources</h3>
   <ul class="src">
-    <li>SEC EDGAR: Carvana shareholder letters Q2'23–Q3'26, FY25 10-K, Q3'26 10-Q; Carvana Auto Receivables Trust and CarMax Auto Owner Trust ABS-EE filings; CarMax earnings releases</li>
+    <li>SEC EDGAR: Carvana Q3'26 letter and 10-Q (Oct 28, 2026); Carvana Auto Receivables Trust and CarMax Auto Owner Trust ABS-EE filings (Oct 15, 2026 and Oct 15, 2025 monthly reports; issuance files); CarMax earnings releases</li>
+    <li><a href="https://www.fool.com/earnings/call-transcripts/2026/10/29/carvana-cvna-q3-2026-earnings-call-transcript/">Q3'26 call transcript</a> · <a href="https://www.coxautoinc.com/insights/manheim-used-vehicle-value-index-mid-october-2026-trends/">Manheim mid-October 2026</a> · <a href="https://www.coxautoinc.com/insights/used-vehicle-inventory-september-2026/">Cox September used inventory</a></li>
     <li><a href="https://www.consumerfinance.gov/data-research/consumer-complaints/">CFPB complaint database</a> · <a href="https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/">ACS 2024 summary files</a> · <a href="https://arctic-shift.photon-reddit.com/">Arctic Shift</a> · App Store / Google Play reviews</li>
-    <li>Bespoke CVNA surveys: <a href="https://bespokeintel.com/wp-content/uploads/2025/07/Bespoke-CVNA-10000N-Survey-Wave-12-1.pdf">Jun 2025</a>, <a href="https://bespokeintel.com/wp-content/uploads/2025/02/Bespoke-CVNA-Custom-Survey-Wave-11-Februarey-2025-2.pdf">Feb 2025</a>, <a href="https://bespokeintel.com/wp-content/uploads/2022/02/Bespoke-CVNA-Custom-Survey-December-2021-Wave-2-4.pdf">Dec 2021</a> · DBRS <a href="https://dbrs.morningstar.com/research/448343">2025-N1</a> and earlier N deals · <a href="https://finance.yahoo.com/markets/stocks/articles/carvana-winning-customers-faces-costly-021700810.html">Morgan Stanley AlphaWise</a></li>
-    <li>Cox Automotive: <a href="https://www.coxautoinc.com/insights/used-vehicle-inventory-september-2026/">Sep 2026 used inventory</a>, <a href="https://www.automotive-fleet.com/news/wholesale-used-vehicle-values-fall-as-cox-automotive-cuts-2026-forecast">off-lease outlook</a> · <a href="https://leasematurity.com/learn/lease-buyouts-by-manufacturer/">lease buyouts</a> · <a href="https://www.autoremarketing.com/ar/wholesale/hertz-sell-vehicles-directly-consumers-carvana/">Hertz–Carvana</a> · <a href="https://www.businesswire.com/news/home/20240723180411/en/Carvana-EV-Trends-Report-Reveals-Broadening-Appeal-and-Accessibility-of-Used-EVs">Carvana EV Trends</a></li>
+    <li>Bespoke CVNA surveys: <a href="https://bespokeintel.com/wp-content/uploads/2025/07/Bespoke-CVNA-10000N-Survey-Wave-12-1.pdf">Jun 2025</a>, <a href="https://bespokeintel.com/wp-content/uploads/2025/02/Bespoke-CVNA-Custom-Survey-Wave-11-Februarey-2025-2.pdf">Feb 2025</a>, <a href="https://bespokeintel.com/wp-content/uploads/2022/02/Bespoke-CVNA-Custom-Survey-December-2021-Wave-2-4.pdf">Dec 2021</a> · DBRS <a href="https://dbrs.morningstar.com/research/448343">2025-N1</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/carvana-winning-customers-faces-costly-021700810.html">Morgan Stanley AlphaWise</a> · <a href="https://leasematurity.com/learn/lease-buyouts-by-manufacturer/">lease buyouts</a> · <a href="https://www.autoremarketing.com/ar/wholesale/hertz-sell-vehicles-directly-consumers-carvana/">Hertz–Carvana</a></li>
   </ul>
 </footer>
 </div>
@@ -339,8 +383,8 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
 <script>
 (function(){
   const el=(t,c,txt)=>{const e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e};
-  // income stack
-  const inc=[['Carvana nonprime 2021',[58.5,34.4,4.8,2.2]],['Carvana prime 2021',[34.5,43.3,13.2,8.9]],['Carvana prime 2024',[17.8,42.5,20.5,19.2]],['Carvana prime 2026',[12.7,38.9,24.2,24.1]],['CarMax 2025–26',[19.7,36.9,21.2,22.2]]];
+  // income stack (by origination year)
+  const inc=[['Carvana nonprime 2020–21',[58.4,34.5,4.8,2.3]],['Carvana prime 2021',[34.2,43.4,13.3,9.1]],['Carvana prime 2025',[15.3,41.8,22.5,20.4]],['Carvana prime 2026',[12.5,38.8,24.3,24.3]],['CarMax 2026',[14.6,34.7,23.0,27.7]]];
   const bands=['Under $50K','$50–100K','$100–150K','$150K+'];
   const st=document.getElementById('incstack');
   inc.forEach(([name,v])=>{
@@ -349,7 +393,6 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
     v.forEach((x,i)=>{const s=el('span','seg b'+(i+1),x>=8?Math.round(x)+'%':'');s.style.flex=x+' 0 0';s.dataset.tip=name+' · '+bands[i]+': '+x.toFixed(1)+'%';s.tabIndex=0;bar.appendChild(s)});
     st.appendChild(bar);
   });
-  // paired bars
   function pair(id,rows,c1,c2,max,fmt){
     const p=document.getElementById(id);
     rows.forEach(([k,a,b,n1,n2],idx)=>{
@@ -362,13 +405,14 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
       if(idx<rows.length-1){p.appendChild(el('span','gap'))}
     });
   }
-  const pct=v=>v.toFixed(1)+'%';
-  pair('makes',[['Chevrolet',10.5,7.2],['Ford',9.6,8.0],['Toyota',8.3,12.9],['Jeep',8.0,5.2],['Nissan',7.0,8.5],['Honda',5.3,9.0],['Tesla',3.4,0.7]].map(r=>[...r,'Carvana 2026','CarMax 2025–26']),'var(--s1)','var(--s2)',13,pct);
-  pair('chargeoff',[['Under $35K',36.7,7.9],['$35–50K',32.3,6.9],['$50–75K',28.1,4.7],['$75–100K',23.5,2.6],['$100K+',22.4,1.6]].map(r=>[...r,'2021-N1','2021-P1']),'var(--s1)','var(--s2)',40,pct);
-  pair('themes',[['Ease / convenience',33.9,12.6],['Delivery / pickup',11.0,2.7],['Financing / credit',9.6,7.6],['Price / offer',7.3,6.5],['Customer service',7.3,5.9],['Mechanical / condition',4.1,3.7],['Trust / scam',3.7,3.3]].map(r=>[...r,'Carvana','CarMax']),'var(--s1)','var(--s2)',36,pct);
-  pair('sellwhy',[['Jun 2021',51.5,46.7],['Dec 2021',46.1,51.8],['Jun 2025',53.7,43.2]].map(r=>[...r,'Convenience','Highest price']),'var(--s1)','var(--s2)',60,pct);
-  // diverging state index
-  const states=[['AZ',213],['SC',167],['GA',159],['NM',159],['IN',148],['OK',146],['OH',139],['TN',131],['TX',110],['FL',87],['MA',79],['NY',66],['CA',64],['WA',62],['MN',56],['UT',48],['MT',14],['ND',8]];
+  const pct1=v=>v.toFixed(1)+'%', pct2=v=>v.toFixed(2)+'%';
+  pair('makes',[['Chevrolet',10.5,6.6],['Ford',9.5,6.8],['Toyota',8.3,14.0],['Jeep',8.1,4.5],['Nissan',7.0,8.2],['Honda',5.3,8.8],['Tesla',3.5,1.4]].map(r=>[...r,'Carvana 2026','CarMax 2026']),'var(--s1)','var(--s2)',15,pct1);
+  pair('sameage',[['16–17 months',2.69,2.95],['13–14 months',2.34,2.35],['10–11 months',1.50,1.67],['7–8 months',1.38,0.99],['4–5 months',0.82,0.91]].map(r=>[...r,'Sep 2025','Sep 2026']),'var(--s1)','var(--s2)',3.5,pct2);
+  pair('coinc',[['Under $50K',4.81,1.94],['$50–100K',3.60,1.51],['$100–150K',2.56,1.09],['$150K+',1.92,0.60]].map(r=>[...r,'2024 pools','2025 pools']),'var(--s1)','var(--s2)',5.5,pct2);
+  pair('themes',[['Ease / convenience',37.1,16.5],['Delivery / pickup',10.0,1.8],['Financing / credit',8.4,7.6],['Price / offer',8.2,5.4],['Customer service',6.6,5.4],['Trust / scam',4.9,3.1],['Mechanical / condition',4.0,3.1]].map(r=>[...r,'Carvana 2026','CarMax 2026']),'var(--s1)','var(--s2)',40,pct1);
+  pair('sellwhy',[['Jun 2021',51.5,46.7],['Dec 2021',46.1,51.8],['Jun 2025',53.7,43.2]].map(r=>[...r,'Convenience','Highest price']),'var(--s1)','var(--s2)',60,pct1);
+  // diverging state index (2026 loans)
+  const states=[['AZ',203],['NM',164],['SC',162],['OK',153],['GA',151],['IN',150],['OH',143],['PA',128],['TX',108],['FL',87],['MA',78],['NY',71],['CA',63],['WA',61],['MN',56],['UT',46],['MT',11],['ND',8]];
   const sd=document.getElementById('states');
   states.forEach(([s,v])=>{
     sd.appendChild(el('span','k',s));
@@ -405,7 +449,6 @@ footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
     const t=mk('text',{x:cx,y:B+18,'text-anchor':'middle',class:'lbl'});t.textContent=lab;
   });
   const lt=mk('text',{x:L+gw*6+gw/2-bw/2-1,y:y(38.3)-6,'text-anchor':'middle',class:'lbl'});lt.textContent='+38%';
-
   // tooltips
   const tip=document.getElementById('tip');
   function show(e,node){tip.textContent=node.dataset.tip;tip.style.opacity=1;move(e)}

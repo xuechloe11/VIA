@@ -1,27 +1,49 @@
-# Carvana: Who Sells, Who Buys, and Is Supply Shrinking?
+# Carvana: Who Sells, Who Buys, and Is Supply Shrinking? (October 2026)
 
-As of Oct 29, 2026 (includes Q3'26 results, released Oct 28).
+As of Oct 29, 2026. Every source is refreshed to its latest October 2026 vintage (see **Data as of**).
 
-Tags: **[F]** Carvana/CarMax filing or call · **[L]** loan-level SEC data (Reg AB II asset files, ~1.5M loans) · **[S]** Bespoke 10K-person consumer survey (Jun 2025 unless noted) · **[C]** CFPB complaint database · **[R]** app reviews / Reddit · **[P]** press / industry · **[M]** our estimate
+Tags: **[F]** Carvana/CarMax filing or call · **[L]** loan-level SEC data (Reg AB II asset files) · **[S]** Bespoke consumer survey · **[C]** CFPB complaint database · **[R]** app reviews / Reddit · **[P]** press / industry · **[M]** our estimate
 
-## Bottom line
-1. **Carvana's buyer has moved upmarket fast.** In Carvana's prime loan pools, implied borrower income rose from **$62K (2021) to $97K (2026)**. Borrowers under $50K fell from 34% to 13%, and those over $100K rose from 22% to 49% **[L]**. That is faster than CarMax's financed buyers over the same years (+50% vs +35% from 2021 to 2025–26), while credit scores stayed flat (FICO ~700).
-2. **They are payment-maximizers.** 69% of 2026 prime loans run longer than 72 months, up from 10% in 2021. The median loan is $26K against a $28K car, and only a quarter of buyers put meaningful equity down **[L]**.
-3. **Carvana vs CarMax buyers: same income, weaker credit, longer loans, different cars.**
-   - Income: $93K vs $90K median.
-   - Credit: FICO 703 vs 755.
-   - Loan term: 75 vs 67 months.
-   - Cars: Carvana skews to Chevy, Ford, Jeep, Ram, pickups and Tesla (EVs 6% vs 1%). CarMax skews to Toyota and Honda **[L]**.
-4. **The heartland suburban product.**
-   - Arizona over-indexes 2.1x, then the Carolinas, Georgia, New Mexico, Indiana, Oklahoma, Arkansas and Ohio. California, New York and Washington under-index.
-   - State penetration falls with state income and college share. Carvana borrowers earn ~1.14x their state's median household income **[L][M]**.
-   - Complainants' ZIPs are 73% suburban/exurban and only 12% rural, vs 33% rural for the US population **[C]**.
-5. **Sellers are not leaving.** Cars bought from customers and wholesaled grew **+38% in Q3'26 (111K)**, holding at 0.51 per retail unit, while CarMax's consumer buys are flat **[F]**. The seller's motive has flipped from top dollar (2021 bubble) to convenience (2025) **[S]**. When sellers compare offers publicly, Carvana usually wins (50 to 11 on r/carvana) **[R]**.
-6. **Why buyers choose Carvana:**
-   - Convenience is the #1 reason. Ease appears in 34% of Carvana app reviews vs 13% of CarMax's **[R]**.
-   - Price is rising as a reason (22% → 27% primary) **[S]**.
-   - Financing access matters for the credit-challenged.
-   - Brand trust is at parity with CarMax. The brand spreads through dense word-of-mouth networks: 69% of customers know another Carvana customer, vs 24% of the public **[S]**.
+## Data as of
+| Source | Latest vintage used |
+|---|---|
+| Carvana results | Q3'26 shareholder letter, 10-Q and call (Oct 28, 2026) |
+| Who buys (loan level) | Loans made through Jul 2026 (Carvana) and Aug 2026 (CarMax, incl. the Oct 2026 CarMax 2026-4 pool) |
+| How customers are paying | Status of every loan in 19 active Carvana pools as of **Sep 30, 2026** (SEC filings of Oct 15, 2026), vs the Oct 15, 2025 filings |
+| CarMax consumer buying | Q2 FY27 (Jun–Aug 2026, reported Sep 29) |
+| Complaints | CFPB database through Oct 28, 2026 |
+| App reviews / Reddit | Through Oct 27 / Oct 29, 2026 |
+| Used-car market | Cox: Sep 2026 used inventory; Manheim mid-October 2026 (Oct 19) |
+| Census | ACS 2024 (2025 tables not yet published) |
+| Surveys / nonprime pools | Latest public Bespoke wave is Jun 2025; latest public nonprime pool stats are 2025-N1 |
+
+## Bottom line (October 2026)
+1. **The 2026 Carvana buyer** (loans made Jan–Jul 2026) earns a median **$98K**, and 49% earn over $100K. Median FICO is 707. They borrow $26.5K against a $28K car, pay $496 a month, and **70% take loans longer than 72 months** **[L]**.
+2. **Against CarMax's 2026 buyers: the same income, weaker credit, longer loans.**
+   - Income: $98K vs $102K median; $84K for single applicants at both.
+   - Credit: FICO 707 vs 769. A quarter of Carvana's buyers are under 650; CarMax's public pools have none.
+   - Loans: $26.5K vs $22.2K; 70% vs 23% longer than 72 months; 26% vs 48% put down real equity; APR 9.5% vs 7.2%.
+   - Cars: Chevy, Ford, Jeep, Ram and Tesla (EVs 6.4% vs 2.2%) vs Toyota and Honda **[L]**.
+3. **The move upmarket is industry-wide, not unique to Carvana.** Since 2021, financed-buyer income rose 58% at Carvana and 50% at CarMax. Management says Carvana's prime mix "really shift[ed] up" in Q3 **[L][F]**.
+4. **Customers are paying about as well as a year ago.** As of Sep 30, 2026, Carvana's public pools hold 338K active loans ($6.6B).
+   - Pools at the same age perform the same or better than last year's: at 13 months, 2.35% are 30+ days late vs 2.34%; at 7–8 months, 0.99% vs 1.38%.
+   - But 2024–25 prime vintages charge off faster than 2021's did: 2024-P2 is at 3.9% by month 29, vs 2.3% for 2021-P1 by month 28.
+   - Income is still the main risk sorter: 4.8% of under-$50K 2024 loans have charged off, vs 1.9% at $150K+ **[L]**.
+5. **The heartland suburban product, unchanged in 2026.**
+   - Over-index (100 = population share): AZ 203, NM 164, SC 162, OK 153, GA 151, IN 150, AR 145, OH 143.
+   - Under-index: CA 63, WA 61, NY 71, MN 56, UT and ID 46.
+   - Penetration falls with state income and college share. Borrowers earn ~1.2x their state's median household income **[L][M]**.
+6. **Sellers are not leaving; production is the constraint.**
+   - Wholesale vehicle units (customer-sourced) rose **+38% in Q3'26** to 111K, holding at 0.51 per retail unit **[F]**.
+   - Q3 production topped 200K for the first time and slightly exceeded sales. CEO: growth is "constrained by our ability to scale the supply chain" **[F]**.
+   - Sellers' share of Carvana app reviews rose in 2026 (8.0% vs 6.8%) **[R]**.
+7. **Convenience keeps winning, and complaints are falling.**
+   - Ease appears in 37% of 2026 Carvana app reviews (17% for CarMax) **[R]**.
+   - CFPB complaints about Carvana are down 31% year-to-date while units grew 39%, so complaints per 100K cars sold halved (33 vs 67) **[C][F]**.
+
+### Corrections vs the Oct 28 version
+- **2024–25 charge-off rates were undercounted.** Once a charged-off loan's car or balance is sold, the filings re-code it as "third-party sale," and the earlier count missed those. Corrected: 2024-P2 is 3.9% by month 29 (not 3.3%), against 2.3% for 2021-P1 at the same age (not 2.6%).
+- **The income-growth comparison is now by loan year.** CarMax's financed buyers moved upmarket almost as fast as Carvana's (+50% vs +58%), so the earlier "+50% vs +35%" overstated Carvana's lead.
 
 ---
 
@@ -30,186 +52,192 @@ Tags: **[F]** Carvana/CarMax filing or call · **[L]** loan-level SEC data (Reg 
 ### Who sells to Carvana
 | Trait | Evidence |
 |---|---|
-| **Motive: speed and certainty** | Primary reason sold: convenience 53.7%, highest price 43.2% (Jun 2025). In Dec 2021 it was the reverse: price 51.8%, convenience 46.1% **[S]** |
-| **Skips the dealer** | 46.8% did not visit a dealer first. 60% of sellers finish without talking to anyone before pickup **[S][F]** |
+| **Motive: speed and certainty** | Primary reason sold: convenience 53.7%, highest price 43.2% (Jun 2025, latest public wave). In Dec 2021 it was price 51.8%, convenience 46.1% **[S]** |
+| **Skips the dealer, self-serves** | 46.8% did not visit a dealer first **[S]**. 60% of sellers finish without talking to anyone before pickup **[F]** |
 | **Default first click** | 59.7% of would-be online sellers name Carvana first, vs 14.2% CarMax **[S]** |
-| **Gets the better number when they compare** | 60.9% of offer-requesters said Carvana's beat others, 15.6% worse **[S]**. Explicit comparisons in r/carvana seller posts: Carvana higher 50, competitor higher 11 (CarMax 16–2, dealers 28–6, KBB 5–1) **[R]** |
-| **Two entry points** | A trade-in during a Carvana purchase usually keeps the sales-tax credit, so it is sticky. A one-way sale means the seller buys elsewhere or exits the car **[F]** |
-| **The car** | Retail-grade cars get reconditioned and resold. The rest are wholesaled: ~0.5 wholesale units per retail unit, at about $10.6K each vs ~$28K retail **[F]** |
+| **Gets the better number when comparing** | 60.9% said Carvana's offer beat others, 15.6% worse **[S]**. In r/carvana seller posts since 2022, Carvana was higher 50 times and a competitor 11; in 2026 YTD, 6 to 1 **[R]** |
+| **Growing share of the conversation** | Sellers wrote 8.0% of 2026 Carvana app reviews, up from 6.8% in 2025. Reddit seller share is steady at ~29% **[R]** |
+| **The car** | Retail-grade cars get reconditioned and resold. The rest are wholesaled at ~0.5 per retail unit (~$10.6K each) **[F]** |
 
 ### Seller archetypes (Reddit + survey)
 | Archetype | Signal |
 |---|---|
-| **Upgrader / trade-in** | The largest group. About a fifth of r/carvana seller posts mention buying or replacing a car **[R]** |
-| **Payoff or negative-equity escaper** | Carvana pays off the lender. Negative equity comes up in 128 r/personalfinance and 74 r/askcarsales Carvana posts; payoff/lender issues appear in 9.5% of r/carvana seller posts **[R]** |
-| **Mover / relocator** | 4.6% of r/carvana seller posts **[R]** |
-| **Private-sale avoider** | Wants no tire-kickers or Marketplace hassle. 47.7% of all US sellers still sell privately **[S][R]** |
-| **Lease-equity harvester** | Big in 2020–22. Now mostly blocked by captive-lender buyout restrictions **[R][P]** |
+| **Upgrader / trade-in** | The largest group (~a fifth of seller posts mention buying or replacing a car). Trading in on a Carvana purchase usually keeps the sales-tax credit **[R]** |
+| **Payoff or negative-equity escaper** | Carvana pays off the lender. Negative equity comes up in 128 r/personalfinance and 74 r/askcarsales Carvana posts **[R]** |
+| **Mover** | 4.6% of seller posts **[R]** |
+| **Private-sale avoider** | 47.7% of all US sellers still sell privately **[S]** |
+| **Lease-equity harvester** | Big in 2020–22. Now mostly blocked by captive buyout restrictions **[P]** |
 
-**Persona [M]:** A suburban owner of a 3–7-year-old car, often still financed, trading up or exiting a payment. They want a firm offer in minutes, valid 7 days, and paid at pickup. They check one other quote (CarMax or KBB) and never list privately.
+**Persona [M]:** A suburban owner of a 3–7-year-old car, often still financed, who is trading up or exiting a payment. They want a firm offer in minutes, valid 7 days, and paid at pickup. They check one other quote and never list privately.
 
-### Who goes elsewhere, and what keeps sellers from leaving
-- **Private sellers** (47.7% of sellers) maximize price. **New-car buyers** trade in at the franchise dealer for the sales-tax credit; dealer salespeople bring it up constantly (40 r/askcarsales Carvana posts) **[S][R]**.
-- **Lessees:** Honda, Ford, GM, Hyundai/Kia and Tesla restrict third-party buyouts **[P]**.
-- **Old or non-running cars** go to Peddle or junk buyers **[P]**.
-- **There is no lock-in.** Dealer-side forums see offers as a coin flip (Carvana higher 16, competitor higher 14) **[R]**. Carvana wins on the extra margin it earns per car (total GPU $6,997 in Q3'26), mindshare, and payoff and pickup handling **[F]**.
-- **Ways sellers leak:** offer cuts at inspection (3.6% of seller posts), condition disputes (20%), and title/payoff delays (19%) **[R]**.
+### Why there's no lock-in, and where sellers leak
+- **The alternatives:** private sale (top dollar); dealer trade-in (the sales-tax credit, which dealer staff cite often); captive lenders (lease buyout restrictions); Peddle (junk cars) **[S][R][P]**.
+- **Why Carvana still wins:** more margin per car (Q3'26 total GPU $6,997), mindshare, and payoff and pickup handling **[F]**.
+- **Leaks:** condition disputes (20% of seller posts), title and payoff delays (19%), offer cuts at pickup (3.6%) **[R]**.
 
 ---
 
 ## 2. Supply: are fewer people selling to Carvana?
 
-### No. The customer-sourced flow keeps growing ~40%
+### No. The customer-sourced flow grew 38% in Q3'26
 | | Q3'25 | Q4'25 | Q1'26 | Q2'26 | **Q3'26** |
 |---|---|---|---|---|---|
 | Carvana retail units | 155,941 | 163,522 | 187,393 | 197,325 | **217,385** |
 | Wholesale vehicle units* | 80,369 | 81,050 | 83,574 | 105,052 | **111,119** |
 | YoY wholesale vehicle units | +42.3% | +66.2% | +31.7% | +44.4% | **+38.3%** |
 | Wholesale ÷ retail | 0.52 | 0.50 | 0.45 | 0.53 | **0.51** |
-| CarMax bought from consumers (YoY)** | −12.2% | +2.7% | −2.4% | 0.0% | n/a |
+| CarMax bought from consumers (YoY)** | −12.2% | +2.7% | −2.4% | 0.0% | n/a (reports Dec) |
 
 \*Per the 10-K, "primarily acquired from customers" who sell or trade in cars that don't meet retail standards **[F]**.
-\**CarMax fiscal quarters aligned to calendar (Q2 FY27 = Jun–Aug 2026) **[F]**.
+\**CarMax fiscal quarters aligned to calendar **[F]**.
 
-- TTM wholesale vehicle units: **381K vs 265K (+44%)**. CarMax TTM consumer buys: **981K (−3%)** **[F][M]**.
-- **Inventory caught up in Q3:** 87,370 website units at Sep 30, up 30% YoY (77K at Jun 30). Monthly unique visitors were 23.8M (+21%) **[F]**.
-- Seller activity proxies are steady. Seller-side share of r/carvana posts is 25–31% every year 2021–26, and of Carvana app reviews ~6–7% every year 2023–26 **[R]**. 15.7% of car owners got a trade-in quote in the past month (Jun 2025) **[S]**.
+- TTM wholesale vehicle units: **381K, up 44%**, vs CarMax TTM consumer buys of 981K (−3%) **[F][M]**.
+- Website units were 87,370 at Sep 30, up 30% YoY. Monthly unique visitors were 23.8M (+21%) **[F]**.
 
-### So what is the "supply-side" constraint?
-Carvana's own words (Q2'26): *"The supply side of our business… gets better through our execution."* It means **reconditioning capacity**, not sellers. In Q3'26 it integrated 2 more ADESA sites (21 total), with 3 full buildouts due in 2027 **[F]**.
+### What the constraint actually is (Q3'26 call)
+- **CEO Ernie Garcia:** "our rate of growth is constrained by our ability to scale the supply chain. And so we think that is by far and away the biggest driver." He also said inventory "was growing a little slower than we kind of ideally would have liked" **[F]**.
+- **CFO Mark Jenkins:** Q3 was "our first quarter producing more than 200,000 units," and "we slightly outproduced retail units sold." But cars immediately available on the website are still growing "much below what our sales growth is" **[F]**.
+- **Capacity:** 21 ADESA sites are integrated, with 3 full buildouts starting production in 2027 **[F]**.
+- **Macro (Cox, mid-October 2026):**
+  - Wholesale values firmed: Manheim 207.4, +0.7% m/m, +2.2% y/y on an easy comparison. Wholesale supply is 28.2 days.
+  - Cox: "Supply, not demand, appears to be what slowed depreciation."
+  - Demand is flat amid higher rates, weaker sentiment and elevated gas prices.
+  - Off-lease volumes keep recovering from their 2025 trough **[P]**.
 
 | Driver | Type | Direction |
 |---|---|---|
-| Reconditioning throughput | **Carvana-specific** | Improving: inventory +30% YoY in Q3 |
-| Sourcing mix (auction and Hertz-type partners fill the gap above customer supply) | Carvana-specific | Watch GPU |
-| Missing 2020–22 late-model cars; off-lease trough in 2025 | Macro | **Easing:** off-lease ~190K → ~220K/month in H2'26 and rising into 2027 (Cox) **[P]** |
-| Cars kept longer (avg age 12.8 yrs) | Macro | Structural |
-| Captive lease-buyout restrictions | Industry | Persistent; ADESA ownership partly offsets |
+| Reconditioning throughput | **Carvana-specific** | Improving: production >200K, slightly ahead of sales |
+| Sourcing mix (auctions and partners such as Hertz fill the gap above customer supply) | Carvana-specific | Watch GPU |
+| Missing 2020–22 late-model cars; off-lease trough in 2025 | Macro | Easing into 2027 **[P]** |
+| Cars kept longer (avg age 12.8 yrs); lease-buyout restrictions | Macro / industry | Structural |
 
-**Disclosure flags:** Carvana stopped reporting ADESA marketplace units in 2026, and hasn't disclosed the customer-sourced share of retail since 2023 (85% then) **[F]**.
+**Disclosure flags:** Carvana no longer reports ADESA marketplace units (since 2026), and hasn't disclosed the customer-sourced share of retail since 2023 (85% then) **[F]**.
 
 ---
 
-## 3. Buyer profile (loan-level SEC data)
+## 3. Buyer profile (loan-level SEC data, by year the loan was made)
 
-Source: 22 Carvana securitizations (2020-P1 → 2026-P3, ~657K loans; prime "P" pools plus 2021 nonprime "N" pools) and 11 CarMax pools (~896K loans). All come from public ABS-EE exhibit-102 asset files. Implied income = scheduled monthly payment ÷ reported payment-to-income ratio × 12 **[L]**.
+Source: every loan in 22 public Carvana pools (658K loans) and 12 CarMax pools (966K loans). Implied income = scheduled monthly payment ÷ reported payment-to-income × 12 **[L]**.
 
-### How the financed buyer has changed
-| | Carvana nonprime 2021 | Carvana prime 2021 | Carvana prime 2024 | Carvana prime 2026 | CarMax 2025–26 |
+| | Carvana nonprime (made 2020–21) | Carvana prime (made 2021) | Carvana prime (made 2025) | **Carvana prime (made 2026, Jan–Jul)** | **CarMax (made 2026, Jan–Aug)** |
 |---|---|---|---|---|---|
-| Loans | 85,178 | 146,018 | 72,070 | 130,546 | 526,774 |
-| Median FICO | 572 | 696 | 694 | 707 | 755 |
-| Median implied income | $45K | $62K | $85K | **$97K** | $90K |
-| Income < $50K | 58% | 34% | 18% | **13%** | 20% |
-| Income $100K+ | 7% | 22% | 40% | **49%** | 43% |
-| Median payment / PTI | $451 / 12.4% | $388 / 7.7% | $480 / 6.9% | $491 / 6.2% | $417 / 5.6% |
-| Median loan / car value | $18.9K / $18.8K | $21.5K / $23.6K | $23.2K / $25.5K | $26.2K / $27.7K | $21.7K / $25.0K |
-| Median APR | 19.5% | 7.1% | 13.1% | 9.6% | 7.4% |
-| Term > 72 months | 4% | 10% | 38% | **69%** | 20% |
-| LTV < 90% (brings equity) | 16% | 37% | 34% | 25% | 42% |
-| Pickup / SUV / car | 3 / 39 / 57% | 7 / 44 / 46% | 11 / 50 / 36% | 14 / 55 / 28% | 11 / 55 / 32% |
-| EV share | 1.0% | 2.0% | 5.3% | 6.2% | 1.3% |
-| Co-borrower* | n/a | n/a | 18% | 26% | 30% |
+| Loans | 84,196 | 147,823 | 130,195 | **123,012** | **129,625** |
+| Median implied income | $45K | $62K | $90K | **$98K** | $102K |
+| Single-applicant median | $45K | $62K | $80K | **$84K** | $84K |
+| Income under $50K / $100K+ | 58% / 7% | 34% / 23% | 15% / 43% | **12% / 49%** | 15% / 51% |
+| Median FICO | 573 | 696 | 700 | **707** | 769 |
+| FICO under 650 | 84% | 25% | 25% | **25%** | 0% |
+| Median payment / PTI | $452 / 12.4% | $391 / 7.7% | $477 / 6.6% | **$496 / 6.2%** | $429 / 5.0% |
+| Median loan / car value | $18.9K / $18.8K | $21.7K / $23.9K | $24.0K / $25.9K | **$26.5K / $28.0K** | $22.2K / $26.0K |
+| Median APR | 19.5% | 7.1% | 11.5% | **9.5%** | 7.2% |
+| Term > 72 months | 4% | 11% | 48% | **70%** | 23% |
+| Loan < 90% of car value | 16% | 38% | 29% | **26%** | 48% |
+| Pickup / SUV / car | 3 / 39 / 57% | 7 / 44 / 46% | 12 / 53 / 33% | **14 / 56 / 28%** | 11 / 58 / 29% |
+| EVs | 1.0% | 2.0% | 5.6% | **6.4%** | 2.2% |
+| New vehicles | — | — | 0.1% | **2.0%** (all Stellantis) | 0% |
 
-\*Not reported before 2024. The joint-applicant median is $138K; the single-applicant median for 2026 is $84K.
+**What they buy (2026 loans):**
+- **Makes, Carvana vs CarMax:** Chevrolet 10.5 vs 6.6%, Ford 9.5 vs 6.8%, Toyota 8.3 vs 14.0%, Jeep 8.1 vs 4.5%, Honda 5.3 vs 8.8%, Tesla 3.5 vs 1.4%.
+- **Top Carvana models:** Nissan Rogue, Tesla Model 3, Ram 1500 Crew Cab, Ford F-150 SuperCrew, Chevy Equinox, Tesla Model Y, Silverado 1500, Jeep Grand Cherokee, Chevy Trax, Toyota Camry.
+- **New cars:** 2,428 loans: Jeep 1,702, Ram 494, Chrysler 123, Dodge 109 **[L]**.
+
+### Three buyer segments (2026 loans)
+| Segment | Share | Car value | Age | FICO | Payment | Pickups | EVs |
+|---|---|---|---|---|---|---|---|
+| **Value commuter** (<$50K) | 12.5% | $22.2K | 5 yrs | 696 | $402 | 7% | 4% |
+| **Payment-stretcher** ($50–100K) | 38.8% | $26.4K | 4 yrs | 695 | $481 | 13% | 5% |
+| **Affluent upgrader** ($100K+) | 48.6% | $29.8–33.9K | 3–4 yrs | 711–733 | $526–575 | 17% | 7–9% |
+
+Plus the **credit-access buyer** in nonprime pools: income ~$45K, FICO ~570, APR 18–22% (2022–25 deals, DBRS) **[L][P]**.
+
+### How customers are paying (status at Sep 30, 2026)
+| | Active loans | 30+ days late | 60+ days late |
+|---|---|---|---|
+| 2021–22 prime pools | 64,812 | 6.2% | 3.0% |
+| 2021 nonprime pools | 14,022 | 29.8% | 17.4% |
+| 2024 prime pools | 42,714 | 3.6% | 1.6% |
+| 2025 prime pools | 95,723 | 2.5% | 1.0% |
+| 2026 prime pools | 121,226 | 0.7% | 0.2% |
+
+**Same age, same season (Sep 2025 vs Sep 2026):**
+| Pool age | 30+ days late (last year's pool → this year's) | Cumulative charge-off |
+|---|---|---|
+| 16–17 months (2024-P2 → 2025-P2) | 2.69% → 2.95% | 1.82% → 1.70% |
+| 13–14 months (2024-P3 → 2025-P3) | 2.34% → 2.35% | 1.17% → 1.04% |
+| 10–11 months (2024-P4 → 2025-P4) | 1.50% → 1.67% | 0.82% → 0.61% |
+| 7–8 months (2025-P1 → 2026-P1) | 1.38% → 0.99% | 0.43% → 0.24% |
 
 **Read:**
-- Income rose 58% while FICO stayed flat. Carvana now serves **higher-earning but not higher-credit** households.
-- Those households stretch to bigger cars on longer loans: payments are up 27% since 2021 even though PTI fell.
-- Vs CarMax, Carvana reaches further down the credit curve at similar incomes. That combination is what its in-house financing monetizes.
+- There is no broad deterioration through September 2026, despite higher rates and gas prices.
+- The step-down happened earlier: 2024–25 prime vintages charge off about 45–65% faster than 2021's at the same age. 2021 was flattered by the used-car price spike, and the newer vintages carry longer terms and thinner equity.
+- Charge-offs by income band (2024 loans, to date): under $50K 4.8%, $50–100K 3.6%, $100–150K 2.6%, $150K+ 1.9%.
+- Charge-offs by FICO (2024 loans): under 600 6.5% vs 750+ 1.0% **[L]**.
 
-### What they buy
-- **Makes, 2026 Carvana prime vs CarMax 2025–26:** Chevrolet 10.5 vs 7.2%, Ford 9.6 vs 8.0%, Toyota 8.3 vs 12.9%, Jeep 8.0 vs 5.2%, Honda 5.3 vs 9.0%, Tesla 3.4 vs 0.7% **[L]**.
-- **Top models (2026):** Nissan Rogue, Tesla Model 3, Ram 1500 Crew Cab, Ford F-150 SuperCrew, Chevy Equinox, Tesla Model Y, Silverado 1500, Jeep Grand Cherokee, Chevy Trax, Toyota Camry **[L]**.
-- **New cars:** 1.9% of 2026 loans, all Stellantis (Jeep 1,747, Ram 524, Chrysler 131, Dodge 115) from Carvana's franchise stores **[L]**.
+**2021 pools, whole life:** about 1 in 3 nonprime borrowers charged off (31% for N1, 42% for N3), vs ~5% for prime. Lower income, higher payment-to-income, higher LTV and older cars all predict default **[L]**.
 
-### Three buyer segments (2026 prime pools, by income)
-| Segment | Share of loans | Car value | Age | FICO | Payment | Pickups | EVs |
-|---|---|---|---|---|---|---|---|
-| **Value commuter** (<$50K) | 13% | $22.0K | 6 yrs | 697 | $399 | 6% | 4% |
-| **Payment-stretcher** ($50–100K) | 39% | $26.1K | 4 yrs | 696 | $476 | 13% | 5% |
-| **Affluent upgrader** ($100K+) | 48% | $29.5–33.7K | 3–4 yrs | 711–733 | $519–571 | 16–17% | 7–9% |
+### Geography and neighborhoods (2026 loans)
+- **Penetration index** (loan share ÷ population share × 100):
+  - Highest: AZ 203, NM 164, SC 162, OK 153, GA 151, IN 150, AR 145, OH 143, NV 135, DE 134, AL 133, KY 133.
+  - Lowest: CA 63, WA 61, NY 71, MA 78, MN 56, UT 46, ID 46, VT 51, ME 42, DC 33, the Dakotas and Montana under 25. AK/HI are unserved **[L][M]**.
+- **Rank correlation with state traits (ACS 2024):** median household income −0.32, college share −0.34. CarMax's index instead tracks its store footprint (+0.53 with armed-forces share) **[L][M]**.
+- Carvana borrowers earn **~1.2x** their state's median household income: above-median earners in middle-income states **[L][M]**.
+- **Complainants' ZIPs (2021–Oct 2026):** 73% suburban/exurban, 11.5% rural vs 32.6% of the US population. ZIP median income $79K (US $80K), median age 37.3 (US 39.1) **[C]**.
+- **Servicemembers:** 14.9% of 2026 vehicle-loan complaints, vs 12.1% industry. Older Americans are under-represented **[C]**.
 
-Plus the **credit-access buyer** in the nonprime pools: income ~$45K, FICO ~570 (6% have no score), APR 18–22%, mostly sedans. Nonprime APRs rose from 18.05% (2022-N1) to 22.09% (2025-N1) at stable WA FICO 567–589 (DBRS) **[L][P]**.
-
-### Who defaults (2021 pools tracked through every monthly report)
-| Cumulative charge-off, share of loans | 2021-N1 | 2021-N3 | 2021-P1 |
-|---|---|---|---|
-| All loans | **31%** | **42%** | **5%** |
-| Income < $35K vs $100K+ | 37% vs 22% | 47% vs 33% | 7.9% vs 1.6% |
-| PTI < 6% vs 15%+ | 23% vs 37% | 34% vs 48% | 2.5% vs 9.9% |
-| LTV < 90% vs 120%+ | 27% vs 43% | 34% vs 55% | 2.0% vs 13.2% |
-| Car 0–2 yrs vs 9+ yrs old | 24% vs 39% | 30% vs 49% | 3.3% vs 7.9% |
-
-- 2024-P2 at 29 months had charged off 3.3% of loans, vs 2.6% for 2021-P1 at the same age. Higher incomes have not yet bought better credit, because longer terms and higher LTVs offset them.
-- Within 2024-P2, charge-offs run 5.1% for <$50K vs 1.7% for $150K+ **[L]**.
-
-### Geography and neighborhoods
-- **State penetration index** (2025–26 loan share ÷ population share × 100):
-  - Highest: AZ 213, SC 167, GA 159, NM 159, IN 148, NV 147, OK 146, AR 142, OH 139, CT 136, KY 132, TN 131.
-  - Lowest: CA 64, NY 66, WA 62, MA 79, MN 56, UT 48, ID 46, the Dakotas and Montana under 25. AK/HI are effectively unserved **[L][M]**.
-- **What predicts penetration (rank correlation across states):**
-  - State median household income −0.32 and bachelor's share −0.29. Carvana is strongest in **middle-income, less coastal** states.
-  - CarMax's index instead tracks its store footprint (+0.44 with armed-forces share).
-  - Carvana borrowers earn ~1.14x their state's median household income **[L][M]**.
-- **Complainants' ZIP codes** (CFPB, 2021+, matched to ACS 2024 ZIP data):
-  - ZIP median household income $79K, about the US median.
-  - ZIP median age 37.3 vs 39.1 for the US.
-  - 11.5% rural vs 32.6% of the US population; 73% suburban/exurban; 15% dense urban **[C]**.
-- **Military and older customers** (vehicle-loan complaints): servicemember-tagged 14.5% for Carvana vs 12.1% industry and 11.3% CarMax. Older-American-tagged 3.3% vs 5.2% industry. That points to a younger, modestly military-heavy base **[C]**.
-
-### Why they choose Carvana
+### Why they choose Carvana (October 2026 read)
 | Driver | Evidence |
 |---|---|
-| **Convenience / ease (#1)** | Primary reason 27.8% + saves time 16.0% **[S]**. Ease appears in 34% of 2024+ Carvana app reviews vs 13% of CarMax's, and in 45% of 5-star Carvana reviews **[R]** |
-| **Price (rising #2)** | Primary reason 22% in 2021 → 27% in 2025 **[S]**. No dealer fees **[F]**. Also the #1 reason for rejecting Carvana (26%) **[S]** |
-| **Financing access** | Primary reason for 15% **[S]**. Financing is the top complaint in 1–2 star reviews (20%) **[R]** and 30% of CFPB complaints ("getting a loan") **[C]** |
-| **Brand / trust** | 7% primary. Trust at parity with CarMax (Bespoke 2.10 vs 2.15; Morgan Stanley 56% vs 52%) **[S][P]**. Word-of-mouth networks are dense: 69% of customers know another Carvana customer vs 24% of all adults **[S]** |
-| **Age / gender** (weakest evidence) | "Roughly the car-buying population, slightly younger" (Carvana) **[F]**. Under-indexes older Americans in complaints **[C]**. Millennials were 65% of Carvana EV buyers in Q2'24 **[P]**. A third-party social-audience model puts fans ~68% male, avg age ~42 (low confidence) **[P]** |
+| **Convenience (#1)** | Primary reason 27.8% + saves time 16.0% **[S]**. Ease appears in 37.1% of 2026 Carvana app reviews (31.9% in 2025) vs 16.5% for CarMax **[R]** |
+| **Price (rising)** | Primary reason 22% (2021) → 27% (2025) **[S]**. No dealer fees; the CEO says FTC fee rules "directionally" benefit Carvana **[F]** |
+| **Financing access** | Primary reason for 15% **[S]**. Prime mix shifting up **[F]**. "Getting a loan" fell from 28% to 21% of Carvana complaints (2025 vs 2026 YTD) **[C]** |
+| **Brand / trust** | Trust at parity with CarMax **[S][P]**. NPS +9 points over two years **[F]**. Complaints per 100K cars sold halved year over year **[C]**. 69% of customers know another Carvana customer **[S]** |
+| **Age / gender** (weakest data) | "Roughly the car-buying population, slightly younger" (Carvana) **[F]**. Fewer older Americans in complaints **[C]**. Millennials were 65% of Carvana EV buyers (2024) **[P]** |
 
-**Hertz** is a Carvana supplier (retail marketplace partner since 2021), not a competitor. The real competitor is **CarMax**, then franchise dealers and Amazon Autos **[F][P]**.
+**Hertz** is a supplier (retail marketplace partner), not a competitor. The CEO says Carvana is "knocking on the door of becoming the largest" used-car seller, with just over 2% of the used market **[F]**.
 
 ---
 
 ## 4. How the data was gathered
 | Source | What was pulled | Size |
 |---|---|---|
-| SEC EDGAR ABS-EE (Reg AB II exhibit 102) | Loan-level fields: FICO, payment-to-income, payment, state, make/model/year, value, LTV, term, APR, co-borrower | 22 Carvana pools (658K loans) + 11 CarMax pools (896K loans) |
-| SEC monthly ABS-EE status files | Loan-by-loan charge-offs for 2021-N1, 2021-N3, 2021-P1 (190 monthly files); latest status for 2024-P2/P3, 2025-P1 | ~4M loan-month records |
-| CFPB complaint API | All complaints for Carvana, Bridgecrest, DriveTime, CarMax: issue, state, ZIP, servicemember / older-American tags | 14,305 complaints |
-| Census ACS 2024 (bulk files) + ZIP gazetteer | State and ZIP income, age, education, density, veterans, vehicles | 33,772 ZIPs, 51 states |
-| Apple App Store RSS + Google Play | Reviews for Carvana and CarMax apps | ~13,800 reviews |
-| Reddit (Arctic Shift archive) | All r/carvana posts, plus Carvana mentions in r/askcarsales and r/personalfinance | 24,264 posts |
-| Bespoke CVNA survey waves (Jun 2021, Dec 2021, Feb 2025, Jun 2025) | Reasons over time, network effects, credit crosstabs | ~10K respondents per wave |
-| DBRS releases | Nonprime pool stats 2022–2025 | 5 deals |
+| SEC ABS-EE exhibit 102 (Reg AB II) | Loan-level FICO, payment-to-income, payment, state, make/model/year, value, term, APR, co-borrower | 22 Carvana pools (658K loans) + 12 CarMax pools (966K) |
+| SEC monthly status files | Every loan's status in 19 active Carvana pools (Sep 2026) and 6 pools (Sep 2025); full monthly history for 2021-N1, N3, P1 | ~4.8M loan-month records |
+| CFPB complaint API | Carvana, Bridgecrest, DriveTime, CarMax complaints: issue, state, ZIP, tags | 14,305 complaints |
+| Census ACS 2024 + ZIP gazetteer | State and ZIP income, age, education, density, veterans, vehicles | 33,772 ZIPs |
+| App Store + Google Play | Carvana and CarMax app reviews | ~13,800 reviews |
+| Reddit (Arctic Shift) | All r/carvana posts; Carvana mentions in r/askcarsales and r/personalfinance | 24,264 posts |
+| Bespoke surveys, DBRS, Cox, Q3'26 call | Reasons over time, network effects, nonprime pool stats, market data, management commentary | — |
 
 **Could not get:**
-- carvana.com and press.carvana.com sit behind a bot challenge, so I did not scrape them; the loan data covers the vehicle profile.
+- carvana.com and its press site are behind a bot challenge, so I did not scrape them.
 - Google Trends and Wikipedia pageviews were rate-limited from this network.
-- CFPB no longer serves complaint narratives through its API.
+- CFPB no longer serves complaint narratives.
+- Bespoke's Oct 2025 and Feb 2026 waves (cited by Carvana) are not public.
+- Carvana's 2022–26 nonprime pools are private.
 
-## 5. What to watch
-- Wholesale ÷ retail units (0.51 in Q3'26). Below ~0.45 would be the first sign of sellers leaking.
-- Income and credit mix in the next prime pools (2026-P4). Watch for longer terms and rising early charge-offs in the 2025–26 vintages.
-- Inventory vs sales growth as ADESA buildouts come online in 2027.
+## 5. What to watch next
+- **Q4'26 (Feb 2027):** wholesale ÷ retail units (0.51 now; below ~0.45 would signal sellers leaking), website inventory vs sales growth, and the shift to GAAP reporting in 2027.
+- **Monthly SEC filings (mid-November):** 30+ day delinquency in the 2025–26 pools vs the same-age table above. Watch under-$50K and sub-650 FICO borrowers first.
+- **CarMax:** strategic update (Nov 3) and Q3 FY27 consumer buys (December).
 
 ## Data files
-- `carvana/data/`: unit series, CarMax buys, 2026-P3 pool stats, Bespoke Jun 2025 extracts.
-- `carvana/data/scraped/`: loan-level cohort profiles, income/FICO/term bands, makes and models, income-segment table, state penetration vs Census, charge-offs by segment, vintage curves, CFPB summaries and ZIP density, app-review themes, Reddit themes and offer comparisons, Bespoke reasons over time, DBRS nonprime pools.
-- `carvana/scripts/`: the scrape and parse pipeline (see `scripts/README.md`).
+- `carvana/data/`: unit series (through Q3'26), CarMax buys, 2026-P3 pool stats, Bespoke Jun 2025 extracts.
+- `carvana/data/scraped/`:
+  - Buyer profile: `loan_profile_by_origination_year.csv`, `income_bands_*`, `fico_bands_*`, `loan_term_*`, `make_mix_2026_originations.csv`, `top_models_2026_originations.csv`, `carvana_2026_originations_by_income_band.csv`, `state_penetration_2026_originations.csv`.
+  - October 2026 credit check: `oct2026_pool_status.csv`, `oct2026_status_by_segment.csv`, `same_age_oct2025_vs_oct2026.csv`, `vintage_chargeoffs.csv`, `chargeoff_by_segment_2021_pools.csv`.
+  - Customer voice: `cfpb_*` (incl. `cfpb_2026_ytd_vs_2025.csv`), `app_review_*` (incl. 2025 vs 2026), `reddit_*`, `bespoke_reasons_over_time.csv`, `dbrs_nonprime_pools.csv`.
+- `carvana/scripts/`: scrape and parse pipeline.
 
 ## Caveats
-- **Loan pools** are securitized subsets. Prime pools are selected for credit. Public loan-level files exist only for the 2020–22 and 2024–26 prime pools and the 2021 nonprime pools; later nonprime deals were private. So income and FICO describe **financed buyers in public pools**, not every customer. Carvana finances roughly three-quarters of its buyers **[M]**.
-- **Implied income** uses reported PTI. It is the applicants' stated, verified income, combined when there is a co-borrower.
-- **Charge-off rates** are shares of loans, not dollar net losses.
-- **Complaints, reviews and Reddit** are self-selected and skew to problems. Use them for relative comparisons (Carvana vs CarMax, themes), not levels. Keyword theme tagging is approximate.
-- **Bespoke's Carvana sub-samples are small** (190 sellers, 519 buyers).
+- **Pool selection:** public pools are securitized subsets. Prime pools are selected for credit, and CarMax's public pools exclude sub-650 FICO buyers. Figures describe financed buyers in public pools, not every customer; Carvana finances roughly three-quarters of buyers **[M]**.
+- **Implied income** uses reported PTI and combines incomes for joint applicants (26% of Carvana 2026 loans).
+- **Charge-off rates** are shares of loans, not dollar losses. 2021 vintages benefited from the 2021–22 used-car price spike.
+- **Self-selected sources:** complaints, reviews and Reddit skew to problems. Use them for comparisons and trends, not levels.
 
 ## Sources
-- Carvana shareholder letters Q2'23–Q3'26, FY25 10-K, Q2'26 and Q3'26 10-Q (SEC EDGAR CIK 1690820). Carvana Auto Receivables Trust ABS-EE and 424B5 filings (e.g., 2026-P3 CIK 1999511, 2021-N1 CIK 1842012). CarMax Auto Owner Trust ABS-EE filings (e.g., 2025-4 CIK 2089777). CarMax earnings releases (CIK 1170010).
-- [CFPB Consumer Complaint Database API](https://www.consumerfinance.gov/data-research/consumer-complaints/); [ACS 2024 table-based summary files](https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/); [2024 ZCTA gazetteer](https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/)
-- [Arctic Shift Reddit archive](https://arctic-shift.photon-reddit.com/); Apple App Store customer-review RSS; Google Play (google-play-scraper)
+- SEC EDGAR: Carvana Q3'26 shareholder letter and 10-Q (Oct 28, 2026), FY25 10-K, prior letters. Carvana Auto Receivables Trust ABS-EE filings (Oct 15, 2026 and Oct 15, 2025 monthly reports; issuance files). CarMax Auto Owner Trust ABS-EE filings (incl. 2026-4, CIK 2150706). CarMax earnings releases (CIK 1170010).
+- Q3'26 call: [Motley Fool transcript](https://www.fool.com/earnings/call-transcripts/2026/10/29/carvana-cvna-q3-2026-earnings-call-transcript/)
+- [Cox Automotive Manheim mid-October 2026](https://www.coxautoinc.com/insights/manheim-used-vehicle-value-index-mid-october-2026-trends/); [Cox Sep 2026 used inventory](https://www.coxautoinc.com/insights/used-vehicle-inventory-september-2026/); [off-lease outlook](https://www.automotive-fleet.com/news/wholesale-used-vehicle-values-fall-as-cox-automotive-cuts-2026-forecast)
+- [CFPB complaint database](https://www.consumerfinance.gov/data-research/consumer-complaints/); [ACS 2024 summary files](https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/); [Arctic Shift](https://arctic-shift.photon-reddit.com/); App Store / Google Play
 - Bespoke CVNA surveys: [Jun 2025](https://bespokeintel.com/wp-content/uploads/2025/07/Bespoke-CVNA-10000N-Survey-Wave-12-1.pdf), [Feb 2025](https://bespokeintel.com/wp-content/uploads/2025/02/Bespoke-CVNA-Custom-Survey-Wave-11-Februarey-2025-2.pdf), [Dec 2021](https://bespokeintel.com/wp-content/uploads/2022/02/Bespoke-CVNA-Custom-Survey-December-2021-Wave-2-4.pdf)
-- DBRS: [2022-N1](https://dbrs.morningstar.com/research/393358/dbrs-morningstar-assigns-provisional-ratings-to-carvana-auto-receivables-trust-2022-n1), [2023-N2](https://dbrs.morningstar.com/research/417670/dbrs-morningstar-assigned-final-ratings-on-carvana-auto-receivables-trust-2023-n2), [2024-N1](https://dbrs.morningstar.com/research/428131/morningstar-dbrs-assigns-provisional-credit-ratings-to-carvana-auto-receivables-trust-2024-n1), [2024-N2](https://dbrs.morningstar.com/research/434696/morningstar-dbrs-finalizes-provisional-ratings-on-carvana-auto-receivables-trust-2024-n2), [2025-N1](https://dbrs.morningstar.com/research/448343)
-- Morgan Stanley AlphaWise via [Yahoo Finance](https://finance.yahoo.com/markets/stocks/articles/carvana-winning-customers-faces-costly-021700810.html); [Carvana EV Trends 2024](https://www.businesswire.com/news/home/20240723180411/en/Carvana-EV-Trends-Report-Reveals-Broadening-Appeal-and-Accessibility-of-Used-EVs); [Rascasse audience model](https://rascasse.com/explore/us/carvana-22142); [CivicScience](https://civicscience.com/?p=30786)
-- Cox Automotive: [Sep 2026 used inventory](https://www.coxautoinc.com/insights/used-vehicle-inventory-september-2026/), [Q3 2026 forecast](https://www.coxautoinc.com/wp-content/uploads/2026/09/Q3-2026-Cox-Automotive-Sales-Forecast-Update-Transcript.pdf), [off-lease outlook](https://www.automotive-fleet.com/news/wholesale-used-vehicle-values-fall-as-cox-automotive-cuts-2026-forecast); [vehicle age](https://www.autoremarketing.com/ar/sp-global-mobility-sees-average-age-of-vehicles-in-operation-set-another-record/); [lease buyouts](https://leasematurity.com/learn/lease-buyouts-by-manufacturer/); [Hertz–Carvana](https://www.autoremarketing.com/ar/wholesale/hertz-sell-vehicles-directly-consumers-carvana/); [Amazon Autos](https://www.autonews.com/hyundai/an-amazon-starts-selling-used-cars-hyundai-0804)
+- DBRS nonprime releases ([2025-N1](https://dbrs.morningstar.com/research/448343) and earlier); [Morgan Stanley AlphaWise (Oct 2026)](https://finance.yahoo.com/markets/stocks/articles/carvana-winning-customers-faces-costly-021700810.html); [Carvana EV Trends](https://www.businesswire.com/news/home/20240723180411/en/Carvana-EV-Trends-Report-Reveals-Broadening-Appeal-and-Accessibility-of-Used-EVs); [lease buyouts](https://leasematurity.com/learn/lease-buyouts-by-manufacturer/); [Hertz–Carvana](https://www.autoremarketing.com/ar/wholesale/hertz-sell-vehicles-directly-consumers-carvana/)

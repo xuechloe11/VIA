@@ -1,7 +1,12 @@
-pool,months_since_issue,cum_chargeoff_pct_of_loans,final_cum_chargeoff_pct
-2021-P1 (prime),29.0,2.6,5.1
-2021-N1 (nonprime),29.0,17.2,31.3
-2021-N3 (nonprime),,,41.8
-2024-P2 (prime),29.0,3.3,
-2024-P3 (prime),26.0,2.9,
-2025-P1 (prime),19.0,2.1,
+pool,first_report,age_months,cum_chargeoff_pct_of_loans,basis
+2021-P1 (prime),2021-01,17.0,1.27,full monthly history
+2021-P1 (prime),2021-01,28.0,2.32,full monthly history
+2021-P1 (prime),2021-01,,4.9,final (pool paid down)
+2021-N1 (nonprime),2021-02,28.0,15.44,full monthly history
+2021-N1 (nonprime),2021-02,,31.3,final
+2021-N3 (nonprime),2021-07,,41.6,Sep 2026 status (pool 7% outstanding)
+2024-P2 (prime),2024-04,17.0,1.82,Sep 2025 status file
+2024-P2 (prime),2024-04,29.0,3.87,Sep 2026 status file
+2024-P3 (prime),2024-07,26.0,3.28,Sep 2026 status file
+2024-P4 (prime),2024-11,22.0,2.77,Sep 2026 status file
+2025-P1 (prime),2025-02,19.0,2.25,Sep 2026 status file
