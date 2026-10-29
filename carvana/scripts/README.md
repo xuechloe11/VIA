@@ -5,6 +5,7 @@ Set `CVNA_WORK` to a scratch folder; raw downloads stay there, only summary tabl
 | Step | Script | Source |
 |---|---|---|
 | Loan-level borrower data | `parse_absee.py` (stdin XML -> CSV), `parse_perf.py` (monthly status) | SEC EDGAR ABS-EE exhibit 102 (Reg AB II) for Carvana Auto Receivables Trusts and CarMax Auto Owner Trusts |
+| Extension rates | `extensions.py` (share of active loans ever / newly extended, by pool and month; needs `paymentExtendedNumber` from `parse_perf.py`) | Monthly ABS-EE files, Carvana and CarMax |
 | October snapshot | `perf_snapshot.py` (per-loan status; charged-off = zero-balance code 4 or later re-code 2) | Latest monthly ABS-EE files |
 | Loan loader / derived fields | `load_loans.py` (FICO, implied income = monthly payment / PTI x 12, LTV, vehicle age) | — |
 | Vehicle segments | `segments.py` (pickup / SUV / car / EV keyword map) | — |
