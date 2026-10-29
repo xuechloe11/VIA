@@ -4,8 +4,7 @@ import xml.etree.ElementTree as ET
 deal, period_tag, outp = sys.argv[1], sys.argv[2], sys.argv[3]
 NS='{http://www.sec.gov/edgar/document/absee/autoloan/assetdata}'
 F=['assetNumber','reportingPeriodEndingDate','currentDelinquencyStatus','repossessedIndicator','zeroBalanceCode',
-   'chargedoffPrincipalAmount','recoveredAmount','reportingPeriodActualEndBalanceAmount','reportingPeriodBeginningLoanBalanceAmount',
-   'paymentExtendedNumber']   # cumulative count of payment extensions (Reg AB II auto field); used by extensions.py
+   'chargedoffPrincipalAmount','recoveredAmount','reportingPeriodActualEndBalanceAmount','reportingPeriodBeginningLoanBalanceAmount']
 w=csv.writer(gzip.open(outp,'wt',newline=''))
 w.writerow(['deal','file']+F)
 n=0
